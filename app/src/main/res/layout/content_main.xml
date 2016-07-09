@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="me.chenjiayang.myleancloud.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:weightSum="1"
+    android:background="@drawable/splash3">
+
+   <!-- <include
+        layout="@layout/nav_header_main2"/>-->
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username：" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/ettt"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password："
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:inputType="textPassword"
+        android:background="@drawable/ettt"/>
+
+
+    <CheckBox
+        android:layout_gravity="start"
+        android:id="@+id/rememberCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_checkbox_remember"
+        android:textColor="@color/offline_down_size"
+        android:layout_marginTop="15dp"/>
+    <CheckBox
+        android:layout_gravity="start"
+        android:id="@+id/autologinCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_checkbox_autologin"
+        android:textColor="@color/offline_down_size"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_button_text" />
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_button_text" />
+
+        </LinearLayout>
+
+</LinearLayout>

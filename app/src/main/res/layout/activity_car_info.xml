@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:descendantFocusability="afterDescendants"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical" >
+　　
+　　<!-- 车名 -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#0a0a0a"
+        android:lines="1"
+        android:textSize="20sp">
+    </TextView>
+　　
+　　<!-- 作者头像和博文概要 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/photograph"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/summary"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="3"/>
+
+    </LinearLayout>
+　
+　　    <!-- 作者昵称和发布日期 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0a0a0a" />
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#69696c"
+            android:layout_marginRight="210dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0a0a0a"
+            android:text="保养时间:" />
+        <TextView
+            android:id="@+id/publishtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#69696c"/>
+    </LinearLayout>　
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/look_car_info_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="查看详情"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:background="@drawable/ettt"/>
+
+        <Button
+            android:id="@+id/get_qrcode_btn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:text="获取二维码"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:background="@drawable/ettt"/>
+    </LinearLayout>　
+</LinearLayout>

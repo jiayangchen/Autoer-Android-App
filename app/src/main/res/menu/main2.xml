@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />-->
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@mipmap/ic_search"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@mipmap/ic_notifications"
+        android:title="@string/menu_notifications"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_seif_info"
+        android:title="@string/item_03"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_car_info"
+        android:title="@string/item_04"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_item2"
+        android:title="@string/item_02"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_item1"
+        android:title="@string/item_01"
+        app:showAsAction="never" />
+
+</menu>

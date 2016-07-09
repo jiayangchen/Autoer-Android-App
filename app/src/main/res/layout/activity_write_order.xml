@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    tools:context="me.chenjiayang.myleancloud.WriteOrderActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PetrolStation:" />
+
+    <EditText
+        android:id="@+id/pstationName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/et"
+        android:focusable="false"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address："
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/pAddress"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/et"
+        android:focusable="false"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time："
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/pTime"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/et"
+        android:focusable="false"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gasoline："
+        android:layout_marginTop="15dp"/>
+
+
+        <RadioGroup
+            android:id="@+id/radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="90#"/>
+        <RadioButton
+            android:id="@+id/radio_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="93#"/>
+        <RadioButton
+            android:id="@+id/radio_btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="97#"/>
+        <RadioButton
+            android:id="@+id/radio_btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="98#"/>
+        </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity:" />
+    <NumberPicker
+        android:id="@+id/minuteicker"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="L"/>
+    <ImageView
+        android:id="@+id/iv_qr_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirm_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm an appointment"/>
+
+
+
+</LinearLayout>

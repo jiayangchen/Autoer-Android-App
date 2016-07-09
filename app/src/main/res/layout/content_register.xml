@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="me.chenjiayang.myleancloud.RegisterActivity"
+    tools:showIn="@layout/activity_main"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/splash3">
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_hint_username" />
+    <EditText
+        android:id="@+id/re_usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:selectAllOnFocus="true"
+        android:background="@drawable/ettt"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_hint_password"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/re_passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:inputType="numberPassword"
+        android:background="@drawable/ettt"/>
+
+    <TextView
+        android:layout_gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat_password"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/re_ensure_passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:inputType="numberPassword"
+        android:background="@drawable/ettt"/>
+
+    <Button
+        android:id="@+id/registerAction_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button_text"
+        android:layout_marginTop="15dp"/>
+
+</LinearLayout>
