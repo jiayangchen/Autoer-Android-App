@@ -12,7 +12,9 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,22 +40,18 @@ public class CarInfoActivity extends AppCompatActivity {
             public void done(List<AVObject> list, AVException e) {
                 carlist = list;
                 for (int i = 0; i <carlist.size(); i++) {
-                    HashMap<String, Object> map = new HashMap<String, Object>();
+                    HashMap<String, Object> map = new HashMap<>();
                     String carname = carlist.get(i).get("CarName").toString();
-                    String carlogo = carlist.get(i).get("CarLogo").toString();
-                    String carsummary = carlist.get(i).get("License_plate_number").toString() + carlist.get(i).get("Engine_no").toString() + carlist.get(i).get("mileage").toString() +
-                            carlist.get(i).get("Amount_of_gasoline").toString() + carlist.get(i).get("transmission").toString();
-                    String cartime = carlist.get(i).get("MaintenanceTime").toString();
+                    String carsummary = "车牌号："+carlist.get(i).get("License_plate_number").toString()+"\n" +"发动机号："+ carlist.get(i).get("Engine_no").toString()+"\n" +
+                            "里程数："+ carlist.get(i).get("mileage").toString() +"\n"+"汽油量："+
+                            carlist.get(i).get("Amount_of_gasoline").toString() +"%\n"+"变速器情况："+ carlist.get(i).get("transmission").toString();
 
                     map.put("itemTitle", carname);
-                    map.put("itemPhoto", carlogo);
+                    map.put("itemPhoto", R.drawable.audilogo);
                     map.put("itemSummary", carsummary);
-                    map.put("itemAuthor", "");
-                    map.put("itemPublishtime", cartime);
                     item.add(map);
-
-                    setAdapter();
                 }
+                setAdapter();
             }
         });
 
@@ -71,8 +69,8 @@ public class CarInfoActivity extends AppCompatActivity {
 
         //创建简单适配器SimpleAdapter
         simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_car_info,
-                new String[] {"itemTitle","itemPhoto", "itemSummary", "itemAuthor", "itemPublishtime"},
-                new int[] {R.id.title, R.id.photograph, R.id.summary, R.id.author, R.id.publishtime});
+                new String[] {"itemTitle","itemPhoto", "itemSummary"},
+                new int[] {R.id.title, R.id.photograph, R.id.summary});
 
         //加载SimpleAdapter到ListView中
         mListView.setAdapter(simpleAdapter);
