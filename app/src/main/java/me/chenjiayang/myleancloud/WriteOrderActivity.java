@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,11 +25,11 @@ import com.avos.avoscloud.SaveCallback;
 import com.google.zxing.WriterException;
 import com.zxing.encoding.EncodingHandler;
 
+import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class WriteOrderActivity extends AppCompatActivity
         implements NumberPicker.OnValueChangeListener,NumberPicker.OnScrollListener,NumberPicker.Formatter {
-
 
     private String gasType;
     private String pTime;
@@ -81,7 +83,6 @@ public class WriteOrderActivity extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
-
     private void init() {
         numberPicker.setFormatter(this);
         numberPicker.setOnValueChangedListener(this);
@@ -125,6 +126,8 @@ public class WriteOrderActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
+            case R.id.actiob_order_list:
+                startActivity(new Intent(WriteOrderActivity.this, CardLayoutActivity.class));
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -169,16 +172,7 @@ public class WriteOrderActivity extends AppCompatActivity
                         }
                     }
                 });
-
                 dialog.dismiss(); //关闭dialog
-
-                try {
-                    Bitmap qrCodeBitmap = EncodingHandler.createQRCode(orderinfo, 500);
-                    qrImgImageView.setImageBitmap(qrCodeBitmap);
-                } catch (WriterException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -192,5 +186,13 @@ public class WriteOrderActivity extends AppCompatActivity
 
         //参数都设置完成了，创建并显示出来
         builder.create().show();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main, menu);//这里是调用menu文件夹中的main.xml，在登陆界面label右上角的三角里显示其他功能
+        return true;
     }
 }

@@ -39,7 +39,7 @@
             android:value="7cbb133e367200f34aa83acce215a140" />
 
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
-        <service android:name="com.avos.avoscloud.PushService" />
+        <service android:name="com.avos.avoscloud.PushService"/>
 
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
             <intent-filter>
@@ -125,10 +125,12 @@
         <activity
             android:name=".MyOrderActivity"
             android:label="@string/title_activity_my_order"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cardlayout.CardLayoutActivity"
             android:label="Cardlayout" />
+        <activity android:name=".CarItemActivity"
+            android:label="CarElem"/>
     </application>
 
 </manifest>

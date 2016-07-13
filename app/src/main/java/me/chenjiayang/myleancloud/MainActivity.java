@@ -13,11 +13,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
-import com.avos.avoscloud.SaveCallback;
 
 public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
@@ -26,20 +23,31 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox autologin;
     private Button login_button;
     private Button register_button;
+    private long exitTime = 0;
 
     private SharedPreferences sp;
-    private long exitTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init();//初始化控件
+
+        login();//登录逻辑
+
+    }
+
+    private void init(){
         login_button = (Button) findViewById(R.id.login_button);
         register_button = (Button) findViewById(R.id.register_button);
         remember = (CheckBox) findViewById(R.id.rememberCheckBox);
         autologin = (CheckBox) findViewById(R.id.autologinCheckBox);
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+    }
+
+    private void login(){
 
         sp = getSharedPreferences("userInfo",0);
         String fill_name = sp.getString("USER_NAME","");
@@ -125,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -146,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){

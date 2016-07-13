@@ -50,6 +50,7 @@ import com.avos.avoscloud.FindCallback;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.jude.swipbackhelper.SwipeBackHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -122,6 +123,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poiaroundsearch_activity);
+
+
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
 
@@ -235,7 +238,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
         builder.setTitle("可预约时间"); //设置标题
         //builder.setMessage("是否确认退出?"); //设置内容
-        builder.setIcon(R.mipmap.ic_launcher1);//设置图标，图片id即可
 
         builder.setSingleChoiceItems(items,0, new OnClickListener() {
             @Override
@@ -249,7 +251,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss(); //关闭dialog
-                Toast.makeText(PoiAroundSearchActivity.this, "预约成功" + which, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
                 intent.putExtra("bundle",bundle);
                 startActivity(intent);
@@ -264,13 +265,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
             }
         });
 
-        builder.setNeutralButton("忽略", new DialogInterface.OnClickListener() {//设置忽略按钮
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                Toast.makeText(PoiAroundSearchActivity.this, "忽略" + which, Toast.LENGTH_SHORT).show();
-            }
-        });
         //参数都设置完成了，创建并显示出来
         builder.create().show();
     }

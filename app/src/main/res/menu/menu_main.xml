@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="me.chenjiayang.myleancloud.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/actiob_order_list"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Order List"
         app:showAsAction="never" />
 </menu>

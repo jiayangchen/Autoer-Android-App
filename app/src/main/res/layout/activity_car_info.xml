@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:descendantFocusability="afterDescendants"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:descendantFocusability="afterDescendants"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 　　
-　　<!-- 车名 -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="#0a0a0a"
-        android:lines="1"
-        android:textSize="20sp">
-    </TextView>
+        app:cardBackgroundColor="#ffffff"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        　　<!-- 车名 -->
+            <TextView
+                android:id="@+id/title"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#848383"
+                android:lines="1"
+                android:textSize="20sp">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看详情>>"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"/>
+        </RelativeLayout>
+    </LinearLayout>
 　　
 　　<!-- 作者头像和博文概要 -->
     <LinearLayout
@@ -25,53 +58,27 @@ android:orientation="vertical" >
         android:layout_marginTop="2dp"
         android:layout_marginLeft="5dp"
         android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/photograph"
         android:layout_marginTop="2dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"/>
     <TextView
         android:id="@+id/summary"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="5"/>
-
+        </RelativeLayout>
     </LinearLayout>
-　
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+  </LinearLayout>
 
-        <Button
-            android:id="@+id/look_car_info_btn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:text="查看详情"
-            android:textSize="15sp"
-            android:textStyle="normal"
-            android:background="@drawable/ettt"/>
+</android.support.v7.widget.CardView>
 
-        <Button
-            android:id="@+id/get_qrcode_btn"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:layout_weight="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:text="获取二维码"
-            android:textSize="15sp"
-            android:textStyle="normal"
-            android:background="@drawable/ettt"/>
-    </LinearLayout>　
 </LinearLayout>

@@ -20,16 +20,6 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_seif_info"
-        android:title="@string/item_03"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_car_info"
-        android:title="@string/item_04"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_item2"
         android:title="@string/item_02"
         app:showAsAction="never" />
@@ -37,6 +27,10 @@
     <item
         android:id="@+id/action_item1"
         android:title="@string/item_01"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_quit"
+        android:title="@string/item_quit"
         app:showAsAction="never" />
 
 </menu>

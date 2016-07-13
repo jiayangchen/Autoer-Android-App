@@ -4,23 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
+import com.google.zxing.WriterException;
+import com.zxing.encoding.EncodingHandler;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.chenjiayang.myleancloud.Main2Activity;
 import me.chenjiayang.myleancloud.R;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -30,6 +38,8 @@ public class CardLayoutFragment extends Fragment {
     private ListView cardsList;
     private ArrayList<String> items = new ArrayList<String>();
     private List<AVObject> ans;
+    private AlertDialog alert = null;
+    private AlertDialog.Builder builder = null;
 
     public CardLayoutFragment() {
         // nop
@@ -42,7 +52,9 @@ public class CardLayoutFragment extends Fragment {
 
         AVQuery<AVObject> query = new AVQuery<>("Order");
         // 按时间，升序排列
-        query.orderByDescending("createdAt").findInBackground(new FindCallback<AVObject>() {
+        query.orderByDescending("createdAt")
+                .whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId())
+                .findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
                 ans = list;       // 符合 priority = 0 的 Todo 数组
@@ -67,12 +79,17 @@ public class CardLayoutFragment extends Fragment {
 
         for (int i = 0; i < ans.size(); i++) {
             items.add(i, "序号"+(i+1)+"\n加油站名称："+ans.get(i).get("pName").toString()+"\n加油站地址:"+
-                    ans.get(i).get("pAddr").toString()+"\n数量："+ans.get(i).get("pQuantity").toString()+"升     金额："+ans.get(i).get("pPrice").toString()+"元");
+                    ans.get(i).get("pAddr").toString()+"\n数量："+ans.get(i).get("pQuantity").toString()+"升\n金额："+ans.get(i).get("pPrice").toString()+"元\n"
+                    +"预约时间:"+ ans.get(i).get("pTime").toString());
         }
         return new CardsAdapter(getActivity(), items, new ListItemButtonClickListener());
     }
 
-
+    private void refresh() {
+        getActivity().finish();
+        Intent intent = new Intent(getActivity(), CardLayoutActivity.class);
+        startActivity(intent);
+    }
     /**
      * 点击按钮取消或者获取二维码
      */
@@ -81,25 +98,55 @@ public class CardLayoutFragment extends Fragment {
         public void onClick(View v) {
             for (int i = cardsList.getFirstVisiblePosition(); i <= cardsList.getLastVisiblePosition(); i++) {
                 if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_1)) {
-                    // PERFORM AN ACTION WITH THE ITEM AT POSITION i
-                    //Toast.makeText(getActivity(), "Clicked on Left Action Button of List Item " + i, Toast.LENGTH_SHORT).show();
-                    AVQuery<AVObject> avQuery = new AVQuery<>("Order");
-                    avQuery.getInBackground(ans.get(i).getObjectId(), new GetCallback<AVObject>() {
-                        @Override
-                        public void done(AVObject avObject, AVException e) {
-                            avObject.deleteInBackground();
-                            Toast.makeText(getActivity(), "成功取消预约", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_2)) {
-                    // PERFORM ANOTHER ACTION WITH THE ITEM AT POSITION i
-                    //Toast.makeText(getActivity(), "获取二维码" , Toast.LENGTH_SHORT).show();
+                    final int x = i;
 
+                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("Are you sure?")
+                            .setContentText("Won't be able to recover this file!")
+                            .setConfirmText("Yes,delete it!")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog
+                                            .setTitleText("Deleted!")
+                                            .setContentText("Your imaginary file has been deleted!")
+                                            .setConfirmText("OK")
+                                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                @Override
+                                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    refresh();
+                                                }
+                                            })
+                                            .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+
+                                    //取消预约按钮
+                                    AVQuery<AVObject> avQuery = new AVQuery<>("Order");
+                                    avQuery.getInBackground(ans.get(x).getObjectId(), new GetCallback<AVObject>() {
+                                        @Override
+                                        public void done(AVObject avObject, AVException e) {
+                                            avObject.deleteInBackground();
+                                        }
+                                    });
+                                }
+                            })
+                            .show();
+
+                } else if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_2)) {
+                    try{
+                        Bitmap bitmap = EncodingHandler.createQRCode(ans.get(i).getObjectId().toString(),900);
+                        final ImageView imageView = new ImageView(getActivity());
+                        imageView.setImageBitmap(bitmap);
+                        builder=new AlertDialog.Builder(getActivity());
+                        alert = builder.setView(imageView).create();
+                        alert.show();
+
+                    }catch (WriterException e){
+                        ToastUtil.show(getActivity(),"二维码生成失败");
+                    }
                 }
             }
         }
     }
-
 
     /**
      * 点击对应订单调转到详情

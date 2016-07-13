@@ -1,10 +1,15 @@
 package me.chenjiayang.myleancloud;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,12 +19,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVPush;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.PushService;
+import com.avos.avoscloud.SaveCallback;
+import com.avos.avoscloud.SendCallback;
 import com.ericssonlabs.BarCodeTestActivity;
+import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.StaticPagerAdapter;
+import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.zxing.activity.CaptureActivity;
+import com.zxing.encoding.EncodingHandler;
+
+import java.util.List;
 
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -28,13 +51,99 @@ public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private TextView scanQRCodeTextView;
-    private ImageView imageView;
+    private RollPagerView mRollViewPager;
+    private AlertDialog alert = null;
+    private AlertDialog.Builder builder = null;
+    String[] userName={"CarName","License_plate_number","Engine_no","mileage","Amount_of_gasoline",
+            "Engine_situation","CarLight","transmission"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
+        mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
+        //设置播放时间间隔
+        mRollViewPager.setPlayDelay(3000);
+        //设置透明度
+        mRollViewPager.setAnimationDurtion(500);
+        //设置适配器
+        mRollViewPager.setAdapter(new TestNormalAdapter());
+
+        //设置指示器（顺序依次）
+        //自定义指示器图片
+        //设置圆点指示器颜色
+        //设置文字指示器
+        //隐藏指示器
+        mRollViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW,Color.WHITE));
+
+        //保存推送id
+        saveInsID();
+
+        //判断是否推送加油信息
+        pushMsg();
+
+        //Toolbar的操作
+        ToolBarOperation();
+
+        //SwipeBackHelper.onCreate(this);//侧滑效果
+        /*SwipeBackHelper.getCurrentPage(this)
+                .setSwipeRelateEnable(true);*/
+    }
+
+    /**
+     * 用于保存推送设备id
+     */
+    private void saveInsID(){
+        //保存推送id
+        AVInstallation.getCurrentInstallation().saveInBackground(new SaveCallback() {
+            public void done(AVException e) {
+                if (e != null) {
+                    ToastUtil.show(Main2Activity.this,"关联失败");
+                }
+            }
+        });
+    }
+
+    /**
+     * 推送信息
+     */
+    private void pushMsg(){
+        AVQuery<AVObject> query = new AVQuery<>("Car");
+        query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query.whereLessThan("Amount_of_gasoline",10);
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                List<AVObject> need_gas_cars = list;
+                if(need_gas_cars.size()>0){
+                    String need_gas_msg = "";
+                    for(int i=0; i<need_gas_cars.size();i++){
+                        need_gas_msg+=need_gas_cars.get(i).get("CarName")+"剩余油量："
+                                +need_gas_cars.get(i).get("Amount_of_gasoline")+"\n";
+                    }
+                    // 设置默认打开的 Activity
+                    PushService.setDefaultPushCallback(Main2Activity.this, Main2Activity.class);
+                    // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                    PushService.subscribe(Main2Activity.this, "public", Main2Activity.class);
+                    AVQuery pushQuery = AVInstallation.getQuery();
+                    // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                    // 可以在应用启动的时候获取并保存到用户表
+                    pushQuery.whereEqualTo("installationId", "2cace88f492235f756fd74294d0570e0");
+                    AVPush.sendMessageInBackground(need_gas_msg,  pushQuery);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * ToolBar 的导航栏
+     */
+    private void ToolBarOperation(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //设置导航栏图标
         toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);
         //设置主标题
@@ -47,14 +156,6 @@ public class Main2Activity extends AppCompatActivity
         toolbar.inflateMenu(R.menu.main2);
 
         scanQRCodeTextView = (TextView) findViewById(R.id.scanQRCodeTextView);
-        imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this, InfoActivity.class);
-                startActivity(intent);
-            }
-        });
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -78,18 +179,13 @@ public class Main2Activity extends AppCompatActivity
                      */
                     Intent scanStart = new Intent(Main2Activity.this, CaptureActivity.class);
                     startActivityForResult(scanStart,0);
-                }else if(menuItemId == R.id.action_seif_info){
-                    /**
-                     * 个人信息界面
-                     */
-                    Intent intent = new Intent(Main2Activity.this, InfoActivity.class);
-                    startActivity(intent);
                 }
+
                 /**
-                 * 汽车信息界面
+                 * 退出登录，返回登录页面
                  */
-                else if(menuItemId == R.id.action_car_info){
-                    Intent intent = new Intent(Main2Activity.this, CarInfoActivity.class);
+                else if(menuItemId == R.id.action_quit){
+                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
                     startActivity(intent);
                 }
                 return true;
@@ -118,14 +214,80 @@ public class Main2Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
+    /**
+     * 连级侧滑
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
+    }
+
+    private class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.drawable.img4,
+                R.drawable.img2,
+                R.drawable.img3,
+                R.drawable.img4,
+        };
+
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+
+
+        @Override
+        public int getCount() {
+            return imgs.length;
+        }
+    }
+
     /**
      * 用来实现将二维码信息返回到Main2Activity的函数
      */
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String result = data.getExtras().getString("result");
-        scanQRCodeTextView.setText(result);
+        String[] array = result.split("\\&");
+        String carmsg = "" ;
+        for (int i=1;i<array.length;i++){
+            carmsg+=userName[i-1] + "：" + array[i]+"\n";
+        }
+
+        if(array[0].equals("iscar")){
+            builder = new AlertDialog.Builder(Main2Activity.this);
+            alert = builder.setTitle("绑定汽车信息").setMessage(carmsg).setPositiveButton("绑定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ToastUtil.show(Main2Activity.this,"绑定成功");
+                    dialog.dismiss();
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ToastUtil.show(Main2Activity.this,"取消");
+                    dialog.dismiss();
+                }
+            }).create();
+            alert.show();
+        }
+        else {
+            scanQRCodeTextView.setText(result+"&"+array[0]);
+        }
     }
 
     @Override
@@ -141,7 +303,7 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
+        //getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
 
@@ -193,6 +355,5 @@ public class Main2Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }
