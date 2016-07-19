@@ -48,6 +48,9 @@
         android:text="@string/repeat_password"
         android:layout_marginTop="15dp"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <EditText
         android:id="@+id/re_ensure_passwordEditText"
         android:layout_width="match_parent"
@@ -55,11 +58,24 @@
         android:inputType="numberPassword"
         android:background="@drawable/ettt"/>
 
-    <Button
+    <!--<Button
         android:id="@+id/registerAction_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_button_text"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"/>-->
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/registerAction_button"
+        style="@style/wrapping_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Register Now"
+        app:bootstrapBrand="danger"
+        app:showOutline="true"
+        android:layout_marginTop="60dp"
+        android:layout_alignParentStart="true"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

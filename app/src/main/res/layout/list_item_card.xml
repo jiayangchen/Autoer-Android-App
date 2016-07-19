@@ -80,7 +80,9 @@
             android:focusableInTouchMode="false"
             android:text="@string/list_item_right_button"
             android:textSize="15sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:shadowColor="@color/gary"/>
+
     </LinearLayout>
 
 </LinearLayout>

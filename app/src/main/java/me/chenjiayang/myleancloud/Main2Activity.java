@@ -2,6 +2,7 @@ package me.chenjiayang.myleancloud;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.Image;
@@ -20,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.jude.swipbackhelper.SwipeBackHelper;
+import com.roughike.swipeselector.SwipeItem;
+import com.roughike.swipeselector.SwipeSelector;
 import com.zxing.activity.CaptureActivity;
 import com.zxing.encoding.EncodingHandler;
 
@@ -50,19 +54,19 @@ import me.chenjiayang.myleancloud.util.ToastUtil;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String[] userName={"CarName","License_plate_number","Engine_no","mileage","Amount_of_gasoline",
+            "Engine_situation","CarLight","transmission"};
     private TextView scanQRCodeTextView;
     private RollPagerView mRollViewPager;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
-    String[] userName={"CarName","License_plate_number","Engine_no","mileage","Amount_of_gasoline",
-            "Engine_situation","CarLight","transmission"};
+    private long exitTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        SwipeBackHelper.onCreate(this);
-        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
+
 
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         //设置播放时间间隔
@@ -79,6 +83,8 @@ public class Main2Activity extends AppCompatActivity
         //隐藏指示器
         mRollViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW,Color.WHITE));
 
+        swipselector();
+
         //保存推送id
         saveInsID();
 
@@ -88,10 +94,18 @@ public class Main2Activity extends AppCompatActivity
         //Toolbar的操作
         ToolBarOperation();
 
-        //SwipeBackHelper.onCreate(this);//侧滑效果
-        /*SwipeBackHelper.getCurrentPage(this)
-                .setSwipeRelateEnable(true);*/
     }
+
+
+    private void swipselector(){
+        SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipeSelector);
+        swipeSelector.setItems(
+                new SwipeItem(0, "Slide one", "Description for slide one."),
+                new SwipeItem(1, "Slide two", "Description for slide two."),
+                new SwipeItem(2, "Slide three", "Description for slide three.")
+        );
+    }
+
 
     /**
      * 用于保存推送设备id
@@ -102,13 +116,18 @@ public class Main2Activity extends AppCompatActivity
             public void done(AVException e) {
                 if (e != null) {
                     ToastUtil.show(Main2Activity.this,"关联失败");
+                }else{
+                    String installationId = AVInstallation.getCurrentInstallation().getInstallationId();
+                    AVObject avObject = AVObject.createWithoutData("_User",AVUser.getCurrentUser().getObjectId());
+                    avObject.put("installationId",installationId);
+                    avObject.saveInBackground();
                 }
             }
         });
     }
 
     /**
-     * 推送信息
+     * 推送信息，每次启动时先判断是否需要推送信息
      */
     private void pushMsg(){
         AVQuery<AVObject> query = new AVQuery<>("Car");
@@ -122,7 +141,7 @@ public class Main2Activity extends AppCompatActivity
                     String need_gas_msg = "";
                     for(int i=0; i<need_gas_cars.size();i++){
                         need_gas_msg+=need_gas_cars.get(i).get("CarName")+"剩余油量："
-                                +need_gas_cars.get(i).get("Amount_of_gasoline")+"\n";
+                                +need_gas_cars.get(i).get("Amount_of_gasoline")+"%\n";
                     }
                     // 设置默认打开的 Activity
                     PushService.setDefaultPushCallback(Main2Activity.this, Main2Activity.class);
@@ -131,7 +150,7 @@ public class Main2Activity extends AppCompatActivity
                     AVQuery pushQuery = AVInstallation.getQuery();
                     // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
                     // 可以在应用启动的时候获取并保存到用户表
-                    pushQuery.whereEqualTo("installationId", "2cace88f492235f756fd74294d0570e0");
+                    pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
                     AVPush.sendMessageInBackground(need_gas_msg,  pushQuery);
                 }
             }
@@ -155,6 +174,8 @@ public class Main2Activity extends AppCompatActivity
         //设置右上角的填充菜单
         toolbar.inflateMenu(R.menu.main2);
 
+
+        //显示二维码扫描结果
         scanQRCodeTextView = (TextView) findViewById(R.id.scanQRCodeTextView);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -215,54 +236,16 @@ public class Main2Activity extends AppCompatActivity
     }
 
 
-    /**
-     * 连级侧滑
-     * @param savedInstanceState
-     */
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        SwipeBackHelper.onPostCreate(this);
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SwipeBackHelper.onDestroy(this);
-    }
-
-    private class TestNormalAdapter extends StaticPagerAdapter {
-        private int[] imgs = {
-                R.drawable.img4,
-                R.drawable.img2,
-                R.drawable.img3,
-                R.drawable.img4,
-        };
-
-        @Override
-        public View getView(ViewGroup container, int position) {
-            ImageView view = new ImageView(container.getContext());
-            view.setImageResource(imgs[position]);
-            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            return view;
-        }
-
-
-        @Override
-        public int getCount() {
-            return imgs.length;
-        }
-    }
 
     /**
-     * 用来实现将二维码信息返回到Main2Activity的函数
+     * 用来实现将二维码信息返回到Main2Activity的函数，判断是否是车辆信息，并显示在dialog里面
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String result = data.getExtras().getString("result");
-        String[] array = result.split("\\&");
+        final String[] array = result.split("\\&");
         String carmsg = "" ;
         for (int i=1;i<array.length;i++){
             carmsg+=userName[i-1] + "：" + array[i]+"\n";
@@ -273,8 +256,39 @@ public class Main2Activity extends AppCompatActivity
             alert = builder.setTitle("绑定汽车信息").setMessage(carmsg).setPositiveButton("绑定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    ToastUtil.show(Main2Activity.this,"绑定成功");
+
+                    AVObject todoFolder = new AVObject("Car");// 构建对象
+                    for(int i=1; i<array.length; i++){
+                        if(i==4||i==5) {
+                            todoFolder.put(userName[i - 1], Integer.parseInt(array[i]));
+                        }
+                        else if(i>=6){
+                            if(array[i].equals("true")){
+                                boolean tag = true;
+                                todoFolder.put(userName[i - 1], tag);
+                            }else if(array[i].equals("false")){
+                                boolean tag = false;
+                                todoFolder.put(userName[i - 1], tag);
+                            }
+                        }else{
+                            todoFolder.put(userName[i - 1], array[i]);
+                        }
+                    }
+                    todoFolder.put("currUserID",AVUser.getCurrentUser().getObjectId());
+                    todoFolder.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(AVException e) {
+                            if(e == null){
+                                ToastUtil.show(Main2Activity.this,"绑定成功");
+                                startActivity(new Intent(Main2Activity.this,CarInfoActivity.class));
+                            }else{
+                                ToastUtil.show(Main2Activity.this,e.getMessage());
+                            }
+                        }
+                    });// 保存到服务端
+
                     dialog.dismiss();
+
                 }
             }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
@@ -348,7 +362,7 @@ public class Main2Activity extends AppCompatActivity
             startActivity(settings);
         }
         else if(id == R.id.nav_share){
-
+            ToastUtil.show(Main2Activity.this,"Share");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -356,4 +370,43 @@ public class Main2Activity extends AppCompatActivity
         return true;
     }
 
+    //图片轮播
+    private class TestNormalAdapter extends StaticPagerAdapter {
+        private int[] imgs = {
+                R.drawable.img4,
+                R.drawable.img2,
+                R.drawable.img3,
+                R.drawable.img4,
+        };
+
+        @Override
+        public View getView(ViewGroup container, int position) {
+            ImageView view = new ImageView(container.getContext());
+            view.setImageResource(imgs[position]);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            return view;
+        }
+
+        @Override
+        public int getCount() {
+            return imgs.length;
+        }
+    }
+
+    //按两下退出应用
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

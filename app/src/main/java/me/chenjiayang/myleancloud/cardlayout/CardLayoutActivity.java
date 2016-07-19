@@ -1,6 +1,5 @@
 package me.chenjiayang.myleancloud.cardlayout;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,15 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.jude.swipbackhelper.SwipeBackHelper;
-
 import me.chenjiayang.myleancloud.R;
 
 public class CardLayoutActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_layout);
+
         SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
@@ -30,7 +30,9 @@ public class CardLayoutActivity extends AppCompatActivity {
          */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,6 +58,11 @@ public class CardLayoutActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * 侧滑的生命周期函数
+     * @param savedInstanceState
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);

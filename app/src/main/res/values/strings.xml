@@ -38,7 +38,7 @@
     <string name="myinfo">My Info</string>
     <string name="mycar">My Car</string>
     <string name="myorder">My Order</string>
-    <string name="mytools">My Tools</string>
+    <string name="mytools">My Music</string>
     <string name="myshare">To Share</string>
 
 
@@ -194,4 +194,6 @@
     <string name="list_item_left_button">取消预约</string>
     <string name="list_item_right_button">二维码</string>
     <string name="action_about">About</string>
+
+    <!-- music -->
 </resources>

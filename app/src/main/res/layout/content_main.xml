@@ -14,7 +14,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:weightSum="1"
-    android:background="@drawable/splash3">
+    android:background="@drawable/splash4">
 
    <!-- <include
         layout="@layout/nav_header_main2"/>-->
@@ -66,10 +66,10 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="15dp">
 
-            <Button
+            <!--<Button
                 android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,8 +79,29 @@
                 android:id="@+id/register_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/register_button_text" />
+                android:text="@string/register_button_text" />-->
+
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/login_button"
+                style="@style/wrapping_button"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:text="Login Now"
+                app:bootstrapBrand="primary"
+                app:showOutline="true"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/register_button"
+                style="@style/wrapping_button"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:text="Register Now"
+                app:bootstrapBrand="danger"
+                app:showOutline="true"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
+
 
 </LinearLayout>

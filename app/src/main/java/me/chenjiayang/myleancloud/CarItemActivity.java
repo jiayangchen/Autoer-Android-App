@@ -1,33 +1,53 @@
 package me.chenjiayang.myleancloud;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.GetCallback;
+import com.avos.avoscloud.SaveCallback;
 import com.google.zxing.WriterException;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.zxing.encoding.EncodingHandler;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class CarItemActivity extends AppCompatActivity {
 
     private ListView listView;
     private Button car_qr_btn;
+    private Button car_delete_bound_btn;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
-    private String carinfo = "iscar&";  //标记一个tag
+    private String carinfo = "iscar&";  //标记一个tag，用于二维码扫描时判断这是一辆汽车的信息
+    private Bundle bundle;
+    private Bundle bundle_id;
+    private Intent intent;
+
+    //下拉刷新控件
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     String[] from={"name","id"};              //这里是ListView显示内容每一列的列名
     int[] to={R.id.user_name,R.id.user_id};   //这里是ListView显示每一列对应的list_item中控件的id
@@ -44,27 +64,63 @@ public class CarItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_item);
 
-        listView = (ListView) findViewById(R.id.car_info_elem);
-        car_qr_btn = (Button) findViewById(R.id.car_qr_btn);
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
+        init();
+
+        //下拉刷新函数
+        refresh();
+
+    }
+
+    private void init(){
+
+        listView = (ListView) findViewById(R.id.car_info_elem);
+        car_qr_btn = (Button) findViewById(R.id.car_qr_btn); //生成二维码的按钮
+        car_delete_bound_btn = (Button) findViewById(R.id.car_delete_bound);
 
         list=new ArrayList<>();
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("carlist_elem");
+        intent = getIntent();
+        bundle = intent.getBundleExtra("carlist_elem");  //获取汽车列表页面传来的bundle数据
+        bundle_id = intent.getBundleExtra("car_ObjectId");
 
-        for(int i=0; i<bundle.size(); i++){
+
+        AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+        avQuery.getInBackground(bundle_id.getString("ObjectId"), new GetCallback<AVObject>() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                for(int i=0; i<userName.length; i++){
+                    carinfo+=avObject.get(userName[i]).toString()+(i == (userName.length-1) ? "":"&");
+                    map=new HashMap<>();
+                    map.put("name", userName[i]);
+                    map.put("id", avObject.get(userName[i]).toString()+((i == 3 ? "km":"")+(i == 4 ? "%":"")));
+                    list.add(map);
+                }
+                setAdapter();
+            }
+        });
+
+        //将bundle里面的数据set进去
+        /*for(int i=0; i<bundle.size(); i++){
             carinfo+=bundle.getString(userName[i])+(i == (bundle.size()-1) ? "":"&");
             map=new HashMap<>();
             map.put("name", userName[i]);
             map.put("id", bundle.getString(userName[i])+((i == 3 ? "km":"")+(i == 4 ? "%":"")));
             list.add(map);
-        }
+        }*/
 
+
+    }
+
+
+    private void setAdapter(){
         //创建一个SimpleAdapter对象
         SimpleAdapter adapter=new SimpleAdapter(this,list,R.layout.list_car_info_elem,from,to);
         //调用ListActivity的setListAdapter方法，为ListView设置适配器
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new ListItemClickListener());
 
         /**
          * 显示返回箭头
@@ -73,6 +129,7 @@ public class CarItemActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
 
+        //生成二维码的响应事件
         car_qr_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +145,47 @@ public class CarItemActivity extends AppCompatActivity {
                 }
             }
         });
+
+        car_delete_bound_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //创建sweet dialog
+                new SweetAlertDialog(CarItemActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Are you sure?")
+                        .setContentText("Won't be able to recover this file!")
+                        .setConfirmText("Yes,delete it!")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog
+                                        .setTitleText("Deleted!")
+                                        .setContentText("Your imaginary file has been deleted!")
+                                        .setConfirmText("OK")
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                sweetAlertDialog.dismiss();
+                                            }
+                                        })
+                                        .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+
+                                AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+                                avQuery.getInBackground(bundle_id.getString("ObjectId"), new GetCallback<AVObject>() {
+                                    @Override
+                                    public void done(AVObject avObject, AVException e) {
+                                        avObject.deleteInBackground();
+                                        ToastUtil.show(CarItemActivity.this,"解除绑定成功");
+                                    }
+                                });
+
+                            }
+                        })
+                        .show();
+            }
+        });
     }
+
 
     /**
      * 返回Main2Activity的监听方法
@@ -103,5 +200,107 @@ public class CarItemActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * 点击对应订单调转到详情
+     */
+    private final class ListItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+            //ToastUtil.show(CarItemActivity.this, "Clicked on List Item " + position);
+
+            final int x = position;
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.car_item_edit, null);
+            TextView tv = (TextView) layout.findViewById(R.id.car_item_editdialog_textview);
+            final EditText et = (EditText) layout.findViewById(R.id.car_item_editdialog_edittext);
+
+            String hintText =  bundle.getString(userName[position]);
+            tv.setText(hintText);
+
+            builder = new AlertDialog.Builder(CarItemActivity.this);
+            alert = builder.setTitle("修改信息").setView(layout)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Object edittext;
+                            String key = userName[x];
+                            String ObjectId = bundle_id.getString("ObjectId");
+                            if(position == 3 || position == 4) {
+                                edittext = Integer.parseInt(et.getText().toString());
+                            }
+                            else{
+                                edittext = et.getText().toString();
+                            }
+
+                            AVObject caritem_edit = AVObject.createWithoutData("Car",ObjectId);
+                            caritem_edit.put(key,edittext);
+                            caritem_edit.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(AVException e) {
+                                    if(e == null){
+                                        ToastUtil.show(CarItemActivity.this,"修改成功");
+                                    }else{
+                                        ToastUtil.show(CarItemActivity.this,e.getMessage());
+                                    }
+                                }
+                            });
+                            dialog.dismiss();
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create();
+            alert.show();
+        }
+    }
+
+
+    private void refresh(){
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_car_item_edit);
+        //设置刷新时动画的颜色，可以设置4个
+        swipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+
+                //refresh页面
+                list.clear();
+                init();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.show(CarItemActivity.this,"同步成功");
+                        // TODO Auto-generated method stub
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);  //时间3s
+            }
+        });
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
     }
 }

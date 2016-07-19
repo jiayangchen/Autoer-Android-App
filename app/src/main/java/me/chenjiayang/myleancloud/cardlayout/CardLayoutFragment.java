@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
@@ -36,7 +39,7 @@ import me.chenjiayang.myleancloud.util.ToastUtil;
 public class CardLayoutFragment extends Fragment {
 
     private ListView cardsList;
-    private ArrayList<String> items = new ArrayList<String>();
+    private ArrayList<String> items = new ArrayList<>();
     private List<AVObject> ans;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
@@ -57,7 +60,7 @@ public class CardLayoutFragment extends Fragment {
                 .findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                ans = list;       // 符合 priority = 0 的 Todo 数组
+                ans = list;
                 if(ans.size()==0){
                     ToastUtil.show(getActivity(),"您还没有订单");
                 }else {
@@ -65,8 +68,6 @@ public class CardLayoutFragment extends Fragment {
                 }
             }
         });
-
-        //setupList();
         return rootView;
     }
 
@@ -77,6 +78,7 @@ public class CardLayoutFragment extends Fragment {
 
     private CardsAdapter createAdapter() {
 
+        //Text文本，拼接字符串
         for (int i = 0; i < ans.size(); i++) {
             items.add(i, "序号"+(i+1)+"\n加油站名称："+ans.get(i).get("pName").toString()+"\n加油站地址:"+
                     ans.get(i).get("pAddr").toString()+"\n数量："+ans.get(i).get("pQuantity").toString()+"升\n金额："+ans.get(i).get("pPrice").toString()+"元\n"
@@ -90,6 +92,7 @@ public class CardLayoutFragment extends Fragment {
         Intent intent = new Intent(getActivity(), CardLayoutActivity.class);
         startActivity(intent);
     }
+
     /**
      * 点击按钮取消或者获取二维码
      */
@@ -100,6 +103,7 @@ public class CardLayoutFragment extends Fragment {
                 if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_1)) {
                     final int x = i;
 
+                    //创建sweet dialog
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Are you sure?")
                             .setContentText("Won't be able to recover this file!")
@@ -114,12 +118,12 @@ public class CardLayoutFragment extends Fragment {
                                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                 @Override
                                                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                    refresh();
+                                                    refresh(); //重新加载activity
                                                 }
                                             })
                                             .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
 
-                                    //取消预约按钮
+                                    //取消预约
                                     AVQuery<AVObject> avQuery = new AVQuery<>("Order");
                                     avQuery.getInBackground(ans.get(x).getObjectId(), new GetCallback<AVObject>() {
                                         @Override
@@ -127,11 +131,14 @@ public class CardLayoutFragment extends Fragment {
                                             avObject.deleteInBackground();
                                         }
                                     });
+
                                 }
                             })
                             .show();
 
-                } else if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_2)) {
+                }
+                //生成二维码
+                else if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_2)) {
                     try{
                         Bitmap bitmap = EncodingHandler.createQRCode(ans.get(i).getObjectId().toString(),900);
                         final ImageView imageView = new ImageView(getActivity());

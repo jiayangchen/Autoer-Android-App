@@ -15,13 +15,15 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SignUpCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText re_usernameEditText;
     private EditText re_passwordEditText;
     private EditText repeat_passwordEditText;
-    private Button registerAction_butoon;
+    //private Button registerAction_butoon;
+    private BootstrapButton registerAction_butoon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });*/
 
+        //注册控件
         re_usernameEditText = (EditText) findViewById(R.id.re_usernameEditText);
         re_passwordEditText = (EditText) findViewById(R.id.re_passwordEditText);
         repeat_passwordEditText = (EditText) findViewById(R.id.re_ensure_passwordEditText);
-        registerAction_butoon = (Button) findViewById(R.id.registerAction_button);
+        registerAction_butoon = (BootstrapButton) findViewById(R.id.registerAction_button);
 
         registerAction_butoon.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,15 +15,18 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private CheckBox remember;
     private CheckBox autologin;
-    private Button login_button;
-    private Button register_button;
-    private long exitTime = 0;
+    /*private Button login_button;
+    private Button register_button;*/
+
+    private BootstrapButton login_button;
+    private BootstrapButton register_button;
 
     private SharedPreferences sp;
 
@@ -39,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        login_button = (Button) findViewById(R.id.login_button);
-        register_button = (Button) findViewById(R.id.register_button);
+        /*login_button = (Button) findViewById(R.id.login_button);
+        register_button = (Button) findViewById(R.id.register_button);*/
+        login_button = (BootstrapButton) findViewById(R.id.login_button);
+        register_button = (BootstrapButton) findViewById(R.id.register_button);
         remember = (CheckBox) findViewById(R.id.rememberCheckBox);
         autologin = (CheckBox) findViewById(R.id.autologinCheckBox);
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
@@ -63,10 +68,11 @@ public class MainActivity extends AppCompatActivity {
         }
         if(choseAutologin){
             autologin.setChecked(true);
-            Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+            //自动登录
+            Intent intent = new Intent(MainActivity.this, Main2Activity.class);
             startActivity(intent);
+            finish();
         }
-
 
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                                 else{
                                     Toast.makeText(MainActivity.this,"用户名密码错误" ,Toast.LENGTH_SHORT).show();
@@ -154,20 +161,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-            if((System.currentTimeMillis()-exitTime) > 2000){
-                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                System.exit(0);
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 }

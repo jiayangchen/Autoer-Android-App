@@ -2,7 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey" >
+    android:background="@color/light_grey"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipe_container_order"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
     <ListView
         android:id="@+id/cards_list"
@@ -14,5 +21,7 @@
         android:padding="10dp"
         android:scrollbarStyle="outsideOverlay"
         tools:listitem="@layout/list_item_card" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

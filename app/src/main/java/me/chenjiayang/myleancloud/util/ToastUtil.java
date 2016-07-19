@@ -4,6 +4,10 @@ import android.content.Context;
 import android.widget.Toast;
 import com.amap.api.services.core.AMapException;
 
+/**
+ * Toast 的工具类
+ * ToastUtil.show(activity.this,"text")
+ */
 public class ToastUtil {
 
     public static void show(Context context, String info) {

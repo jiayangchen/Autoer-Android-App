@@ -167,6 +167,8 @@ public class WriteOrderActivity extends AppCompatActivity
                     public void done(AVException e) {
                         if(e == null){
                             Toast.makeText(WriteOrderActivity.this, "订单提交", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(WriteOrderActivity.this,CardLayoutActivity.class));
+                            finish();
                         }else {
                             ToastUtil.show(WriteOrderActivity.this,e.getMessage());
                         }

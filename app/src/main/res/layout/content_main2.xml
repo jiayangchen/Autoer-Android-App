@@ -15,11 +15,7 @@
         android:layout_height="180dp"
         app:rollviewpager_play_delay="3000"/>
 
-    <TextView
-        android:id="@+id/scanQRCodeTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"/>
+
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -32,23 +28,128 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <EditText
+            <!--<EditText
                 android:id="@+id/et_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Enter city name" />
-
-            <TextView
-                android:id="@+id/tv_go"
+                android:hint="Enter city name" />-->
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="GO" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shanghai:"
+                    android:layout_marginStart="10dp"
+                    android:textSize="25sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 ℃"
+                    android:layout_marginEnd="15dp"
+                    android:textSize="25sp"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Humidity:"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="89 %"
+                android:layout_marginEnd="15dp"
+                android:textSize="15sp"
+                android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pressure:"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1014.84 hPa"
+                android:layout_marginEnd="15dp"
+                android:textSize="15sp"
+                android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind Speed:"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.7 m/s"
+                android:layout_marginEnd="15dp"
+                android:textSize="15sp"
+                android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind Degree:"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="355.004 °"
+                android:layout_marginEnd="15dp"
+                android:textSize="15sp"
+                android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
+
+    <com.roughike.swipeselector.SwipeSelector
+        android:id="@+id/swipeSelector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/scanQRCodeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
 
 </LinearLayout>

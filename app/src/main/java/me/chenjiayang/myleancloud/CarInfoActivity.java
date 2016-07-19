@@ -1,13 +1,18 @@
 package me.chenjiayang.myleancloud;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
@@ -29,15 +34,24 @@ public class CarInfoActivity extends AppCompatActivity {
     private List<AVObject> carlist = null;  //所有车辆
     private ArrayList<HashMap<String, Object>> item = new ArrayList<>();
     private Bundle bundle;
+    private Bundle bundle_id;
+    //下拉刷新控件
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.carinfo);
+
+
         SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
+        //初始化函数
         init();
+
+        //下拉刷新函数
+        refresh();
         /**
          * 显示返回箭头
          * 隐藏Logo图标，id默认为R.id.home
@@ -45,6 +59,8 @@ public class CarInfoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
+
+
 
     public void setAdapter(){
         mListView = (ListView)this.findViewById(R.id.listview);
@@ -56,16 +72,14 @@ public class CarInfoActivity extends AppCompatActivity {
         mListView.setAdapter(simpleAdapter);
     }
 
-    /*
-     * Function     :    获取所有的列表内容
-     * Author       :    博客园-依旧淡然
-     */
+
     public ArrayList<HashMap<String, Object>> getItem() {
         return item;
     }
 
-
     private void init(){
+
+        //查询汽车列表
         AVQuery<AVObject> query = new AVQuery<>("Car");
         query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId())
                 .findInBackground(new FindCallback<AVObject>() {
@@ -88,6 +102,12 @@ public class CarInfoActivity extends AppCompatActivity {
                         final class ListItemClickListener implements AdapterView.OnItemClickListener {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                //用于传递到车辆详情页面的bundle
+
+                                bundle_id = new Bundle();
+                                bundle_id.putString("ObjectId",carlist.get(position).getObjectId());
+
                                 bundle = new Bundle();
                                 bundle.putString("CarName",carlist.get(position).get("CarName").toString());
                                 bundle.putString("License_plate_number",carlist.get(position).get("License_plate_number").toString());
@@ -99,12 +119,46 @@ public class CarInfoActivity extends AppCompatActivity {
                                 bundle.putString("transmission",carlist.get(position).get("transmission").toString());
                                 Intent intent = new Intent(CarInfoActivity.this,CarItemActivity.class);
                                 intent.putExtra("carlist_elem",bundle);
+                                intent.putExtra("car_ObjectId",bundle_id);
                                 startActivity(intent);
                             }
                         }
+
+                        // 点击item的响应事件
                         mListView.setOnItemClickListener(new ListItemClickListener());
                     }
                 });
+    }
+
+
+
+    private void refresh(){
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
+        //设置刷新时动画的颜色，可以设置4个
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
+                android.R.color.holo_orange_light, android.R.color.holo_green_light);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+
+                //refresh页面
+                carlist.clear();
+                item.clear();
+                init();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtil.show(CarInfoActivity.this,"同步成功");
+                        // TODO Auto-generated method stub
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 3000);  //时间3s
+            }
+        });
     }
 
     /**

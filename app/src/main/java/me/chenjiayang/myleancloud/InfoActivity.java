@@ -54,6 +54,8 @@ public class InfoActivity extends AppCompatActivity {
     }
 
     private void init(){
+
+        //编辑页面
         infoUsername = (EditText) findViewById(R.id.infoUsername);
         infoPhone = (EditText) findViewById(R.id.infoPhone);
         infoEmail = (EditText) findViewById(R.id.infoEmail);
@@ -116,6 +118,7 @@ public class InfoActivity extends AppCompatActivity {
         });
     }
 
+    //重置密码
     private void dialog(){
         /*LayoutInflater layoutInflater = LayoutInflater.from(InfoActivity.this);
         final View view = layoutInflater.inflate(R.layout.fragment_info_item1,null);*/

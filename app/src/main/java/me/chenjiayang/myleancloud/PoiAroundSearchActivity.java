@@ -1,8 +1,6 @@
 package me.chenjiayang.myleancloud;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,23 +10,15 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.CircleOptions;
@@ -36,27 +26,18 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-import com.amap.api.maps.model.MyLocationStyle;
-import com.amap.api.maps.model.Poi;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.FindCallback;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.jude.swipbackhelper.SwipeBackHelper;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 
@@ -122,11 +103,12 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.poiaroundsearch_activity);
 
+        setContentView(R.layout.poiaroundsearch_activity);
 
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
+        init();
 
         /*//获取地图对象
         mAMap = mapview.getMap();
@@ -148,7 +130,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
         //开始定位
         //initLoc();
-        init();
+        //init();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -254,6 +236,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
                 Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
                 intent.putExtra("bundle",bundle);
                 startActivity(intent);
+                finish();
             }
         });
 
