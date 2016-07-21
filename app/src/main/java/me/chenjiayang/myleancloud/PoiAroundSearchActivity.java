@@ -57,13 +57,14 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private boolean isFirstLoc = true;
     //定位End*/
 
+
+
     //定位
-    private double lan = 0;
-    private double lon = 0;
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 0;// 当前页面，从0开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    private LatLonPoint lp = new LatLonPoint(31.12, 121.38);
+    //private LatLonPoint lp = new LatLonPoint(lat, lon);
+    private LatLonPoint lp = new LatLonPoint(31.022371, 121.442491);
     private Marker locationMarker; // 选择的点
     private Marker detailMarker;
     private Marker mlastMarker;
@@ -108,6 +109,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
+
         init();
 
         /*//获取地图对象
@@ -256,6 +258,13 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
      * 初始化AMap对象
      */
     private void init() {
+
+        /*Intent intent = getIntent();
+        Bundle location = intent.getBundleExtra("location");
+        double lat = location.getDouble("lat");
+        double lon = location.getDouble("lon");
+        lp = new LatLonPoint(lat, lon);*/
+
         if (mAMap == null) {
             mAMap = mapview.getMap();
             mAMap.setOnMapClickListener(this);

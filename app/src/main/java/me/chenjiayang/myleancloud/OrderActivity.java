@@ -1,5 +1,6 @@
 package me.chenjiayang.myleancloud;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
 
     private MapView mapView;
     private AMap aMap;
+    private Bundle bundle;
 
     //定位需要的声明
     private AMapLocationClient mLocationClient = null;//定位发起端
@@ -76,6 +78,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
+
     }
 
     //定位
@@ -112,8 +115,14 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
             if (amapLocation.getErrorCode() == 0) {
                 //定位成功回调信息，设置相关消息
                 amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见官方定位类型表
+
                 amapLocation.getLatitude();//获取纬度
                 amapLocation.getLongitude();//获取经度
+
+                /*bundle = new Bundle();
+                bundle.putDouble("lat",amapLocation.getLatitude());
+                bundle.putDouble("lon",amapLocation.getLongitude());*/
+
                 amapLocation.getAccuracy();//获取精度信息
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date(amapLocation.getTime());
@@ -142,6 +151,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                     Toast.makeText(getApplicationContext(), buffer.toString(), Toast.LENGTH_LONG).show();
                     isFirstLoc = false;
                 }
+
             } else {
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
                 Log.e("AmapError", "location Error, ErrCode:"
@@ -149,7 +159,13 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                         + amapLocation.getErrorInfo());
                 Toast.makeText(getApplicationContext(), "定位失败", Toast.LENGTH_LONG).show();
             }
+
         }
+
+        /*Intent intent = new Intent(OrderActivity.this,PoiAroundSearchActivity.class);
+        intent.putExtra("location",bundle);
+        startActivity(intent);
+        finish();*/
     }
     //激活定位
     @Override
@@ -210,5 +226,4 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                     return super.onOptionsItemSelected(item);
             }
         }
-
 }

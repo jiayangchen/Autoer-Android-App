@@ -3,6 +3,7 @@ package me.chenjiayang.myleancloud;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.Image;
@@ -183,7 +184,11 @@ public class Main2Activity extends AppCompatActivity
             public boolean onMenuItemClick(MenuItem item) {
                 int menuItemId = item.getItemId();
                 if (menuItemId == R.id.action_search) {
-                    Toast.makeText(Main2Activity.this, R.string.menu_search, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Main2Activity.this, R.string.menu_search, Toast.LENGTH_SHORT).show();
+                    PackageManager packageManager = getPackageManager();
+                    Intent intent= new Intent();
+                    intent = packageManager.getLaunchIntentForPackage("com.juhe.petrolstation");
+                    startActivity(intent);
 
                 } else if (menuItemId == R.id.action_notification) {
                     Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
@@ -244,63 +249,66 @@ public class Main2Activity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String result = data.getExtras().getString("result");
-        final String[] array = result.split("\\&");
-        String carmsg = "" ;
-        for (int i=1;i<array.length;i++){
-            carmsg+=userName[i-1] + "：" + array[i]+"\n";
-        }
+        if(data == null){
+            ToastUtil.show(Main2Activity.this,"已取消");
+        }else if(data != null) {
+            String result = data.getExtras().getString("result");
+            final String[] array = result.split("\\&");
+            String carmsg = "";
+            for (int i = 1; i < array.length; i++) {
+                carmsg += userName[i - 1] + "：" + array[i] + "\n";
+            }
 
-        if(array[0].equals("iscar")){
-            builder = new AlertDialog.Builder(Main2Activity.this);
-            alert = builder.setTitle("绑定汽车信息").setMessage(carmsg).setPositiveButton("绑定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+            if (array[0].equals("iscar")) {
+                builder = new AlertDialog.Builder(Main2Activity.this);
+                alert = builder.setTitle("绑定汽车信息").setMessage(carmsg).setPositiveButton("绑定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                    AVObject todoFolder = new AVObject("Car");// 构建对象
-                    for(int i=1; i<array.length; i++){
-                        if(i==4||i==5) {
-                            todoFolder.put(userName[i - 1], Integer.parseInt(array[i]));
-                        }
-                        else if(i>=6){
-                            if(array[i].equals("true")){
-                                boolean tag = true;
-                                todoFolder.put(userName[i - 1], tag);
-                            }else if(array[i].equals("false")){
-                                boolean tag = false;
-                                todoFolder.put(userName[i - 1], tag);
+                        AVObject todoFolder = new AVObject("Car");// 构建对象
+                        for (int i = 1; i < array.length; i++) {
+                            if (i == 4 || i == 5) {
+                                todoFolder.put(userName[i - 1], Integer.parseInt(array[i]));
+                            } else if (i >= 6) {
+                                if (array[i].equals("true")) {
+                                    boolean tag = true;
+                                    todoFolder.put(userName[i - 1], tag);
+                                } else if (array[i].equals("false")) {
+                                    boolean tag = false;
+                                    todoFolder.put(userName[i - 1], tag);
+                                }
+                            } else {
+                                todoFolder.put(userName[i - 1], array[i]);
                             }
-                        }else{
-                            todoFolder.put(userName[i - 1], array[i]);
                         }
+                        todoFolder.put("currUserID", AVUser.getCurrentUser().getObjectId());
+                        todoFolder.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(AVException e) {
+                                if (e == null) {
+                                    ToastUtil.show(Main2Activity.this, "绑定成功");
+                                    startActivity(new Intent(Main2Activity.this, CarInfoActivity.class));
+                                } else {
+                                    ToastUtil.show(Main2Activity.this, e.getMessage());
+                                }
+                            }
+                        });// 保存到服务端
+
+                        dialog.dismiss();
+
                     }
-                    todoFolder.put("currUserID",AVUser.getCurrentUser().getObjectId());
-                    todoFolder.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(AVException e) {
-                            if(e == null){
-                                ToastUtil.show(Main2Activity.this,"绑定成功");
-                                startActivity(new Intent(Main2Activity.this,CarInfoActivity.class));
-                            }else{
-                                ToastUtil.show(Main2Activity.this,e.getMessage());
-                            }
-                        }
-                    });// 保存到服务端
-
-                    dialog.dismiss();
-
-                }
-            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    ToastUtil.show(Main2Activity.this,"取消");
-                    dialog.dismiss();
-                }
-            }).create();
-            alert.show();
-        }
-        else {
-            scanQRCodeTextView.setText(result+"&"+array[0]);
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ToastUtil.show(Main2Activity.this, "取消");
+                        dialog.dismiss();
+                    }
+                }).create();
+                alert.show();
+            }
+            else {
+                scanQRCodeTextView.setText(result+"&"+array[0]);
+            }
         }
     }
 
@@ -358,8 +366,12 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_manage){
-            Intent settings = new Intent(Main2Activity.this, SettingsActivity.class);
-            startActivity(settings);
+            /*Intent intent = new Intent(Main2Activity.this, OrderActivity.class);
+            startActivity(intent);*/
+            PackageManager packageManager = getPackageManager();
+            Intent intent= new Intent();
+            intent = packageManager.getLaunchIntentForPackage("me.chenjiayang.myapplication");
+            startActivity(intent);
         }
         else if(id == R.id.nav_share){
             ToastUtil.show(Main2Activity.this,"Share");
