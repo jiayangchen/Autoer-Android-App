@@ -94,7 +94,7 @@ public class CarInfoActivity extends AppCompatActivity {
                                     carlist.get(i).get("Amount_of_gasoline").toString() +"%\n"+"变速器情况："+ carlist.get(i).get("transmission").toString();
 
                             map.put("itemTitle", carname);
-                            map.put("itemPhoto", R.drawable.audilogo);
+                            map.put("itemPhoto", R.drawable.aodilogo);
                             map.put("itemSummary", carsummary);
                             item.add(map);
                         }
@@ -136,8 +136,11 @@ public class CarInfoActivity extends AppCompatActivity {
 
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
         //设置刷新时动画的颜色，可以设置4个
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
-                android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        swipeRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_light,
+                android.R.color.holo_red_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_green_light);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

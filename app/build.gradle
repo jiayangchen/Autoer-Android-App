@@ -59,12 +59,10 @@ dependencies {
     //对话框
     compile 'cn.pedant.sweetalert:library:1.3'
     //音乐
-
     //Main2轮滚
     compile 'com.roughike:swipe-selector:1.0.6'
     //bootstrap UI
     compile 'com.beardedhen:androidbootstrap:2.3.0'
-
 
     compile files('libs/AMap_3DMap_V3.3.2_20160525.jar')
     compile files('libs/AMap_Location_V2.4.1_20160414.jar')
