@@ -240,9 +240,6 @@ public class Main2Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-
-
-
     /**
      * 用来实现将二维码信息返回到Main2Activity的函数，判断是否是车辆信息，并显示在dialog里面
      */
