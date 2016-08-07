@@ -34,6 +34,7 @@ import com.avos.avoscloud.AVPush;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SendCallback;
@@ -57,7 +58,7 @@ public class Main2Activity extends AppCompatActivity
 
     String[] userName={"CarName","License_plate_number","Engine_no","mileage","Amount_of_gasoline",
             "Engine_situation","CarLight","transmission"};
-    private TextView scanQRCodeTextView;
+    //private TextView scanQRCodeTextView;
     private RollPagerView mRollViewPager;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
@@ -101,7 +102,7 @@ public class Main2Activity extends AppCompatActivity
     private void swipselector(){
         SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipeSelector);
         swipeSelector.setItems(
-                new SwipeItem(0, "Slide one", "Description for slide one."),
+                new SwipeItem(0, "Welcome："+AVUser.getCurrentUser().get("username"), "现在正驾驶车辆：奥迪"),
                 new SwipeItem(1, "Slide two", "Description for slide two."),
                 new SwipeItem(2, "Slide three", "Description for slide three.")
         );
@@ -177,7 +178,7 @@ public class Main2Activity extends AppCompatActivity
 
 
         //显示二维码扫描结果
-        scanQRCodeTextView = (TextView) findViewById(R.id.scanQRCodeTextView);
+        //scanQRCodeTextView = (TextView) findViewById(R.id.scanQRCodeTextView);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -251,12 +252,14 @@ public class Main2Activity extends AppCompatActivity
         }else if(data != null) {
             String result = data.getExtras().getString("result");
             final String[] array = result.split("\\&");
-            String carmsg = "";
-            for (int i = 1; i < array.length; i++) {
-                carmsg += userName[i - 1] + "：" + array[i] + "\n";
-            }
 
             if (array[0].equals("iscar")) {
+
+                String carmsg = "";
+                for (int i = 1; i < array.length; i++) {
+                    carmsg += userName[i - 1] + "：" + array[i] + "\n";
+                }
+
                 builder = new AlertDialog.Builder(Main2Activity.this);
                 alert = builder.setTitle("绑定汽车信息").setMessage(carmsg).setPositiveButton("绑定", new DialogInterface.OnClickListener() {
                     @Override
@@ -303,8 +306,48 @@ public class Main2Activity extends AppCompatActivity
                 }).create();
                 alert.show();
             }
+            else if(array[0].equals("isorder")){
+                AVQuery<AVObject> avQuery = new AVQuery<>("Order");
+                avQuery.getInBackground(array[1], new GetCallback<AVObject>() {
+                    @Override
+                    public void done(AVObject avObject, AVException e) {
+                        String ordermsg = "订单号："+avObject.getObjectId().toString()+"\n油号："
+                                +avObject.get("pGasType")+"\n数量："+avObject.get("pQuantity")+"升\n金额："
+                                +avObject.get("pPrice")+"元\n";
+
+                        builder = new AlertDialog.Builder(Main2Activity.this);
+                        alert = builder.setTitle("订单信息").setMessage(ordermsg).setPositiveButton("付款", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                ToastUtil.show(Main2Activity.this,"付款成功");
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create();
+                        alert.show();
+
+                    }
+                });
+            }
             else {
-                scanQRCodeTextView.setText(result+"&"+array[0]);
+                builder = new AlertDialog.Builder(Main2Activity.this);
+                alert = builder.setTitle("二维码信息").setMessage(result).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+                alert.show();
+                //scanQRCodeTextView.setText(result+"&"+array[0]);
             }
         }
     }
@@ -363,8 +406,6 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_manage){
-            /*Intent intent = new Intent(Main2Activity.this, OrderActivity.class);
-            startActivity(intent);*/
             PackageManager packageManager = getPackageManager();
             Intent intent= new Intent();
             intent = packageManager.getLaunchIntentForPackage("me.chenjiayang.myapplication");

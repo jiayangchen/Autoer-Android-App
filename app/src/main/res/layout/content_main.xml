@@ -25,23 +25,12 @@
         android:layout_height="wrap_content"
         android:text="Username：" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_assignment_ind_grey600_24dp"/>
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:selectAllOnFocus="true"
         android:background="@drawable/ettt"/>
-    </LinearLayout>
-
 
     <TextView
         android:layout_gravity="start"
@@ -50,22 +39,13 @@
         android:text="Password："
         android:layout_marginTop="15dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_https_grey600_24dp"/>
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:inputType="textPassword"
         android:background="@drawable/ettt"/>
-    </LinearLayout>
+
 
 
     <CheckBox

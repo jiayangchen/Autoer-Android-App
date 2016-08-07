@@ -140,7 +140,7 @@ public class CardLayoutFragment extends Fragment {
                 //生成二维码
                 else if (v == cardsList.getChildAt(i - cardsList.getFirstVisiblePosition()).findViewById(R.id.list_item_card_button_2)) {
                     try{
-                        Bitmap bitmap = EncodingHandler.createQRCode(ans.get(i).getObjectId().toString(),900);
+                        Bitmap bitmap = EncodingHandler.createQRCode("isorder&"+ans.get(i).getObjectId().toString(),900);
                         final ImageView imageView = new ImageView(getActivity());
                         imageView.setImageBitmap(bitmap);
                         builder=new AlertDialog.Builder(getActivity());
