@@ -402,7 +402,7 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_self_info){
-            Intent intent = new Intent(Main2Activity.this, InfoActivity.class);
+            Intent intent = new Intent(Main2Activity.this, EditInfoActivity.class);
             startActivity(intent);
         }
         else if(id == R.id.nav_manage){
