@@ -78,10 +78,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
     //单选框
     String[] items = new String[] {
-            df.format(new Date())+"   "+"9:00",
-            df.format(new Date())+"   "+"9:30",
-            df.format(new Date())+"   "+"10:00",
-            df.format(new Date())+"   "+"10:30",
             df.format(new Date())+"   "+"13:00",
             df.format(new Date())+"   "+"13:30",
             df.format(new Date())+"   "+"14:00",
@@ -109,7 +105,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private void dialog1(){
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
-        builder.setTitle("可预约时间"); //设置标题
+        builder.setTitle("Available Time"); //设置标题
         //builder.setMessage("是否确认退出?"); //设置内容
 
         builder.setSingleChoiceItems(items,0, new OnClickListener() {
@@ -120,7 +116,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
             }
         });
 
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { //设置确定按钮
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss(); //关闭dialog
@@ -131,11 +127,11 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
             }
         });
 
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                Toast.makeText(PoiAroundSearchActivity.this, "取消" + which, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PoiAroundSearchActivity.this, "Cancel" + which, Toast.LENGTH_SHORT).show();
             }
         });
 

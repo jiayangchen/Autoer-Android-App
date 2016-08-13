@@ -24,6 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText repeat_passwordEditText;
     //private Button registerAction_butoon;
     private BootstrapButton registerAction_butoon;
+    private BootstrapButton backlogin_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,14 @@ public class RegisterActivity extends AppCompatActivity {
         re_passwordEditText = (EditText) findViewById(R.id.re_passwordEditText);
         repeat_passwordEditText = (EditText) findViewById(R.id.re_ensure_passwordEditText);
         registerAction_butoon = (BootstrapButton) findViewById(R.id.registerAction_button);
+        backlogin_btn = (BootstrapButton) findViewById(R.id.back_login_button);
 
+        backlogin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         registerAction_butoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

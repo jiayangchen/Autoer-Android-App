@@ -47,22 +47,27 @@
         android:background="@drawable/ettt"/>
 
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
     <CheckBox
         android:layout_gravity="start"
         android:id="@+id/rememberCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_checkbox_remember"
-        android:textColor="@color/offline_down_size"
-        android:layout_marginTop="15dp"/>
+        android:textColor="@color/offline_down_size"/>
     <CheckBox
         android:layout_gravity="start"
         android:id="@+id/autologinCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_checkbox_autologin"
+        android:layout_marginStart="60dp"
         android:textColor="@color/offline_down_size"/>
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -83,14 +88,21 @@
                 android:text="@string/register_button_text" />-->
 
 
-            <com.beardedhen.androidbootstrap.BootstrapButton
+            <!--<com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/login_button"
                 style="@style/wrapping_button"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:text="Login Now"
                 app:bootstrapBrand="primary"
-                app:showOutline="true"/>
+                app:showOutline="true"/>-->
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/login_button"
+                style="@style/wrapping_button"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:text="Login Now"
+                app:bootstrapBrand="primary"/>
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/register_button"
@@ -101,6 +113,15 @@
                 app:bootstrapBrand="danger"
                 app:showOutline="true"
                 android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/forgetPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="240dp"
+                android:text="Forget Pwd?"
+                android:textColor="@color/offline_down_size"/>
 
         </LinearLayout>
 

@@ -414,6 +414,9 @@ public class Main2Activity extends AppCompatActivity
         else if(id == R.id.nav_share){
             ToastUtil.show(Main2Activity.this,"Share");
         }
+        else if(id == R.id.imageView){
+            ToastUtil.show(Main2Activity.this,"portrait");
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

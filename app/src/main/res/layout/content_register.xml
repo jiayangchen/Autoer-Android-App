@@ -13,7 +13,7 @@
     tools:showIn="@layout/activity_main"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/splash3">
+    android:background="@drawable/splash4">
 
     <TextView
         android:layout_gravity="start"
@@ -77,5 +77,15 @@
         android:layout_alignParentStart="true"/>
 
     </RelativeLayout>
+
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/back_login_button"
+        style="@style/wrapping_button"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        android:text="Back to Login"
+        app:bootstrapBrand="primary"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

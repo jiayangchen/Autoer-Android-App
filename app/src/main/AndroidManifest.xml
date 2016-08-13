@@ -118,11 +118,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cardlayout.CardLayoutActivity"
-            android:label="Cardlayout" />
+            android:label="Orders' History" />
         <activity
             android:name=".CarItemActivity"
             android:label="CarElem" />
-        <activity android:name=".EditInfoActivity"></activity>
+        <activity
+            android:name=".EditInfoActivity"
+            android:label="SelfInfo"
+            />
     </application>
 
 </manifest>

@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
+
+import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
     private EditText usernameEditText;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox autologin;
     /*private Button login_button;
     private Button register_button;*/
-
+    private TextView forgetPwdBtn;
     private BootstrapButton login_button;
     private BootstrapButton register_button;
 
@@ -50,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         autologin = (CheckBox) findViewById(R.id.autologinCheckBox);
         usernameEditText = (EditText) findViewById(R.id.usernameEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
+        forgetPwdBtn = (TextView) findViewById(R.id.forgetPwd);
+
+        forgetPwdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.show(MainActivity.this,"Sorry, no efficient solutions now!");
+            }
+        });
     }
 
     private void login(){

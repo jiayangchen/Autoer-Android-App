@@ -3,14 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="5dp"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
     android:paddingTop="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/info_header"/>
+    <!--<include
+        layout="@layout/info_header"/>-->
+    <ImageView
+        android:id="@+id/info_portrait"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_gravity="center"
+        android:src="@mipmap/head_portrait"/>
 
     <View
         android:id="@+id/list_item_seperator"

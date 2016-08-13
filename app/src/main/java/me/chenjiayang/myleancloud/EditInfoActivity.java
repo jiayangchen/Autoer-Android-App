@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class EditInfoActivity extends AppCompatActivity {
     private Button save_info_btn;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
+    private ImageView head_protrait;
 
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -66,6 +68,7 @@ public class EditInfoActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.self_info_elem);
         change_pwd_btn = (Button) findViewById(R.id.self_info_pwd_btn); //生成二维码的按钮
         save_info_btn = (Button) findViewById(R.id.save_self_info_btn);
+        head_protrait = (ImageView) findViewById(R.id.info_portrait);
 
         list=new ArrayList<>();
 
@@ -124,6 +127,13 @@ public class EditInfoActivity extends AppCompatActivity {
             }
         });
 
+        head_protrait.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtil.show(EditInfoActivity.this,"head portrait");
+            }
+        });
+
     }
 
 
@@ -148,46 +158,52 @@ public class EditInfoActivity extends AppCompatActivity {
     private final class ListItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-            ToastUtil.show(EditInfoActivity.this, "Clicked on List Item " + position);
+            //ToastUtil.show(EditInfoActivity.this, "Clicked on List Item " + position);
+            if(position == 0){
+                ToastUtil.show(EditInfoActivity.this,"You cannot modify the username");
+            }
+            else {
+                final int x = position;
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.self_elem_edit, null);
+                final EditText et = (EditText) layout.findViewById(R.id.self_item_editdialog_edittext);
 
-            /*final int x = position;
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.self_elem_edit, null);
-            final EditText et = (EditText) layout.findViewById(R.id.self_item_editdialog_edittext);
+                builder = new AlertDialog.Builder(EditInfoActivity.this);
+                alert = builder.setTitle("Change Info").setView(layout)
+                        .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-            alert = builder.setTitle("Change Info").setMessage("The confirmation email" +
-                    "has been sent to your mailbox, please check it as soon as possible!")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                                Object edittext;
+                                String key = userName[x];
+                                edittext = et.getText().toString();
 
-                            Object edittext;
-                            String key = userName[x];
-                            edittext = et.getText().toString();
-
-                            AVUser currentUser = AVUser.getCurrentUser();
-                            currentUser.put(key,edittext);
-                            currentUser.saveInBackground(new SaveCallback() {
-                                @Override
-                                public void done(AVException e) {
-                                    if(e == null){
-                                        ToastUtil.show(EditInfoActivity.this,"修改成功");
-                                    }else{
-                                        ToastUtil.show(EditInfoActivity.this,e.getMessage());
+                                AVUser currentUser = AVUser.getCurrentUser();
+                                currentUser.put(key, edittext);
+                                currentUser.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(AVException e) {
+                                        if (e == null) {
+                                            ToastUtil.show(EditInfoActivity.this, "修改成功");
+                                        } else {
+                                            ToastUtil.show(EditInfoActivity.this, e.getMessage());
+                                        }
                                     }
-                                }
-                            });
-                            dialog.dismiss();
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .create();
-            alert.show();*/
+                                });
+                                ToastUtil.show(EditInfoActivity.this, "Please pull down to refresh");
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .create();
+                alert.show();
+
+            }
         }
     }
 

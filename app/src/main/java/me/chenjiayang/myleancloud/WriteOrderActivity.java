@@ -141,7 +141,7 @@ public class WriteOrderActivity extends AppCompatActivity
                 +"汽油类型为："+gasType+"数量："+quantity+"升"+"价格："+5.58*quantity+"元";
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
-        builder.setTitle("订单信息"); //设置标题
+        builder.setTitle("Order Details"); //设置标题
         //builder.setMessage("是否确认退出?"); //设置内容
         builder.setItems(items,new DialogInterface.OnClickListener() {
             @Override
@@ -150,7 +150,7 @@ public class WriteOrderActivity extends AppCompatActivity
                 Toast.makeText(WriteOrderActivity.this, items[which], Toast.LENGTH_SHORT).show();
             }
         });
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() { //设置确定按钮
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { //设置确定按钮
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -166,7 +166,7 @@ public class WriteOrderActivity extends AppCompatActivity
                     @Override
                     public void done(AVException e) {
                         if(e == null){
-                            Toast.makeText(WriteOrderActivity.this, "订单提交", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WriteOrderActivity.this, "Commit Successfully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(WriteOrderActivity.this,CardLayoutActivity.class));
                             finish();
                         }else {
@@ -178,11 +178,10 @@ public class WriteOrderActivity extends AppCompatActivity
             }
         });
 
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() { //设置取消按钮
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                //Toast.makeText(WriteOrderActivity.this, "取消" + which, Toast.LENGTH_SHORT).show();
             }
         });
 
