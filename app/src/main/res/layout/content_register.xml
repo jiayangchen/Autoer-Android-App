@@ -34,11 +34,21 @@
         android:text="@string/register_hint_password"
         android:layout_marginTop="15dp"/>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/re_passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:inputType="numberPassword"
+        android:background="@drawable/ettt"/>-->
+
+    <com.marlonmafra.android.widget.EditTextPassword
+        android:id="@+id/re_passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        app:iconPosition="right"
+        app:hidePasswordIcon="@drawable/ic_hide_password"
+        app:showPasswordIcon="@drawable/ic_show_password"
+        android:inputType="textPassword"
         android:background="@drawable/ettt"/>
 
     <TextView
@@ -51,11 +61,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <EditText
+    <!--<EditText
         android:id="@+id/re_ensure_passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:inputType="numberPassword"
+        android:background="@drawable/ettt"/>-->
+
+    <com.marlonmafra.android.widget.EditTextPassword
+        android:id="@+id/re_ensure_passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        app:iconPosition="right"
+        app:hidePasswordIcon="@drawable/ic_hide_password"
+        app:showPasswordIcon="@drawable/ic_show_password"
+        android:inputType="textPassword"
         android:background="@drawable/ettt"/>
 
     <!--<Button

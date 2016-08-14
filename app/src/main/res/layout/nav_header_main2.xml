@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/nav_bar_bg2"
+    android:background="@drawable/nav_bar_bg2_1"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -26,7 +26,8 @@
         android:layout_marginBottom="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:text="Eason Chen"
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:textColor="@color/black"/>
 
 
     <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->

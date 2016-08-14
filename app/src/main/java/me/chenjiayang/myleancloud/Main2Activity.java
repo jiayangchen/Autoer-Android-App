@@ -10,6 +10,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,15 +40,19 @@ import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SendCallback;
 import com.ericssonlabs.BarCodeTestActivity;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 import com.jude.swipbackhelper.SwipeBackHelper;
+import com.roughike.swipeselector.OnSwipeItemSelectedListener;
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
 import com.zxing.activity.CaptureActivity;
 import com.zxing.encoding.EncodingHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
@@ -64,11 +69,66 @@ public class Main2Activity extends AppCompatActivity
     private AlertDialog.Builder builder = null;
     private long exitTime = 0;
 
+    private TextView now_drive_car;
+    private TextView now_gas_num;
+    private TextView now_mile_num;
+    private TextView now_engine_situation;
+    private TextView now_trans_situation;
+    private CardView cardView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        now_drive_car = (TextView) findViewById(R.id.now_drive_car);
+        now_gas_num = (TextView) findViewById(R.id.now_gas_num);
+        now_mile_num = (TextView) findViewById(R.id.now_mile_num);
+        now_engine_situation = (TextView) findViewById(R.id.now_engine_situation);
+        now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
+        cardView = (CardView) findViewById(R.id.main2_now_driving);
+
+
+
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AVQuery<AVObject> query = new AVQuery<>("Car");
+                query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+
+                        if(list.size()<1){
+                            ToastUtil.show(Main2Activity.this,"You haven't bound any cars");
+                        }
+                        else if(list.size() == 1){
+                            ToastUtil.show(Main2Activity.this,"You have just one car");
+                        }
+                        else {
+
+                        }
+
+                    }
+                });
+            }
+        });
+
+        AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+        avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+                now_drive_car.setText(avObject.get("CarName").toString());
+                now_gas_num.setText(avObject.get("Amount_of_gasoline").toString()+"%");
+                now_mile_num.setText(avObject.get("mileage").toString()+"km");
+                now_engine_situation.setText((avObject.get("Engine_situation").toString()) == "true" ? "OK" : "Bad");
+                now_trans_situation.setText((avObject.get("transmission").toString()) == "true" ? "OK" : "Bad");
+            }
+        });
 
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         //设置播放时间间隔
@@ -76,7 +136,7 @@ public class Main2Activity extends AppCompatActivity
         //设置透明度
         mRollViewPager.setAnimationDurtion(500);
         //设置适配器
-        mRollViewPager.setAdapter(new TestNormalAdapter());
+        mRollViewPager.setAdapter(new TestLoopAdapter(mRollViewPager));
 
         //设置指示器（顺序依次）
         //自定义指示器图片
@@ -84,6 +144,12 @@ public class Main2Activity extends AppCompatActivity
         //设置文字指示器
         //隐藏指示器
         mRollViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW,Color.WHITE));
+        mRollViewPager.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                ToastUtil.show(Main2Activity.this,"click on"+position);
+            }
+        });
 
         swipselector();
 
@@ -98,7 +164,6 @@ public class Main2Activity extends AppCompatActivity
 
     }
 
-
     private void swipselector(){
         SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipeSelector);
         swipeSelector.setItems(
@@ -106,6 +171,7 @@ public class Main2Activity extends AppCompatActivity
                 new SwipeItem(1, "Slide two", "Description for slide two."),
                 new SwipeItem(2, "Slide three", "Description for slide three.")
         );
+
     }
 
 
@@ -414,9 +480,6 @@ public class Main2Activity extends AppCompatActivity
         else if(id == R.id.nav_share){
             ToastUtil.show(Main2Activity.this,"Share");
         }
-        else if(id == R.id.imageView){
-            ToastUtil.show(Main2Activity.this,"portrait");
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -424,13 +487,17 @@ public class Main2Activity extends AppCompatActivity
     }
 
     //图片轮播
-    private class TestNormalAdapter extends StaticPagerAdapter {
+    private class TestLoopAdapter extends LoopPagerAdapter {
         private int[] imgs = {
                 R.drawable.img4,
                 R.drawable.img2,
                 R.drawable.img3,
-                R.drawable.img4,
+                R.drawable.img1,
         };
+
+        public TestLoopAdapter(RollPagerView viewPager) {
+            super(viewPager);
+        }
 
         @Override
         public View getView(ViewGroup container, int position) {
@@ -442,7 +509,7 @@ public class Main2Activity extends AppCompatActivity
         }
 
         @Override
-        public int getCount() {
+        public int getRealCount() {
             return imgs.length;
         }
     }

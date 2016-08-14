@@ -25,11 +25,17 @@
         android:layout_height="wrap_content"
         android:text="Username：" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:selectAllOnFocus="true"
+        android:background="@drawable/ettt"/>-->
+
+    <me.chenjiayang.myleancloud.util.ClearEditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"/>
 
     <TextView
@@ -39,13 +45,22 @@
         android:text="Password："
         android:layout_marginTop="15dp"/>
 
-    <EditText
+    <!--<EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:inputType="textPassword"
-        android:background="@drawable/ettt"/>
+        android:background="@drawable/ettt"/>-->
 
+    <com.marlonmafra.android.widget.EditTextPassword
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        app:iconPosition="right"
+        app:hidePasswordIcon="@drawable/ic_hide_password"
+        app:showPasswordIcon="@drawable/ic_show_password"
+        android:inputType="textPassword"
+        android:background="@drawable/ettt"/>
 
     <LinearLayout
         android:layout_width="match_parent"

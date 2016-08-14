@@ -12,10 +12,12 @@
     <com.jude.rollviewpager.RollPagerView
         android:id="@+id/roll_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        app:rollviewpager_play_delay="3000"/>
+        android:layout_height="200dp"
+        app:rollviewpager_play_delay="3000"
+        app:rollviewpager_hint_gravity="right" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/main2_now_driving"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -41,14 +43,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Shanghai:"
+                    android:text="正在驾驶:"
                     android:layout_marginStart="10dp"
                     android:textSize="25sp"
                     android:textStyle="bold"/>
                 <TextView
+                    android:id="@+id/now_drive_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="30 ℃"
                     android:layout_marginEnd="15dp"
                     android:textSize="25sp"
                     android:layout_alignParentEnd="true"/>
@@ -62,13 +64,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Humidity:"
+                android:text="油量:"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"/>
             <TextView
+                android:id="@+id/now_gas_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="89 %"
                 android:layout_marginEnd="15dp"
                 android:textSize="15sp"
                 android:layout_alignParentEnd="true"/>
@@ -81,13 +83,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pressure:"
+                android:text="里程数:"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"/>
             <TextView
+                android:id="@+id/now_mile_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1014.84 hPa"
                 android:layout_marginEnd="15dp"
                 android:textSize="15sp"
                 android:layout_alignParentEnd="true"/>
@@ -100,13 +102,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wind Speed:"
+                android:text="发动机情况:"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"/>
             <TextView
+                android:id="@+id/now_engine_situation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.7 m/s"
                 android:layout_marginEnd="15dp"
                 android:textSize="15sp"
                 android:layout_alignParentEnd="true"/>
@@ -119,13 +121,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wind Degree:"
+                android:text="变速器情况:"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"/>
             <TextView
+                android:id="@+id/now_trans_situation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="355.004 °"
                 android:layout_marginEnd="15dp"
                 android:textSize="15sp"
                 android:layout_alignParentEnd="true"/>
