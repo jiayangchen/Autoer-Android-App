@@ -57,8 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         app:iconPosition="right"
-        app:hidePasswordIcon="@drawable/ic_hide_password"
-        app:showPasswordIcon="@drawable/ic_show_password"
+        app:hidePasswordIcon="@drawable/ic_remove_red_eye_grey600_24dp"
+        app:showPasswordIcon="@drawable/ic_remove_red_eye_grey600_24dp"
         android:inputType="textPassword"
         android:background="@drawable/ettt"/>
 

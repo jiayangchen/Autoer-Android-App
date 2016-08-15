@@ -22,15 +22,19 @@
     <item
         android:id="@+id/action_item2"
         android:title="@string/item_02"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:icon="@drawable/ic_crop_free_black_48dp"/>
 
     <item
         android:id="@+id/action_item1"
         android:title="@string/item_01"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:icon="@drawable/ic_settings_applications_black_48dp"
+        />
     <item
         android:id="@+id/action_quit"
         android:title="@string/item_quit"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:icon="@drawable/ic_block_black_48dp"/>
 
 </menu>

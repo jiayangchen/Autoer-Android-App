@@ -46,7 +46,7 @@ public class ClearEditText extends EditText implements View.OnFocusChangeListene
         if (mClearDrawable == null) {
             // throw new
             // NullPointerException("You can add drawableRight attribute in XML");
-            mClearDrawable = getResources().getDrawable(R.drawable.ic_clear_grey600_18dp);
+            mClearDrawable = getResources().getDrawable(R.drawable.ic_cancel_grey600_24dp);
         }
 
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
