@@ -34,6 +34,11 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="@string/myshare" />
+
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/"
+                android:title="@string/myfeedback"/>
         </menu>
     </item>
 

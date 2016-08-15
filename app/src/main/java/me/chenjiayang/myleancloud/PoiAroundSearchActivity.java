@@ -123,7 +123,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
                 Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
                 intent.putExtra("bundle",bundle);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
 

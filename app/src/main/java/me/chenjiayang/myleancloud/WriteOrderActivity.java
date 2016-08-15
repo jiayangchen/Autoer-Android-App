@@ -25,6 +25,9 @@ import com.avos.avoscloud.SaveCallback;
 import com.google.zxing.WriterException;
 import com.zxing.encoding.EncodingHandler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
@@ -64,6 +67,10 @@ public class WriteOrderActivity extends AppCompatActivity
          pAddr = bundle.getString("pAddr");
          pTime = bundle.getString("pTime");
 
+        if(pTime == null){
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+            pTime = df.format(new Date())+"   "+"13:00";
+        }
         pNameEditText.setText(pName);
         pAddrEditText.setText(pAddr);
         pTimeEditText.setText(pTime);
@@ -134,11 +141,16 @@ public class WriteOrderActivity extends AppCompatActivity
     }
 
     private void dialog1(){
+
+        if(gasType == null){
+            gasType = "90#";
+        }
+
         final String items[]={"加油站名称："+pName,"加油站地址："+pAddr,"预约日期："+ pTime
                 ,"汽油类型为："+gasType,"数量："+quantity+"升","价格："+5.58*quantity+"元"};
 
-        final String orderinfo = "加油站名称："+pName+"加油站地址："+pAddr+"预约日期："+ pTime
-                +"汽油类型为："+gasType+"数量："+quantity+"升"+"价格："+5.58*quantity+"元";
+        /*final String orderinfo = "加油站名称："+pName+"加油站地址："+pAddr+"预约日期："+ pTime
+                +"汽油类型为："+gasType+"数量："+quantity+"升"+"价格："+5.58*quantity+"元";*/
 
         AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
         builder.setTitle("Order Details"); //设置标题

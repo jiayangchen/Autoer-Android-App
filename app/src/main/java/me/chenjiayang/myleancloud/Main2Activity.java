@@ -78,7 +78,7 @@ public class Main2Activity extends AppCompatActivity
     private AlertDialog.Builder builder = null;
 
     private String[] items = null;
-
+    private int x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,18 +163,26 @@ public class Main2Activity extends AppCompatActivity
 
     private void dialog_change_car(){
 
+
         builder=new AlertDialog.Builder(Main2Activity.this);  //先得到构造器
         alert = builder.setTitle("Change Car")
                         .setSingleChoiceItems(items,0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ToastUtil.show(Main2Activity.this,items[which]);
+                        //ToastUtil.show(Main2Activity.this,items[which]);
+                        x = which;
                     }
                 })
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() { //设置确定按钮
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss(); //关闭dialog
+                        try {
+                            ToastUtil.show(Main2Activity.this, items[x]);
+                            x = 0;
+                        }catch (Exception e){
+                            ToastUtil.show(Main2Activity.this, items[0]);
+                        }
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮
                     @Override

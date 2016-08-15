@@ -70,7 +70,8 @@
             android:id="@+id/radio_btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="90#"/>
+            android:text="90#"
+            android:checked="true"/>
         <RadioButton
             android:id="@+id/radio_btn2"
             android:layout_width="wrap_content"
