@@ -144,7 +144,13 @@ public class CardLayoutFragment extends Fragment {
                         final ImageView imageView = new ImageView(getActivity());
                         imageView.setImageBitmap(bitmap);
                         builder=new AlertDialog.Builder(getActivity());
-                        alert = builder.setView(imageView).create();
+                        alert = builder.setView(imageView)
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).create();
                         alert.show();
 
                     }catch (WriterException e){

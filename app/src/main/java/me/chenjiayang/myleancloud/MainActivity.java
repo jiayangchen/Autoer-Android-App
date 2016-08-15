@@ -18,6 +18,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
         forgetPwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.show(MainActivity.this,"Sorry, no efficient solutions now!");
+                //ToastUtil.show(MainActivity.this,"Sorry, no efficient solutions now!");
+                new SweetAlertDialog(MainActivity.this)
+                        .setTitleText("Forget Password")
+
+                        .setContentText("The confirmation emai " +
+                                "has been sent to your mailbox, please check it as soon as possible!")
+                        .show();
             }
         });
     }

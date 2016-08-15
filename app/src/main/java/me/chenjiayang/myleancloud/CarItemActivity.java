@@ -1,9 +1,13 @@
 package me.chenjiayang.myleancloud;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +32,12 @@ import com.avos.avoscloud.SaveCallback;
 import com.google.zxing.WriterException;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.zxing.encoding.EncodingHandler;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -58,6 +68,38 @@ public class CarItemActivity extends AppCompatActivity {
 
     private ArrayList<HashMap<String,String>> list=null;
     private HashMap<String,String> map=null;
+
+    public static void saveImageToGallery(Context context, Bitmap bmp) {
+        // 首先保存图片
+        File appDir = new File(Environment.getExternalStorageDirectory(), "Pictures");
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = System.currentTimeMillis() + ".jpg";
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 其次把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                    file.getAbsolutePath(), fileName, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" +
+                Environment.getExternalStorageDirectory())));
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,18 +143,8 @@ public class CarItemActivity extends AppCompatActivity {
                 setAdapter();
             }
         });
-
-        //将bundle里面的数据set进去
-        /*for(int i=0; i<bundle.size(); i++){
-            carinfo+=bundle.getString(userName[i])+(i == (bundle.size()-1) ? "":"&");
-            map=new HashMap<>();
-            map.put("name", userName[i]);
-            map.put("id", bundle.getString(userName[i])+((i == 3 ? "km":"")+(i == 4 ? "%":"")));
-            list.add(map);
-        }*/
-
-
     }
+
 
 
     private void setAdapter(){
@@ -134,11 +166,17 @@ public class CarItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Bitmap bitmap = EncodingHandler.createQRCode(carinfo, 900);
+                    final Bitmap bitmap = EncodingHandler.createQRCode(carinfo, 900);
                     final ImageView imageView = new ImageView(CarItemActivity.this);
                     imageView.setImageBitmap(bitmap);
                     builder = new AlertDialog.Builder(CarItemActivity.this);
-                    alert = builder.setView(imageView).create();
+                    alert = builder.setView(imageView)
+                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).create();
                     alert.show();
                 }catch(WriterException e){
                     ToastUtil.show(CarItemActivity.this,"生成二维码失败");
@@ -153,7 +191,7 @@ public class CarItemActivity extends AppCompatActivity {
                 //创建sweet dialog
                 new SweetAlertDialog(CarItemActivity.this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Are you sure?")
-                        .setContentText("Won't be able to recover this file!")
+                        .setContentText("Won't be able to recover this car!")
                         .setConfirmText("Yes,delete it!")
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
@@ -221,7 +259,7 @@ public class CarItemActivity extends AppCompatActivity {
 
             builder = new AlertDialog.Builder(CarItemActivity.this);
             alert = builder.setTitle("修改信息").setView(layout)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -250,7 +288,7 @@ public class CarItemActivity extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     })
-                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

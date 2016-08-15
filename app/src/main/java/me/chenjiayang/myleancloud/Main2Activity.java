@@ -65,8 +65,6 @@ public class Main2Activity extends AppCompatActivity
             "Engine_situation","CarLight","transmission"};
     //private TextView scanQRCodeTextView;
     private RollPagerView mRollViewPager;
-    private AlertDialog alert = null;
-    private AlertDialog.Builder builder = null;
     private long exitTime = 0;
 
     private TextView now_drive_car;
@@ -75,6 +73,11 @@ public class Main2Activity extends AppCompatActivity
     private TextView now_engine_situation;
     private TextView now_trans_situation;
     private CardView cardView;
+
+    private AlertDialog alert = null;
+    private AlertDialog.Builder builder = null;
+
+    private String[] items = null;
 
 
     @Override
@@ -89,8 +92,7 @@ public class Main2Activity extends AppCompatActivity
         now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
         cardView = (CardView) findViewById(R.id.main2_now_driving);
 
-
-
+        setNowDriving();
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +111,13 @@ public class Main2Activity extends AppCompatActivity
                             ToastUtil.show(Main2Activity.this,"You have just one car");
                         }
                         else {
-
+                            items = new String[list.size()];
+                            int i=0;
+                            for(AVObject ao : list){
+                                items[i] = ao.get("CarName").toString();
+                                i++;
+                            }
+                            dialog_change_car();
                         }
 
                     }
@@ -117,18 +125,7 @@ public class Main2Activity extends AppCompatActivity
             }
         });
 
-        AVQuery<AVObject> avQuery = new AVQuery<>("Car");
-        avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
-            @Override
-            public void done(AVObject avObject, AVException e) {
-                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
-                now_drive_car.setText(avObject.get("CarName").toString());
-                now_gas_num.setText(avObject.get("Amount_of_gasoline").toString()+"%");
-                now_mile_num.setText(avObject.get("mileage").toString()+"km");
-                now_engine_situation.setText((avObject.get("Engine_situation").toString()) == "true" ? "OK" : "Bad");
-                now_trans_situation.setText((avObject.get("transmission").toString()) == "true" ? "OK" : "Bad");
-            }
-        });
+
 
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         //设置播放时间间隔
@@ -164,6 +161,45 @@ public class Main2Activity extends AppCompatActivity
 
     }
 
+    private void dialog_change_car(){
+
+        builder=new AlertDialog.Builder(Main2Activity.this);  //先得到构造器
+        alert = builder.setTitle("Change Car")
+                        .setSingleChoiceItems(items,0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ToastUtil.show(Main2Activity.this,items[which]);
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() { //设置确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); //关闭dialog
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+        alert.show();
+    }
+
+    private void setNowDriving(){
+        AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+        avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+                now_drive_car.setText(avObject.get("CarName").toString());
+                now_gas_num.setText(avObject.get("Amount_of_gasoline").toString()+"%");
+                now_mile_num.setText(avObject.get("mileage").toString()+"km");
+                now_engine_situation.setText((avObject.get("Engine_situation").toString()) == "true" ? "OK" : "Bad");
+                now_trans_situation.setText((avObject.get("transmission").toString()) == "true" ? "OK" : "Bad");
+            }
+        });
+    }
+
     private void swipselector(){
         SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipeSelector);
         swipeSelector.setItems(
@@ -171,7 +207,6 @@ public class Main2Activity extends AppCompatActivity
                 new SwipeItem(1, "Slide two", "Description for slide two."),
                 new SwipeItem(2, "Slide three", "Description for slide three.")
         );
-
     }
 
 
