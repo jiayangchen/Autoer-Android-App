@@ -55,6 +55,7 @@ import com.zxing.encoding.EncodingHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+import droidninja.filepicker.FilePickerBuilder;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
