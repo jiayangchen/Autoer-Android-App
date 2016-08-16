@@ -3,80 +3,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp"
-    tools:context="me.chenjiayang.myleancloud.InfoActivity"
-    android:orientation="vertical">
+    tools:context="me.chenjiayang.myleancloud.InfoActivity">
 
-    <include
-        layout="@layout/info_header"/>
+    <include layout="@layout/info_header" />
+
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:text="Username：" />
+
     <EditText
         android:id="@+id/infoUsername"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:focusable="false"/>
+        android:focusable="false" />
+
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MobilePhone："
-        android:layout_marginTop="15dp"/>
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:text="MobilePhone：" />
+
     <EditText
         android:id="@+id/infoPhone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt"/>
+        android:background="@drawable/ettt" />
+
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email："
-        android:layout_marginTop="15dp"/>
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:text="Email：" />
+
     <EditText
         android:id="@+id/infoEmail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt"/>
+        android:background="@drawable/ettt" />
+
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address："
-        android:layout_marginTop="15dp"/>
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:text="Address：" />
+
     <EditText
         android:id="@+id/infoAddress"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt"/>
+        android:background="@drawable/ettt" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="更换头像"/>
+            android:text="更换头像" />
+
         <Button
             android:id="@+id/saveInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="保存更改"/>
+            android:text="保存更改" />
+
         <Button
             android:id="@+id/changepwd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="更换密码"/>
+            android:text="更换密码" />
     </RelativeLayout>
 </LinearLayout>

@@ -4,35 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/splash4"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="me.chenjiayang.myleancloud.RegisterActivity"
-    tools:showIn="@layout/activity_main"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/splash4">
+    tools:showIn="@layout/activity_main">
 
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
         android:text="@string/register_hint_username" />
+
     <EditText
         android:id="@+id/re_usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:selectAllOnFocus="true"
-        android:background="@drawable/ettt"/>
+        android:background="@drawable/ettt"
+        android:selectAllOnFocus="true" />
 
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register_hint_password"
-        android:layout_marginTop="15dp"/>
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:text="@string/register_hint_password" />
 
     <!--<EditText
         android:id="@+id/re_passwordEditText"
@@ -45,56 +46,56 @@
         android:id="@+id/re_passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        app:iconPosition="right"
-        app:hidePasswordIcon="@drawable/ic_hide_password"
-        app:showPasswordIcon="@drawable/ic_show_password"
+        android:background="@drawable/ettt"
         android:inputType="textPassword"
-        android:background="@drawable/ettt"/>
+        app:hidePasswordIcon="@drawable/ic_hide_password"
+        app:iconPosition="right"
+        app:showPasswordIcon="@drawable/ic_show_password" />
 
     <TextView
-        android:layout_gravity="start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/repeat_password"
-        android:layout_marginTop="15dp"/>
+        android:layout_gravity="start"
+        android:layout_marginTop="15dp"
+        android:text="@string/repeat_password" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <!--<EditText
-        android:id="@+id/re_ensure_passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/EditTextHeight"
-        android:inputType="numberPassword"
-        android:background="@drawable/ettt"/>-->
+        <!--<EditText
+            android:id="@+id/re_ensure_passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/EditTextHeight"
+            android:inputType="numberPassword"
+            android:background="@drawable/ettt"/>-->
 
-    <com.marlonmafra.android.widget.EditTextPassword
-        android:id="@+id/re_ensure_passwordEditText"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/EditTextHeight"
-        app:iconPosition="right"
-        app:hidePasswordIcon="@drawable/ic_hide_password"
-        app:showPasswordIcon="@drawable/ic_show_password"
-        android:inputType="textPassword"
-        android:background="@drawable/ettt"/>
+        <com.marlonmafra.android.widget.EditTextPassword
+            android:id="@+id/re_ensure_passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/EditTextHeight"
+            android:background="@drawable/ettt"
+            android:inputType="textPassword"
+            app:hidePasswordIcon="@drawable/ic_hide_password"
+            app:iconPosition="right"
+            app:showPasswordIcon="@drawable/ic_show_password" />
 
-    <!--<Button
-        android:id="@+id/registerAction_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register_button_text"
-        android:layout_marginTop="15dp"/>-->
+        <!--<Button
+            android:id="@+id/registerAction_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_button_text"
+            android:layout_marginTop="15dp"/>-->
 
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/registerAction_button"
-        style="@style/wrapping_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Register Now"
-        app:bootstrapBrand="danger"
-        app:showOutline="true"
-        android:layout_marginTop="60dp"
-        android:layout_alignParentStart="true"/>
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/registerAction_button"
+            style="@style/wrapping_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="60dp"
+            android:text="Register Now"
+            app:bootstrapBrand="danger"
+            app:showOutline="true" />
 
     </RelativeLayout>
 
@@ -104,8 +105,8 @@
         style="@style/wrapping_button"
         android:layout_width="320dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:text="Back to Login"
-        app:bootstrapBrand="primary"
-        android:layout_marginTop="10dp"/>
+        app:bootstrapBrand="primary" />
 
 </LinearLayout>

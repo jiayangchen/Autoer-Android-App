@@ -15,8 +15,8 @@
         android:id="@+id/infoHeadportrait"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:layout_gravity="center"
-        android:src="@mipmap/head_portrait"/>
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:src="@mipmap/head_portrait" />
 
 </LinearLayout>

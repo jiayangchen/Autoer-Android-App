@@ -2,20 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal" >
-   <RelativeLayout
+    android:gravity="center_horizontal">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
+
         <com.amap.api.maps.MapView
             android:id="@+id/mapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" >
-        </com.amap.api.maps.MapView>
+            android:layout_alignParentTop="true"></com.amap.api.maps.MapView>
 
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:id="@+id/search_bar_layout"
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
         android:layout_marginStart="@dimen/offset_title"
         android:layout_marginTop="@dimen/offset_title"
         android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/btn_search"
@@ -43,9 +44,9 @@
             android:paddingStart="12dp"
             android:text="搜索"
             android:textColor="@color/white"
-            android:textSize="12dp"/>
+            android:textSize="12dp" />
 
-       <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -53,31 +54,31 @@
             android:layout_toStartOf="@+id/btn_search"
             android:background="@drawable/search_input_half"
             android:clickable="true"
-            android:gravity="center_vertical" >
+            android:gravity="center_vertical">
 
 
             <EditText
                 android:id="@+id/input_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableLeft="@drawable/search_input"
                 android:background="@color/transparent"
+                android:drawableLeft="@drawable/search_input"
                 android:hint="请输入搜索关键字"
-                android:textColorHint="@color/darkgrey"
                 android:singleLine="true"
                 android:textColor="@color/gary"
-                android:textSize="14sp"/>
+                android:textColorHint="@color/darkgrey"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
     </RelativeLayout>
 
-     <RelativeLayout 
+    <RelativeLayout
         android:id="@+id/poi_detail"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/border_bg" 
+        android:background="@drawable/border_bg"
         android:visibility="gone">
 
         <TextView
@@ -93,6 +94,7 @@
             android:singleLine="true"
             android:textColor="#5566b8"
             android:textSize="15sp" />
+
         <TextView
             android:id="@+id/poi_address"
             android:layout_width="wrap_content"
@@ -107,13 +109,13 @@
             android:textColor="#333333"
             android:textSize="15sp" />
 
-         <Button
-             android:id="@+id/poi_button"
+        <Button
+            android:id="@+id/poi_button"
 
-             android:layout_alignParentEnd="true"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="预约加油"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="预约加油" />
 
     </RelativeLayout>
 
