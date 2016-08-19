@@ -21,12 +21,11 @@
         android:layout_gravity="start"
         android:text="@string/register_hint_username" />
 
-    <EditText
+    <me.chenjiayang.myleancloud.util.ClearEditText
         android:id="@+id/re_usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt"
-        android:selectAllOnFocus="true" />
+        android:background="@drawable/ettt" />
 
     <TextView
         android:layout_width="wrap_content"
