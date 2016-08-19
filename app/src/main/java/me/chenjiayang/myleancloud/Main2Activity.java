@@ -50,12 +50,9 @@ import com.roughike.swipeselector.OnSwipeItemSelectedListener;
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
 import com.zxing.activity.CaptureActivity;
-import com.zxing.encoding.EncodingHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import droidninja.filepicker.FilePickerBuilder;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
@@ -318,13 +315,6 @@ public class Main2Activity extends AppCompatActivity
                     startActivityForResult(scanStart,0);
                 }
 
-                /**
-                 * 退出登录，返回登录页面
-                 */
-                else if(menuItemId == R.id.action_quit){
-                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
-                    startActivity(intent);
-                }
                 return true;
             }
         });
@@ -523,6 +513,10 @@ public class Main2Activity extends AppCompatActivity
         }
         else if(id == R.id.nav_share){
             ToastUtil.show(Main2Activity.this,"Share");
+        }
+        else if(id == R.id.nav_quitLogin){
+            Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

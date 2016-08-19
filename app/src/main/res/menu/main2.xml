@@ -31,10 +31,5 @@
         app:showAsAction="never"
         android:icon="@drawable/ic_settings_applications_black_48dp"
         />
-    <item
-        android:id="@+id/action_quit"
-        android:title="@string/item_quit"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_block_black_48dp"/>
 
 </menu>
