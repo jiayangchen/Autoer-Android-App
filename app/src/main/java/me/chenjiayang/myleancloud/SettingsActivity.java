@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
@@ -313,6 +314,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about,container,false);
+
+            TextView tv = (TextView) rootView.findViewById(R.id.check_for_updates);
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtil.show(getActivity(),"This is the latest version");
+                }
+            });
+
             return rootView;
         }
 
