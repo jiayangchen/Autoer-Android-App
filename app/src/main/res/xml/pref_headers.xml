@@ -3,7 +3,7 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:id="@+id/account"
+        android:fragment="me.chenjiayang.myleancloud.SettingsActivity$AccountPreferenceFragment"
         android:icon="@drawable/ic_recent_actors_black_24dp"
         android:title="My Account"/>
     <header
