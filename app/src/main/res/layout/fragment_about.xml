@@ -1,107 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/applogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher1"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/ic_launcher1" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/app_name"
-        android:textSize="20sp"
         android:textColor="@color/colorAccent"
-        android:layout_gravity="center"/>
+        android:textSize="20sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="chenjiayang.me"
-        android:textSize="10sp"
         android:textColor="@color/colorAccent"
-        android:layout_gravity="center"/>
+        android:textSize="10sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Version 2.0"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:textSize="15sp"
+        android:text="Version 2.0"
         android:textColor="@color/colorAccent"
-        android:layout_gravity="center"/>
+        android:textSize="15sp" />
 
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
-        android:background="#FF909090"
-        android:layout_marginTop="50dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="50dp"
+        android:background="#FF909090" />
+
     <TextView
+        android:id="@+id/rate_autoer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/about"
         android:text="Rate Autoer"
-        android:textSize="@dimen/about_font_size"
-        android:layout_marginTop="@dimen/about"
-        android:layout_gravity="start"/>
+        android:textSize="@dimen/about_font_size" />
+
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/about"
-        android:background="#FF909090"/>
+        android:background="#FF909090" />
+
     <TextView
+        android:id="@+id/feathers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/about"
         android:text="Feathers"
-        android:textSize="@dimen/about_font_size"
-        android:layout_marginTop="@dimen/about"
-        android:layout_gravity="start"/>
+        android:textSize="@dimen/about_font_size" />
+
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/about"
-        android:background="#FF909090"/>
+        android:background="#FF909090" />
+
     <TextView
+        android:id="@+id/help_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/about"
         android:text="Help and FeedBack"
-        android:layout_marginTop="@dimen/about"
-        android:textSize="@dimen/about_font_size"
-        android:layout_gravity="start"/>
+        android:textSize="@dimen/about_font_size" />
+
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/about"
-        android:background="#FF909090"/>
+        android:background="#FF909090" />
+
     <TextView
         android:id="@+id/check_for_updates"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/about"
         android:text="Check For Updates"
-        android:layout_marginTop="@dimen/about"
-        android:textSize="@dimen/about_font_size"
-        android:layout_gravity="start"/>
+        android:textSize="@dimen/about_font_size" />
+
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="0.5dip"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/about"
-        android:background="#FF909090"/>
+        android:background="#FF909090" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Copyright © 2016 ChenJY"
-        android:textSize="12sp"
+        android:layout_gravity="center"
         android:layout_marginTop="120dp"
-        android:layout_gravity="center"/>
+        android:text="Copyright © 2016 ChenJY"
+        android:textSize="12sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All rights Reserved"
-        android:textSize="12sp"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:text="All rights Reserved"
+        android:textSize="12sp" />
 
 </LinearLayout>

@@ -315,14 +315,34 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about,container,false);
 
-            TextView tv = (TextView) rootView.findViewById(R.id.check_for_updates);
-            tv.setOnClickListener(new View.OnClickListener() {
+            TextView tv_check = (TextView) rootView.findViewById(R.id.check_for_updates);
+            tv_check.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ToastUtil.show(getActivity(),"This is the latest version");
                 }
             });
-
+            TextView tv_rate = (TextView) rootView.findViewById(R.id.rate_autoer);
+            tv_rate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtil.show(getActivity(),"Developing...");
+                }
+            });
+            TextView tv_feathers = (TextView) rootView.findViewById(R.id.feathers);
+            tv_feathers.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtil.show(getActivity(),"Developing...");
+                }
+            });
+            TextView tv_helpfeedback = (TextView) rootView.findViewById(R.id.help_feedback);
+            tv_helpfeedback.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ToastUtil.show(getActivity(),"Developing...");
+                }
+            });
             return rootView;
         }
 
