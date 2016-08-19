@@ -137,8 +137,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
         setupActionBar();
-    }
 
+    }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -192,6 +192,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.pref_headers, target);
     }
+
 
     /**
      * This method stops fragment injection in malicious applications.

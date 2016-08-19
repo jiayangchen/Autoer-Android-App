@@ -3,6 +3,10 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
+        android:id="@+id/account"
+        android:icon="@drawable/ic_recent_actors_black_24dp"
+        android:title="My Account"/>
+    <header
         android:fragment="me.chenjiayang.myleancloud.SettingsActivity$GeneralPreferenceFragment"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_general" />
@@ -16,10 +20,14 @@
         android:fragment="me.chenjiayang.myleancloud.SettingsActivity$DataSyncPreferenceFragment"
         android:icon="@drawable/ic_sync_black_24dp"
         android:title="@string/pref_header_data_sync" />
-
+    <header/>
     <header
         android:fragment="me.chenjiayang.myleancloud.SettingsActivity$AboutPreferenceFragment"
         android:icon="@drawable/ic_send_black_24dp"
         android:title="About"/>
+    <header
+        android:icon="@drawable/ic_error_black_24dp"
+        android:title="Version 2.0"/>
+
 
 </preference-headers>
