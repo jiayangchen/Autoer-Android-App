@@ -69,38 +69,6 @@ public class CarItemActivity extends AppCompatActivity {
     private ArrayList<HashMap<String,String>> list=null;
     private HashMap<String,String> map=null;
 
-    public static void saveImageToGallery(Context context, Bitmap bmp) {
-        // 首先保存图片
-        File appDir = new File(Environment.getExternalStorageDirectory(), "Pictures");
-        if (!appDir.exists()) {
-            appDir.mkdir();
-        }
-        String fileName = System.currentTimeMillis() + ".jpg";
-        File file = new File(appDir, fileName);
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.flush();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // 其次把文件插入到系统图库
-        try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(),
-                    file.getAbsolutePath(), fileName, null);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        // 最后通知图库更新
-        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" +
-                Environment.getExternalStorageDirectory())));
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -198,7 +166,7 @@ public class CarItemActivity extends AppCompatActivity {
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog
                                         .setTitleText("Deleted!")
-                                        .setContentText("Your imaginary file has been deleted!")
+                                        .setContentText("Your imaginary car has been deleted!")
                                         .setConfirmText("OK")
                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                             @Override
@@ -258,7 +226,7 @@ public class CarItemActivity extends AppCompatActivity {
             tv.setText(hintText);
 
             builder = new AlertDialog.Builder(CarItemActivity.this);
-            alert = builder.setTitle("修改信息").setView(layout)
+            alert = builder.setView(layout)
                     .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

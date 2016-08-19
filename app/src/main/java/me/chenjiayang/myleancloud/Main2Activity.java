@@ -512,7 +512,11 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_share){
-            ToastUtil.show(Main2Activity.this,"Share");
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my Share text.");
+            shareIntent.setType("text/plain");
+            startActivity(Intent.createChooser(shareIntent, "分享到"));
         }
         else if(id == R.id.nav_quitLogin){
             Intent intent = new Intent(Main2Activity.this, MainActivity.class);

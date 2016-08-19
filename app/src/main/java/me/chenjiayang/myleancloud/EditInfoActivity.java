@@ -169,7 +169,7 @@ public class EditInfoActivity extends AppCompatActivity {
                 final EditText et = (EditText) layout.findViewById(R.id.self_item_editdialog_edittext);
 
                 builder = new AlertDialog.Builder(EditInfoActivity.this);
-                alert = builder.setTitle("Change Info").setView(layout)
+                alert = builder.setView(layout)
                         .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

@@ -7,7 +7,7 @@
         android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:layout_weight="1"
         android:textSize="15sp" />
 
@@ -16,14 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="13dp"
         android:layout_weight="1"
         android:textSize="15sp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/car_item_edit" />
+        android:layout_marginTop="13dp"
+        android:src="@drawable/ic_create_grey600_24dp" />
 
 </LinearLayout>
