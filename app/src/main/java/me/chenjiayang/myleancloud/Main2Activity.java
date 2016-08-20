@@ -176,10 +176,11 @@ public class Main2Activity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss(); //关闭dialog
                         try {
-                            ToastUtil.show(Main2Activity.this, items[x]);
+                            //ToastUtil.show(Main2Activity.this, items[x]);
+                            setNowDriving();
                             x = 0;
                         }catch (Exception e){
-                            ToastUtil.show(Main2Activity.this, items[0]);
+                            //ToastUtil.show(Main2Activity.this, items[0]);
                         }
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮

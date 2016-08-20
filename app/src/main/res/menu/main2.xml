@@ -24,6 +24,6 @@
         android:id="@+id/action_item1"
         android:title="@string/item_01"
         app:showAsAction="withText"
-        android:icon="@drawable/ic_settings_applications_black_48dp"
-        />
+        android:icon="@drawable/ic_settings_applications_black_48dp" />
+
 </menu>

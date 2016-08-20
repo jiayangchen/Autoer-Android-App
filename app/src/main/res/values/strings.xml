@@ -23,8 +23,7 @@
     <string name="menu_notifications">Notification</string>
     <string name="item_01">Settings</string>
     <string name="item_02">Scan QRCode</string>
-    <string name="item_03">Self Info</string>
-    <string name="item_04">Car Info</string>
+    <string name="item_03">About</string>
     <string name="item_quit">Quit</string>
 
 
