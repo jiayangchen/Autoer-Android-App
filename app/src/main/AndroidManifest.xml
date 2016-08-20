@@ -126,7 +126,13 @@
         <activity
             android:name=".EditInfoActivity"
             android:label="SelfInfo" />
-        <activity android:name=".FeedBackActivity"></activity>
+        <activity
+            android:name=".FeedBackActivity"
+            android:label="FeedBack" />
+        <activity
+            android:name=".NewsScrollingActivity"
+            android:label="@string/title_activity_news_scrolling"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

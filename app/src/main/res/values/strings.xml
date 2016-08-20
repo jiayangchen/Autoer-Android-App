@@ -195,6 +195,7 @@
     <string name="list_item_left_button">取消预约</string>
     <string name="list_item_right_button">二维码</string>
     <string name="action_about">About</string>
+    <string name="title_activity_news_scrolling">NewsScrollingActivity</string>
 
     <!-- music -->
 </resources>

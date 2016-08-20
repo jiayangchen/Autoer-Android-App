@@ -370,7 +370,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             tv_helpfeedback.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ToastUtil.show(getActivity(),"Developing...");
+                    //ToastUtil.show(getActivity(),"Developing...");
+                    startActivity(new Intent(getActivity(),FeedBackActivity.class));
                 }
             });
             return rootView;

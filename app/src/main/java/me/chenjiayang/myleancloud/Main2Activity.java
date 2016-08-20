@@ -142,7 +142,8 @@ public class Main2Activity extends AppCompatActivity
         mRollViewPager.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ToastUtil.show(Main2Activity.this,"click on"+position);
+                //ToastUtil.show(Main2Activity.this,"click on"+position);
+                startActivity(new Intent(Main2Activity.this,NewsScrollingActivity.class));
             }
         });
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -48,5 +49,14 @@
         android:layout_height="@dimen/EditTextHeight"
         android:hint="Optional ^_^"
         android:background="@drawable/ettt"/>
+
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:layout_marginTop="40dp"
+        android:id="@+id/feedback_commit"
+        style="@style/wrapping_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Commit"
+        app:bootstrapBrand="primary" />
 
 </LinearLayout>
