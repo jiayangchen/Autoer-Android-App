@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import me.chenjiayang.myleancloud.util.ToastUtil;
+
 public class NewsScrollingActivity extends AppCompatActivity {
 
     @Override
@@ -28,8 +30,9 @@ public class NewsScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                ToastUtil.show(NewsScrollingActivity.this,"收藏成功");
             }
         });
     }
