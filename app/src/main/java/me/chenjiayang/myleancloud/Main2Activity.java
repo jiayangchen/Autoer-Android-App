@@ -519,6 +519,9 @@ public class Main2Activity extends AppCompatActivity
             shareIntent.setType("text/plain");
             startActivity(Intent.createChooser(shareIntent, "分享到"));
         }
+        else if(id == R.id.nav_feedback){
+            startActivity(new Intent(Main2Activity.this,FeedBackActivity.class));
+        }
         else if(id == R.id.nav_quitLogin){
             Intent intent = new Intent(Main2Activity.this, MainActivity.class);
             startActivity(intent);

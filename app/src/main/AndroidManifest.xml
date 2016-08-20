@@ -126,6 +126,7 @@
         <activity
             android:name=".EditInfoActivity"
             android:label="SelfInfo" />
+        <activity android:name=".FeedBackActivity"></activity>
     </application>
 
 </manifest>
