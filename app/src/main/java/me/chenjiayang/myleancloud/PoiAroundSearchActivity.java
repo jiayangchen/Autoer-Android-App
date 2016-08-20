@@ -1,6 +1,8 @@
 package me.chenjiayang.myleancloud;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,9 +14,11 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -36,6 +40,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -361,7 +366,39 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog1();
+                //dialog1();
+                Calendar c = Calendar.getInstance();
+                new DatePickerDialog(PoiAroundSearchActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                //ToastUtil.show(PoiAroundSearchActivity.this,"choose"+year+"年"+(monthOfYear+1)+ "月"+dayOfMonth+"日");
+                                final int yy = year;
+                                final int mm = monthOfYear;
+                                final int dd = dayOfMonth;
+                                Calendar c = Calendar.getInstance();
+                                new TimePickerDialog(PoiAroundSearchActivity.this,
+                                        new TimePickerDialog.OnTimeSetListener() {
+                                            @Override
+                                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                                /*ToastUtil.show(PoiAroundSearchActivity.this,"choose"+yy+"年"+(mm+1)+ "月"+dd+"日"
+                                                        +hourOfDay+"时"+minute+"分");*/
+                                                String ordertime = yy+"年"+(mm+1)+ "月"+dd+"日"
+                                                        +hourOfDay+"时"+minute+"分";
+                                                bundle.putString("pTime",ordertime);
+                                                Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
+                                                intent.putExtra("bundle",bundle);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                        , c.get(Calendar.HOUR_OF_DAY)
+                                        , c.get(Calendar.MINUTE)
+                                        , true).show();
+                            }
+                        }
+                        , c.get(Calendar.YEAR)
+                        , c.get(Calendar.MONTH)
+                        , c.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
     }

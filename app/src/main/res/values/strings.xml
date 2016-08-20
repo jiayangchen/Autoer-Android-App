@@ -35,10 +35,10 @@
 
 
     <!-- 左滑 nav_drawer 菜单-->
-    <string name="myinfo">My Info</string>
-    <string name="mycar">My Car</string>
-    <string name="myorder">My Order</string>
-    <string name="mytools">My Music</string>
+    <string name="myinfo">Illegal Query</string>
+    <string name="mycar">Garage</string>
+    <string name="myorder">Order List</string>
+    <string name="mytools">Music Bar</string>
     <string name="myshare">Share App</string>
     <string name="myfeedback">FeedBack</string>
     <string name="myquit">Quit Login</string>

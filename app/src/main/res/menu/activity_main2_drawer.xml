@@ -4,18 +4,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_self_info"
-            android:icon="@drawable/ic_recent_actors_black_48dp"
-            android:title="@string/myinfo" />
-        <item
             android:id="@+id/nav_car"
             android:icon="@drawable/ic_drive_eta_black_48dp"
             android:title="@string/mycar" />
         <item
             android:id="@+id/nav_order"
             android:icon="@drawable/ic_event_note_black_48dp"
-            android:title="@string/myorder"
-            />
+            android:title="@string/myorder" />
+        <item
+            android:id="@+id/nav_self_info"
+            android:icon="@drawable/ic_pageview_black_48dp"
+            android:title="@string/myinfo" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_my_library_music_black_48dp"
