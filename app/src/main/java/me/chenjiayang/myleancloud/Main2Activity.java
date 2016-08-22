@@ -8,7 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.view.KeyEvent;
@@ -77,6 +79,7 @@ public class Main2Activity extends AppCompatActivity
     private AlertDialog.Builder builder = null;
 
     private String[] items = null;
+    private String[] car_id = null;
     private int x;
 
     private ImageView head_Iv;
@@ -115,9 +118,11 @@ public class Main2Activity extends AppCompatActivity
                         }
                         else {
                             items = new String[list.size()];
+                            car_id = new String[list.size()];
                             int i=0;
                             for(AVObject ao : list){
                                 items[i] = ao.get("CarName").toString();
+                                car_id[i] = ao.getObjectId();
                                 i++;
                             }
                             dialog_change_car();
@@ -129,7 +134,6 @@ public class Main2Activity extends AppCompatActivity
         });
 
         setNowDriving();
-
 
         three_btn();
 
@@ -165,9 +169,6 @@ public class Main2Activity extends AppCompatActivity
 
         //Toolbar的操作
         ToolBarOperation();
-
-
-
     }
 
     private void three_btn(){
@@ -192,7 +193,6 @@ public class Main2Activity extends AppCompatActivity
 
     private void dialog_change_car(){
 
-
         builder=new AlertDialog.Builder(Main2Activity.this);  //先得到构造器
         alert = builder.setTitle("Change Car")
                         .setSingleChoiceItems(items,0, new DialogInterface.OnClickListener() {
@@ -207,8 +207,14 @@ public class Main2Activity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss(); //关闭dialog
                         try {
-                            //ToastUtil.show(Main2Activity.this, items[x]);
+                            //ToastUtil.show(Main2Activity.this, car_id[x]);
+
+                            AVObject todo = AVObject.createWithoutData("_User", AVUser.getCurrentUser().getObjectId());
+                            todo.put("NowDriving",car_id[x]);
+                            todo.saveInBackground();
+
                             setNowDriving();
+                            ToastUtil.show(Main2Activity.this,"Pull Down To Refresh");
                             x = 0;
                         }catch (Exception e){
                             //ToastUtil.show(Main2Activity.this, items[0]);

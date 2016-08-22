@@ -293,7 +293,7 @@ public class CarItemActivity extends AppCompatActivity {
                         // TODO Auto-generated method stub
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, 3000);  //时间3s
+                }, 2000);  //时间2s
             }
         });
     }
