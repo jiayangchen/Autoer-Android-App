@@ -36,7 +36,9 @@
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt" />
+        android:background="@drawable/ettt"
+        android:cursorVisible="false"
+        android:textSize="15sp"/>
 
     <TextView
         android:layout_width="wrap_content"

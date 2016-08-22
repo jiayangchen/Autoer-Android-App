@@ -78,6 +78,9 @@ public class Main2Activity extends AppCompatActivity
     private String[] items = null;
     private int x;
 
+    private ImageView head_Iv;
+    private TextView head_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,6 +160,8 @@ public class Main2Activity extends AppCompatActivity
 
         //Toolbar的操作
         ToolBarOperation();
+
+
 
     }
 
@@ -341,6 +346,17 @@ public class Main2Activity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main2);
+        head_Iv = (ImageView) headerLayout.findViewById(R.id.HeadimageView);
+        head_tv = (TextView) headerLayout.findViewById(R.id.Head_name);
+        head_Iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,EditInfoActivity.class));
+            }
+        });
+        head_tv.setText(AVUser.getCurrentUser().get("username").toString());
     }
 
     /**
@@ -492,6 +508,10 @@ public class Main2Activity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
+
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
