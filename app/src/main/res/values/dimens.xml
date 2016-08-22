@@ -35,5 +35,6 @@
     <dimen name="micro_padding">4dp</dimen>
     <dimen name="about">10dp</dimen>
     <dimen name="about_font_size">15dp</dimen>
+    <dimen name="cardview_three_btn">60dp</dimen>
 
 </resources>

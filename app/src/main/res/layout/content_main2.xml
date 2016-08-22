@@ -23,7 +23,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/main2_now_driving"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="5dp"
@@ -152,6 +152,38 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="6dp"
+            app:cardBackgroundColor="#ffffff">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30℃"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_wb_sunny_black_48dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shanghai" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -159,27 +191,29 @@
             android:orientation="vertical">
 
             <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/main2_change_car"
                 style="@style/wrapping_button"
-                android:layout_width="90dp"
+                android:layout_width="@dimen/cardview_three_btn"
                 android:layout_height="35dp"
-                android:text="001"
-                app:bootstrapBrand="secondary"
-                android:drawableLeft="@drawable/ic_cancel_grey600_18dp"/>
-
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:layout_marginTop="2dp"
-                style="@style/wrapping_button"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:text="002"
+                android:drawableLeft="@drawable/ic_autorenew_black_18dp"
                 app:bootstrapBrand="secondary" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
-                android:layout_marginTop="2dp"
+                android:id="@+id/main2_bind_car"
                 style="@style/wrapping_button"
-                android:layout_width="90dp"
+                android:layout_width="@dimen/cardview_three_btn"
                 android:layout_height="35dp"
-                android:text="003"
+                android:layout_marginTop="2dp"
+                android:drawableLeft="@drawable/ic_crop_free_black_18dp"
+                app:bootstrapBrand="secondary" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/main2_edit_car"
+                style="@style/wrapping_button"
+                android:layout_width="@dimen/cardview_three_btn"
+                android:layout_height="35dp"
+                android:layout_marginTop="2dp"
+                android:drawableLeft="@drawable/ic_edit_black_18dp"
                 app:bootstrapBrand="secondary" />
         </LinearLayout>
     </LinearLayout>

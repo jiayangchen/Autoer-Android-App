@@ -17,13 +17,11 @@
     <item
         android:id="@+id/action_item2"
         android:title="@string/item_02"
-        app:showAsAction="withText"
-        android:icon="@drawable/ic_crop_free_black_48dp"/>
+        app:showAsAction="withText" />
 
     <item
         android:id="@+id/action_item1"
         android:title="@string/item_01"
-        app:showAsAction="withText"
-        android:icon="@drawable/ic_settings_applications_black_48dp" />
+        app:showAsAction="withText" />
 
 </menu>
