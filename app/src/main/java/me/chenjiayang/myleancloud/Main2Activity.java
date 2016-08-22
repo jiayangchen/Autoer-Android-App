@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SendCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.ericssonlabs.BarCodeTestActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -70,7 +72,6 @@ public class Main2Activity extends AppCompatActivity
     private TextView now_mile_num;
     private TextView now_engine_situation;
     private TextView now_trans_situation;
-    private CardView cardView;
 
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
@@ -80,6 +81,10 @@ public class Main2Activity extends AppCompatActivity
 
     private ImageView head_Iv;
     private TextView head_tv;
+
+    private BootstrapButton change_car;
+    private BootstrapButton bind_car;
+    private BootstrapButton edit_car;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +96,11 @@ public class Main2Activity extends AppCompatActivity
         now_mile_num = (TextView) findViewById(R.id.now_mile_num);
         now_engine_situation = (TextView) findViewById(R.id.now_engine_situation);
         now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
-        cardView = (CardView) findViewById(R.id.main2_now_driving);
 
-        setNowDriving();
-
-        cardView.setOnClickListener(new View.OnClickListener() {
+        change_car = (BootstrapButton) findViewById(R.id.main2_change_car);
+        change_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AVQuery<AVObject> query = new AVQuery<>("Car");
                 query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
                 query.findInBackground(new FindCallback<AVObject>() {
@@ -126,7 +128,10 @@ public class Main2Activity extends AppCompatActivity
             }
         });
 
+        setNowDriving();
 
+
+        three_btn();
 
         mRollViewPager = (RollPagerView) findViewById(R.id.roll_view_pager);
         //设置播放时间间隔
@@ -163,6 +168,26 @@ public class Main2Activity extends AppCompatActivity
 
 
 
+    }
+
+    private void three_btn(){
+
+        bind_car = (BootstrapButton) findViewById(R.id.main2_bind_car);
+        edit_car = (BootstrapButton) findViewById(R.id.main2_edit_car);
+
+        bind_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,CaptureActivity.class));
+            }
+        });
+
+        edit_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,CarInfoActivity.class));
+            }
+        });
     }
 
     private void dialog_change_car(){
