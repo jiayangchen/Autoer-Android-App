@@ -132,7 +132,10 @@
         <activity
             android:name=".NewsScrollingActivity"
             android:label="@string/title_activity_news_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CollectActivity"
+            android:label="Collector"/>
     </application>
 
 </manifest>

@@ -88,6 +88,7 @@ public class Main2Activity extends AppCompatActivity
     private BootstrapButton change_car;
     private BootstrapButton bind_car;
     private BootstrapButton edit_car;
+    private BootstrapButton collector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,6 +227,7 @@ public class Main2Activity extends AppCompatActivity
                         dialog.dismiss();
                     }
                 }).create();
+
         alert.show();
     }
 
@@ -381,6 +383,7 @@ public class Main2Activity extends AppCompatActivity
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main2);
         head_Iv = (ImageView) headerLayout.findViewById(R.id.HeadimageView);
         head_tv = (TextView) headerLayout.findViewById(R.id.Head_name);
+        collector = (BootstrapButton) headerLayout.findViewById(R.id.collector);
         head_Iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -388,6 +391,12 @@ public class Main2Activity extends AppCompatActivity
             }
         });
         head_tv.setText(AVUser.getCurrentUser().get("username").toString());
+        collector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,CollectActivity.class));
+            }
+        });
     }
 
     /**

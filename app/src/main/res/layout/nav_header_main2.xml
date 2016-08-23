@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/nav_bar_bg2_1"
     android:gravity="bottom"
     android:orientation="vertical"
@@ -43,16 +44,14 @@
             android:layout_gravity="bottom"
             android:gravity="end">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_star_outline_white_24dp"/>
-            <TextView
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/collector"
+                style="@style/wrapping_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="收藏夹"
-                android:textSize="16sp"
-                android:textColor="@color/white" />
+                app:bootstrapBrand="secondary"
+                app:showOutline="true" />
 
         </LinearLayout>
 

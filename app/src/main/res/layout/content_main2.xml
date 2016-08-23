@@ -25,7 +25,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/main2_now_driving"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="110dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="6dp"
@@ -52,7 +52,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:text="Now Owed:"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -61,7 +61,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="15dp"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -191,13 +191,22 @@
             android:layout_marginTop="6dp"
             android:orientation="vertical">
 
+            <!--<com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/main2_change_car"
+                style="@style/wrapping_button"
+                android:layout_width="@dimen/cardview_three_btn"
+                android:layout_height="35dp"
+                android:drawableLeft="@drawable/ic_autorenew_black_18dp"
+                app:bootstrapBrand="secondary" />-->
+
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_change_car"
                 style="@style/wrapping_button"
                 android:layout_width="@dimen/cardview_three_btn"
                 android:layout_height="35dp"
                 android:drawableLeft="@drawable/ic_autorenew_black_18dp"
-                app:bootstrapBrand="secondary" />
+                app:bootstrapBrand="secondary"
+                app:showOutline="true" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_bind_car"
