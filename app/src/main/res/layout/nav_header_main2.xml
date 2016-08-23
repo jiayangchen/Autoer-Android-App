@@ -11,41 +11,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:id="@+id/HeadimageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginStart="10dp"
-        android:src="@mipmap/head_portrait" />
 
-    <TextView
-        android:id="@+id/Head_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/black"
-        android:layout_marginStart="10dp"
-        android:textSize="15dp" />
+        <ImageView
+            android:id="@+id/HeadimageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="10dp"
+            android:src="@mipmap/head_portrait" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="end">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_star_outline_white_24dp"/>
         <TextView
+            android:id="@+id/Head_name"
+            android:gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="收藏夹"
-            android:textSize="16sp"
-            android:textColor="@color/white" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
+            android:textSize="15dp" />
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:gravity="end">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_star_outline_white_24dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收藏夹"
+                android:textSize="16sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 
     <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->

@@ -43,5 +43,4 @@
         android:title="@string/myquit"
         android:icon="@drawable/ic_block_black_48dp"/>
 
-
 </menu>
