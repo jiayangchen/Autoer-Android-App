@@ -20,6 +20,6 @@
         android:layout_gravity="start"
         android:background="@color/white"
         android:fitsSystemWindows="true"
-        app:menu="@menu/activity_main2_drawer" />
+        app:menu="@menu/activity_main2_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <group android:checkableBehavior="single">
         <item
+            app:actionLayout="@layout/nav_badge"
             android:id="@+id/nav_car"
             android:icon="@drawable/ic_drive_eta_black_48dp"
             android:title="@string/mycar" />
         <item
+            app:actionLayout="@layout/nav_badge"
             android:id="@+id/nav_order"
             android:icon="@drawable/ic_event_note_black_48dp"
             android:title="@string/myorder" />

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,11 +86,14 @@ public class Main2Activity extends AppCompatActivity
 
     private ImageView head_Iv;
     private TextView head_tv;
+    private TextView car_num_tv;
 
     private BootstrapButton change_car;
     private BootstrapButton bind_car;
     private BootstrapButton edit_car;
     private BootstrapButton collector;
+
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +175,28 @@ public class Main2Activity extends AppCompatActivity
 
         //Toolbar的操作
         ToolBarOperation();
+
+        setNavViewCount();
+    }
+
+    private void setNavViewCount(){
+        AVQuery<AVObject> query_car_num_badge = new AVQuery<>("Car");
+        query_car_num_badge.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query_car_num_badge.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                setMenuCounter(R.id.nav_car,list.size());
+            }
+        });
+
+        AVQuery<AVObject> query_list_num_badge = new AVQuery<>("Order");
+        query_list_num_badge.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query_list_num_badge.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                setMenuCounter(R.id.nav_order,list.size());
+            }
+        });
     }
 
     private void three_btn(){
@@ -377,10 +404,11 @@ public class Main2Activity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main2);
+
         head_Iv = (ImageView) headerLayout.findViewById(R.id.HeadimageView);
         head_tv = (TextView) headerLayout.findViewById(R.id.Head_name);
         collector = (BootstrapButton) headerLayout.findViewById(R.id.collector);
@@ -397,7 +425,19 @@ public class Main2Activity extends AppCompatActivity
                 startActivity(new Intent(Main2Activity.this,CollectActivity.class));
             }
         });
+
+        /*View garage = navigationView.getMenu().findItem(0).getActionView();
+        car_num_tv = (TextView) garage.findViewById(R.id.msg);
+        car_num_tv.setText("2");*/
+
+
     }
+
+    private void setMenuCounter(@IdRes int itemId, int count) {
+        TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
+    }
+
 
     /**
      * 用来实现将二维码信息返回到Main2Activity的函数，判断是否是车辆信息，并显示在dialog里面

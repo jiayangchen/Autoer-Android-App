@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/xxx"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xxx"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -22,136 +22,136 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/main2_now_driving"
-                android:layout_width="200dp"
-                android:layout_height="110dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="6dp"
-                app:cardBackgroundColor="#ffffff">
+        <android.support.v7.widget.CardView
+            android:id="@+id/main2_now_driving"
+            android:layout_width="200dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="6dp"
+            app:cardBackgroundColor="#ffffff">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<EditText
+                    android:id="@+id/et_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_weight="1"
+                    android:hint="Enter city name"/>-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <!--<EditText
-                        android:id="@+id/et_city"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Enter city name"/>-->
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="10dp"
+                        android:text="Now Owed:"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Now Owed:"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/now_drive_car"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="15dp"
-                            android:textSize="18sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/now_drive_car"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:orientation="horizontal">
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="18sp" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Gas:"
-                            android:textSize="15sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/now_gas_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="15dp"
-                            android:textSize="15sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="10dp"
+                        android:text="Gas:"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Mileage:"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:id="@+id/now_mile_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="15dp"
-                            android:textSize="15sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
+                        android:id="@+id/now_gas_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="15sp" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Engine SA:"
-                            android:textSize="15sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/now_engine_situation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="15dp"
-                            android:textSize="15sp" />
-                    </RelativeLayout>
-
-                    <RelativeLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginStart="10dp"
+                        android:text="Mileage:"
+                        android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:text="Trans SA:"
-                            android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/now_mile_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="15sp" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/now_trans_situation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="15dp"
-                            android:textSize="15sp" />
-                    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Engine SA:"
+                        android:textSize="15sp" />
 
-            </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/now_engine_situation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Trans SA:"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/now_trans_situation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
             android:layout_width="80dp"
@@ -192,12 +192,12 @@
             android:orientation="vertical">
 
             <!--<com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/main2_change_car"
                 style="@style/wrapping_button"
+                android:id="@+id/main2_change_car"
                 android:layout_width="@dimen/cardview_three_btn"
                 android:layout_height="35dp"
                 android:drawableLeft="@drawable/ic_autorenew_black_18dp"
-                app:bootstrapBrand="secondary" />-->
+                app:bootstrapBrand="secondary"/>-->
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_change_car"
@@ -215,7 +215,8 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="2dp"
                 android:drawableLeft="@drawable/ic_crop_free_black_18dp"
-                app:bootstrapBrand="secondary" />
+                app:bootstrapBrand="secondary"
+                app:showOutline="true" />
 
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_edit_car"
@@ -224,7 +225,9 @@
                 android:layout_height="35dp"
                 android:layout_marginTop="2dp"
                 android:drawableLeft="@drawable/ic_edit_black_18dp"
-                app:bootstrapBrand="secondary" />
+                app:bootstrapBrand="secondary"
+                app:showOutline="true"/>
+            
         </LinearLayout>
     </LinearLayout>
 
