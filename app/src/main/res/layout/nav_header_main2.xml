@@ -13,13 +13,22 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/HeadimageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginStart="10dp"
-            android:src="@mipmap/head_portrait" />
+            android:src="@mipmap/head_portrait" />-->
+
+    <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+        android:id="@+id/HeadimageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:src="@mipmap/head_portrait"
+        app:hasBorder="false"/>
 
     <LinearLayout
         android:layout_width="match_parent"
