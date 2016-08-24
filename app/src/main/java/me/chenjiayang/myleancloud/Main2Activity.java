@@ -456,7 +456,7 @@ public class Main2Activity extends AppCompatActivity
 
     private void setMenuCounter(@IdRes int itemId, int count) {
         TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
-        view.setText(count > 0 ? String.valueOf(count) : null);
+        view.setText(count > 0 ? "+"+String.valueOf(count) : null);
     }
 
 
