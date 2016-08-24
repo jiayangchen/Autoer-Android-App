@@ -35,15 +35,8 @@
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_call_black_48dp"
                 android:title="@string/myfeedback"/>
-            <item
-                android:title=""/>
 
         </menu>
     </item>
-
-    <item
-        android:id="@+id/nav_quitLogin"
-        android:title="@string/myquit"
-        android:icon="@drawable/ic_block_black_48dp"/>
 
 </menu>

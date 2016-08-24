@@ -19,18 +19,18 @@
     <!-- <include
          layout="@layout/nav_header_main2"/>-->
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="Username：" />
+        android:text="Username：" />-->
 
     <!--<EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:selectAllOnFocus="true"
-        android:background="@drawable/ettt"/>-->
+        android:background="@drawable/ettt"
+        android:selectAllOnFocus="true"/>-->
 
     <me.chenjiayang.myleancloud.util.ClearEditText
         android:id="@+id/usernameEditText"
@@ -38,31 +38,42 @@
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
         android:cursorVisible="false"
-        android:textSize="15sp"/>
+        android:drawableLeft="@drawable/ic_assignment_ind_grey600_24dp"
+        android:textSize="15sp" />
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="15dp"
-        android:text="Password：" />
+        android:text="Password：" />-->
 
     <!--<EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
-        android:inputType="textPassword"
-        android:background="@drawable/ettt"/>-->
+        android:background="@drawable/ettt"
+        android:inputType="textPassword"/>-->
 
-    <com.marlonmafra.android.widget.EditTextPassword
+    <!--<com.marlonmafra.android.widget.EditTextPassword
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
+        android:drawableStart="@drawable/ic_https_grey600_24dp"
         android:inputType="textPassword"
         app:hidePasswordIcon="@drawable/ic_hide_password"
         app:iconPosition="right"
-        app:showPasswordIcon="@drawable/ic_show_password" />
+        app:showPasswordIcon="@drawable/ic_show_password" />-->
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/ettt"
+        android:drawableStart="@drawable/ic_https_grey600_24dp"
+        android:inputType="textPassword"
+        android:layout_marginTop="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,23 +109,23 @@
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/login_button_text" />
+            android:text="@string/login_button_text"/>
 
         <Button
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_button_text" />-->
+            android:text="@string/register_button_text"/>-->
 
 
         <!--<com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/login_button"
             style="@style/wrapping_button"
+            android:id="@+id/login_button"
             android:layout_width="320dp"
             android:layout_height="50dp"
-            android:text="Login Now"
             app:bootstrapBrand="primary"
-            app:showOutline="true"/>-->
+            app:showOutline="true"
+            android:text="Login Now"/>-->
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/login_button"
             style="@style/wrapping_button"

@@ -191,14 +191,6 @@
             android:layout_marginTop="6dp"
             android:orientation="vertical">
 
-            <!--<com.beardedhen.androidbootstrap.BootstrapButton
-                style="@style/wrapping_button"
-                android:id="@+id/main2_change_car"
-                android:layout_width="@dimen/cardview_three_btn"
-                android:layout_height="35dp"
-                android:drawableLeft="@drawable/ic_autorenew_black_18dp"
-                app:bootstrapBrand="secondary"/>-->
-
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_change_car"
                 style="@style/wrapping_button"

@@ -69,7 +69,6 @@ public class Main2Activity extends AppCompatActivity
             "Engine_situation","CarLight","transmission"};
     //private TextView scanQRCodeTextView;
     private RollPagerView mRollViewPager;
-    private long exitTime = 0;
 
     private TextView now_drive_car;
     private TextView now_gas_num;
@@ -92,6 +91,8 @@ public class Main2Activity extends AppCompatActivity
     private BootstrapButton bind_car;
     private BootstrapButton edit_car;
     private BootstrapButton collector;
+    private BootstrapButton nav_settings;
+    private BootstrapButton nav_quit;
 
     private NavigationView navigationView;
 
@@ -105,6 +106,23 @@ public class Main2Activity extends AppCompatActivity
         now_mile_num = (TextView) findViewById(R.id.now_mile_num);
         now_engine_situation = (TextView) findViewById(R.id.now_engine_situation);
         now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
+        nav_settings = (BootstrapButton) findViewById(R.id.main2_nav_settings);
+        nav_quit = (BootstrapButton) findViewById(R.id.main2_nav_quit);
+
+        nav_quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+        nav_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this,SettingsActivity.class));
+            }
+        });
 
         change_car = (BootstrapButton) findViewById(R.id.main2_change_car);
         change_car.setOnClickListener(new View.OnClickListener() {
@@ -380,6 +398,9 @@ public class Main2Activity extends AppCompatActivity
                      */
                     Intent scanStart = new Intent(Main2Activity.this, CaptureActivity.class);
                     startActivityForResult(scanStart,0);
+                }else if(menuItemId == R.id.action_item3){
+                    startActivity(new Intent(Main2Activity.this,MainActivity.class));
+                    finish();
                 }
 
                 return true;
@@ -623,10 +644,6 @@ public class Main2Activity extends AppCompatActivity
         else if(id == R.id.nav_feedback){
             startActivity(new Intent(Main2Activity.this,FeedBackActivity.class));
         }
-        else if(id == R.id.nav_quitLogin){
-            Intent intent = new Intent(Main2Activity.this, MainActivity.class);
-            startActivity(intent);
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -661,19 +678,4 @@ public class Main2Activity extends AppCompatActivity
         }
     }
 
-    //按两下退出应用
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-            if((System.currentTimeMillis()-exitTime) > 2000){
-                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                System.exit(0);
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 }
