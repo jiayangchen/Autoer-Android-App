@@ -183,7 +183,7 @@ public class Main2Activity extends AppCompatActivity
             }
         });
 
-        swipselector();
+        //swipselector();
 
         //保存推送id
         saveInsID();
@@ -291,14 +291,14 @@ public class Main2Activity extends AppCompatActivity
         });
     }
 
-    private void swipselector(){
+    /*private void swipselector(){
         SwipeSelector swipeSelector = (SwipeSelector) findViewById(R.id.swipeSelector);
         swipeSelector.setItems(
                 new SwipeItem(0, "Welcome："+AVUser.getCurrentUser().get("username"), "现在正驾驶车辆：奥迪"),
                 new SwipeItem(1, "Slide two", "Description for slide two."),
                 new SwipeItem(2, "Slide three", "Description for slide three.")
         );
-    }
+    }*/
 
 
     /**
@@ -603,10 +603,6 @@ public class Main2Activity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-
-
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

@@ -21,35 +21,39 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="5dp"
-        android:background="#FF909090" />
+        android:background="@color/colorAccent" />
 
     <!--<View
-        android:layout_width="0.5dip"
+        android:layout_width="0.5dp"
         android:layout_height="50dp"
-        android:background="#FF909090"
         android:layout_gravity="center_horizontal"
+        android:background="#FF909090"
         />
 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="6dp">
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
             android:layout_weight="1"
-            android:src="@drawable/settings_128"/>
+            android:src="@drawable/settings_128" />
+
         <ImageView
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
             android:layout_weight="1"
-            android:src="@drawable/line_128"/>
+            android:src="@drawable/line_128" />
+
         <ImageView
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
             android:layout_weight="1"
-            android:src="@drawable/help"/>
+            android:src="@drawable/help" />
+
         <ImageView
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
@@ -60,40 +64,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="6dp"
-        android:layout_marginStart="18dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="保养贴士"/>
+            android:text="保养贴士" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="统计数据"
-            android:layout_marginStart="18dp"/>
+            android:text="统计数据" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="常见问题"
-            android:layout_marginStart="18dp"/>
+            android:text="常见问题" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="常见问题"
-            android:layout_marginStart="18dp"/>
+            android:text="常见问题" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="5dp"
-        android:background="#FF909090" />
+        android:background="@color/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -296,19 +303,41 @@
                 android:layout_marginTop="2dp"
                 android:drawableLeft="@drawable/ic_edit_black_18dp"
                 app:bootstrapBrand="secondary"
-                app:showOutline="true"/>
-            
+                app:showOutline="true" />
+
         </LinearLayout>
     </LinearLayout>
 
-    <com.roughike.swipeselector.SwipeSelector
+    <!--<com.roughike.swipeselector.SwipeSelector
         android:id="@+id/swipeSelector"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/white"/>-->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="6dp"
-        android:background="@color/white" />
+        app:cardBackgroundColor="#ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="safhuaihidsuahnvoidsncjsdc" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
     <TextView
         android:id="@+id/scanQRCodeTextView"
