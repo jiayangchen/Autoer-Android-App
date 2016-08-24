@@ -386,12 +386,6 @@ public class Main2Activity extends AppCompatActivity
                 } else if (menuItemId == R.id.action_notification) {
                     Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
 
-                } else if (menuItemId == R.id.action_item1) {
-                    /**
-                     * 跳转设置页面
-                     */
-                    Intent settings = new Intent(Main2Activity.this, SettingsActivity.class);
-                    startActivity(settings);
                 } else if (menuItemId == R.id.action_item2) {
                     /**
                      * 跳转 Mylibrary 实现二维码扫描功能

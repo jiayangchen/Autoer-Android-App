@@ -42,7 +42,7 @@
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
             android:layout_weight="1"
-            android:src="@drawable/help"/>
+            android:src="@drawable/help" />
     </LinearLayout>
 
 

@@ -21,12 +21,6 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/action_item1"
-        android:icon="@drawable/ic_edit_black_18dp"
-        android:title="@string/item_01"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/action_item3"
         android:icon="@drawable/ic_edit_black_18dp"
         android:title="Logout"
