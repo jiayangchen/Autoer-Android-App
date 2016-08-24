@@ -17,12 +17,29 @@
         app:rollviewpager_hint_gravity="right"
         app:rollviewpager_play_delay="3000" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FF909090" />
+
+    <!--<View
+        android:layout_width="0.5dip"
+        android:layout_height="50dp"
+        android:background="#FF909090"
+        android:layout_gravity="center_horizontal"
+        />
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="6dp">
-        
+        <ImageView
+            android:layout_width="@dimen/main2_four_icon"
+            android:layout_height="@dimen/main2_four_icon"
+            android:layout_weight="1"
+            android:src="@drawable/settings_128"/>
         <ImageView
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
@@ -37,12 +54,7 @@
             android:layout_width="@dimen/main2_four_icon"
             android:layout_height="@dimen/main2_four_icon"
             android:layout_weight="1"
-            android:src="@drawable/help"/>
-        <ImageView
-            android:layout_width="@dimen/main2_four_icon"
-            android:layout_height="@dimen/main2_four_icon"
-            android:layout_weight="1"
-            android:src="@drawable/help" />
+            android:src="@drawable/alert_128" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,12 +68,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="常见问题"/>
+            android:text="保养贴士"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="常见问题"
+            android:text="统计数据"
             android:layout_marginStart="18dp"/>
         <TextView
             android:layout_width="wrap_content"
@@ -77,6 +89,11 @@
             android:layout_marginStart="18dp"/>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:background="#FF909090" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -36,6 +36,6 @@
     <dimen name="about">10dp</dimen>
     <dimen name="about_font_size">15dp</dimen>
     <dimen name="cardview_three_btn">60dp</dimen>
-    <dimen name="main2_four_icon">65dp</dimen>
+    <dimen name="main2_four_icon">40dp</dimen>
 
 </resources>
