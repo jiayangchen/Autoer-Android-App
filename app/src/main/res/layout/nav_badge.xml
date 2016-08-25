@@ -6,4 +6,4 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-    android:textColor="@color/colorAccent"/>
+    android:textColor="#FF9800"/>
