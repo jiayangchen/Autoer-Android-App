@@ -136,7 +136,9 @@
         <activity
             android:name=".CollectActivity"
             android:label="Collector" />
-        <activity android:name=".music_bar.MusicActivity"></activity>
+        <activity
+            android:name=".music_bar.MusicActivity"
+            android:label="Music"/>
     </application>
 
 </manifest>
