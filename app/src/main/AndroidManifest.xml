@@ -135,7 +135,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CollectActivity"
-            android:label="Collector"/>
+            android:label="Collector" />
+        <activity android:name=".music_bar.MusicActivity"></activity>
     </application>
 
 </manifest>

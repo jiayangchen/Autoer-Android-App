@@ -61,6 +61,7 @@ import com.zxing.activity.CaptureActivity;
 import java.util.List;
 
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
+import me.chenjiayang.myleancloud.music_bar.MusicActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class Main2Activity extends AppCompatActivity
@@ -96,6 +97,12 @@ public class Main2Activity extends AppCompatActivity
     private BootstrapButton nav_quit;
 
     private NavigationView navigationView;
+
+    private ImageView Main2_Music;
+    private ImageView Main2_Tips;
+    private ImageView Main2_Question;
+    private ImageView Main2_Statistics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +165,8 @@ public class Main2Activity extends AppCompatActivity
             }
         });
 
+        SubMenuFourImg();
+
         setNowDriving();
 
         three_btn();
@@ -196,6 +205,20 @@ public class Main2Activity extends AppCompatActivity
         ToolBarOperation();
 
         setNavViewCount();
+    }
+
+    private void SubMenuFourImg(){
+        Main2_Tips = (ImageView) findViewById(R.id.main2_tips);
+        Main2_Statistics = (ImageView) findViewById(R.id.main2_statistics);
+        Main2_Music = (ImageView) findViewById(R.id.main2_music);
+        Main2_Question = (ImageView) findViewById(R.id.main2_question);
+
+        Main2_Music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, MusicActivity.class));
+            }
+        });
     }
 
     private void setNavViewCount(){
