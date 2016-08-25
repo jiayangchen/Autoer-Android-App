@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         forgetPwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ToastUtil.show(MainActivity.this,"Sorry, no efficient solutions now!");
                 new SweetAlertDialog(MainActivity.this)
                         .setTitleText("Forget Password")
 

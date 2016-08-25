@@ -23,7 +23,10 @@
     <!-- 用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- 基础模块 END -->
+    <!-- 音乐 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".MyLeanCloudApp"
         android:allowBackup="true"
@@ -138,7 +141,12 @@
             android:label="Collector" />
         <activity
             android:name=".music_bar.MusicActivity"
-            android:label="Music"/>
+            android:label="Music"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+        <service android:name=".music_bar.MusicService" />
+
     </application>
 
 </manifest>

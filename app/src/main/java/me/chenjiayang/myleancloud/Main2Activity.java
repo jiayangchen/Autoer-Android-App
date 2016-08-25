@@ -2,20 +2,12 @@ package me.chenjiayang.myleancloud;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -26,10 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,19 +32,12 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
-import com.avos.avoscloud.SendCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
-import com.ericssonlabs.BarCodeTestActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
-import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
-import com.jude.swipbackhelper.SwipeBackHelper;
-import com.roughike.swipeselector.OnSwipeItemSelectedListener;
-import com.roughike.swipeselector.SwipeItem;
-import com.roughike.swipeselector.SwipeSelector;
 import com.zxing.activity.CaptureActivity;
 
 import java.util.List;
@@ -417,7 +399,7 @@ public class Main2Activity extends AppCompatActivity
                     Intent scanStart = new Intent(Main2Activity.this, CaptureActivity.class);
                     startActivityForResult(scanStart,0);
                 }else if(menuItemId == R.id.action_item3){
-                    startActivity(new Intent(Main2Activity.this,MainActivity.class));
+                    startActivity(new Intent(Main2Activity.this, me.chenjiayang.myleancloud.MainActivity.class));
                     finish();
                 }
 

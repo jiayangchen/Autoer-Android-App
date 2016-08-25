@@ -1,7 +1,11 @@
 package me.chenjiayang.myleancloud.music_bar;
 
-/**
- * Created by ChenJiayang on 2016/8/25.
- */
-public class MusicController {
+import android.content.Context;
+import android.widget.MediaController;
+
+public class MusicController extends MediaController{
+    public MusicController(Context c){
+        super(c);
+    }
+    public void hide(){}
 }
