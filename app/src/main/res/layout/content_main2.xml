@@ -72,28 +72,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="保养贴士" />
+            android:text="保养贴士"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="统计数据" />
+            android:text="统计数据"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="常见问题" />
+            android:text="常见问题"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_weight="1"
-            android:text="常见问题" />
+            android:text="常见问题"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View

@@ -12,22 +12,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-
-        <!--<ImageView
-            android:id="@+id/HeadimageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="10dp"
-            android:src="@mipmap/head_portrait" />-->
-
     <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
-        android:id="@+id/HeadimageView"
+        android:id="@+id/car_item_head"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="15dp"
         android:layout_marginStart="10dp"
-
         app:hasBorder="false"/>
 
     <LinearLayout
@@ -36,7 +26,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/Head_name"
+            android:id="@+id/car_item_name"
             android:gravity="start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,35 +35,6 @@
             android:layout_marginStart="10dp"
             android:textSize="15dp" />
 
-        <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:gravity="end">
-
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/collector"
-                style="@style/wrapping_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="收藏夹"
-                app:bootstrapBrand="secondary"
-                app:showOutline="true" />
-
-        </LinearLayout>
-
     </LinearLayout>
-
-
-
-
-    <!--android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
-    <!--<TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="android.studio@android.com" />-->
 
 </LinearLayout>

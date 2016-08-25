@@ -27,8 +27,10 @@ import android.widget.Toast;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.google.zxing.WriterException;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import com.zxing.encoding.EncodingHandler;
@@ -55,6 +57,8 @@ public class CarItemActivity extends AppCompatActivity {
     private Bundle bundle;
     private Bundle bundle_id;
     private Intent intent;
+    private TextView head_tv;
+    private BootstrapCircleThumbnail head_iv;
 
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -89,6 +93,14 @@ public class CarItemActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.car_info_elem);
         car_qr_btn = (Button) findViewById(R.id.car_qr_btn); //生成二维码的按钮
         car_delete_bound_btn = (Button) findViewById(R.id.car_delete_bound);
+
+        /*LayoutInflater inflater = LayoutInflater.from(this);
+        View layout = inflater.inflate(R.layout.caritem_header, null);*/
+
+        head_tv = (TextView) findViewById(R.id.car_item_name);
+        head_iv = (BootstrapCircleThumbnail) findViewById(R.id.car_item_head);
+        head_iv.setImageDrawable(getResources().getDrawable(R.mipmap.head_portrait));
+        head_tv.setText(AVUser.getCurrentUser().get("username").toString());
 
         list=new ArrayList<>();
 

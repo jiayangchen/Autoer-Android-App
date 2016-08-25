@@ -79,6 +79,11 @@ public class CarInfoActivity extends AppCompatActivity {
 
     private void init(){
 
+        final int[] resImags = {
+                R.drawable.aodilogo,
+                R.drawable.mashaladi
+        };
+
         //查询汽车列表
         AVQuery<AVObject> query = new AVQuery<>("Car");
         query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId())
@@ -94,7 +99,7 @@ public class CarInfoActivity extends AppCompatActivity {
                                     carlist.get(i).get("Amount_of_gasoline").toString() +"%\n"+"变速器情况："+ carlist.get(i).get("transmission").toString();
 
                             map.put("itemTitle", carname);
-                            map.put("itemPhoto", R.drawable.aodilogo);
+                            map.put("itemPhoto", resImags[i]);
                             map.put("itemSummary", carsummary);
                             item.add(map);
                         }

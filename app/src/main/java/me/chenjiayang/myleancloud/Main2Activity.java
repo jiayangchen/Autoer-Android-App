@@ -45,6 +45,7 @@ import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.SendCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.ericssonlabs.BarCodeTestActivity;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
@@ -83,7 +84,7 @@ public class Main2Activity extends AppCompatActivity
     private String[] car_id = null;
     private int x;
 
-    private ImageView head_Iv;
+    private BootstrapCircleThumbnail head_Iv;
     private TextView head_tv;
     private TextView car_num_tv;
 
@@ -424,7 +425,7 @@ public class Main2Activity extends AppCompatActivity
 
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main2);
 
-        head_Iv = (ImageView) headerLayout.findViewById(R.id.HeadimageView);
+        head_Iv = (BootstrapCircleThumbnail) headerLayout.findViewById(R.id.HeadimageView);
         head_tv = (TextView) headerLayout.findViewById(R.id.Head_name);
         collector = (BootstrapButton) headerLayout.findViewById(R.id.collector);
         head_Iv.setOnClickListener(new View.OnClickListener() {
@@ -433,6 +434,7 @@ public class Main2Activity extends AppCompatActivity
                 startActivity(new Intent(Main2Activity.this,EditInfoActivity.class));
             }
         });
+        head_Iv.setImageDrawable(getResources().getDrawable(R.mipmap.head_portrait));
         head_tv.setText(AVUser.getCurrentUser().get("username").toString());
         collector.setOnClickListener(new View.OnClickListener() {
             @Override

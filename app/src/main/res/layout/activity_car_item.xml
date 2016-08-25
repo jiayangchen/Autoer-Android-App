@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/nav_header_main2" />
+    <include layout="@layout/caritem_header" />
 
     <View
         android:id="@+id/list_item_seperator"
