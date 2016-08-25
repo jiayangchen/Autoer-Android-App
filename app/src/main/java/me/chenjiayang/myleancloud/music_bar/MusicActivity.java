@@ -1,6 +1,5 @@
 package me.chenjiayang.myleancloud.music_bar;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -106,13 +105,14 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
             setController();
             playbackPaused=false;
         }
+        controller.setPadding(0,1400,0,0);
         controller.show(0);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -120,14 +120,14 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
     public boolean onOptionsItemSelected(MenuItem item) {
         //menu item selected
         switch (item.getItemId()) {
-            case R.id.action_shuffle:
+            /*case R.id.action_shuffle:
                 musicSrv.setShuffle();
                 break;
             case R.id.action_end:
                 stopService(playIntent);
                 musicSrv=null;
                 System.exit(0);
-                break;
+                break;*/
             case android.R.id.home:
                 this.finish();
         }
