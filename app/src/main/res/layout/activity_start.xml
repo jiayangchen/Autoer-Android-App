@@ -46,9 +46,8 @@
         android:text="Login"
         app:bootstrapBrand="primary"
         app:roundedCorners="true"
-        app:showOutline="true"
         android:layout_marginTop="500dp"
-        android:layout_marginStart="40dp"/>
+        android:layout_marginStart="30dp"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/start_register"
@@ -60,6 +59,6 @@
         app:roundedCorners="true"
         app:showOutline="true"
         android:layout_marginTop="500dp"
-        android:layout_marginStart="200dp"/>
+        android:layout_marginStart="210dp"/>
 
 </RelativeLayout>

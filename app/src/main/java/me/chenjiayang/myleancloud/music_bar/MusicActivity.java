@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import me.chenjiayang.myleancloud.Main2Activity;
 import me.chenjiayang.myleancloud.R;
 
 public class MusicActivity extends AppCompatActivity implements MediaController.MediaPlayerControl {
@@ -129,7 +130,8 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
                 System.exit(0);
                 break;*/
             case android.R.id.home:
-                this.finish();
+                //this.finish();
+                startActivity(new Intent(MusicActivity.this, Main2Activity.class));
         }
         return super.onOptionsItemSelected(item);
     }

@@ -52,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         backlogin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
                 finish();
             }
         });
@@ -98,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                                  * 返回主页面
                                  */
                                 Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterActivity.this, Main2Activity.class);
+                                startActivity(new Intent(RegisterActivity.this,MainActivity.class));
                             }
                         }
                     });
