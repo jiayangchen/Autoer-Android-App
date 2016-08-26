@@ -622,13 +622,15 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_self_info){
-            Intent intent = new Intent(Main2Activity.this, EditInfoActivity.class);
+            Intent intent = new Intent(Main2Activity.this, StartActivity.class);
             startActivity(intent);
         }
         else if(id == R.id.nav_manage){
-            PackageManager packageManager = getPackageManager();
+            /*PackageManager packageManager = getPackageManager();
             Intent intent= new Intent();
             intent = packageManager.getLaunchIntentForPackage("me.chenjiayang.myapplication");
+            startActivity(intent);*/
+            Intent intent = new Intent(Main2Activity.this, StartActivity.class);
             startActivity(intent);
         }
         else if(id == R.id.nav_share){
