@@ -1,6 +1,8 @@
 package me.chenjiayang.myleancloud;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
@@ -23,6 +26,7 @@ public class StartActivity extends AppCompatActivity {
     private VideoView myVideoView;
     private BootstrapButton start_login;
     private BootstrapButton start_register;
+    private TextView Start_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +77,17 @@ public class StartActivity extends AppCompatActivity {
         myVideoView = (VideoView) findViewById(R.id.videoView);
         start_login = (BootstrapButton) findViewById(R.id.start_login);
         start_register = (BootstrapButton) findViewById(R.id.start_register);
+        Start_name = (TextView) findViewById(R.id.start_name);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/Tondu_Beta.otf");
+        Start_name.setTypeface(typeface);
+
+        start_login.getBackground().setAlpha(150);
 
         start_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this,MainActivity.class));
+                finish();
             }
         });
 
@@ -85,6 +95,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StartActivity.this,RegisterActivity.class));
+                finish();
             }
         });
 

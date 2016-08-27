@@ -117,7 +117,8 @@
             android:layout_width="320dp"
             android:layout_height="50dp"
             android:text="Login Now"
-            app:bootstrapBrand="primary" />
+            app:bootstrapBrand="primary"
+            android:drawableEnd="@drawable/login_36"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/register_button"

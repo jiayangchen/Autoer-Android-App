@@ -21,44 +21,56 @@
         android:layout_alignParentBottom="true"/>-->
 
     <TextView
+        android:id="@+id/start_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="120dp"
         android:text="Autoer"
-        android:textSize="30sp"
-        android:textColor="@color/colorAccent"/>
+        android:textSize="70sp"
+        android:textColor="@color/start_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enthusiasm，always tracing our life"
+        android:textSize="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:textColor="@color/start_name"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="chenjiayang.me"
+        android:text="Copyright © 2016 ChenJY"
         android:textSize="14sp"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/light_grey"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/start_login"
         style="@style/wrapping_button"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
         android:text="Login"
         app:bootstrapBrand="primary"
         app:roundedCorners="true"
-        android:layout_marginTop="500dp"
-        android:layout_marginStart="30dp"/>
+        android:layout_marginTop="530dp"
+        android:layout_marginStart="20dp" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/start_register"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
         style="@style/wrapping_button"
         android:text="Register"
         app:bootstrapBrand="danger"
         app:roundedCorners="true"
         app:showOutline="true"
-        android:layout_marginTop="500dp"
-        android:layout_marginStart="210dp"/>
+        android:layout_marginTop="530dp"
+        android:layout_marginStart="190dp"/>
 
 </RelativeLayout>

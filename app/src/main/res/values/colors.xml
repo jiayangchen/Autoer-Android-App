@@ -15,6 +15,7 @@
     <color name="white"> #FFFFFF</color>
     <color name="red"> #FF0000</color>
     <color name="f850_default_blue">#0079ff</color>
+    <color name="start_name">#e1e0e0</color>
 
     <drawable name="transparent">#00000000</drawable>
     <color name="transparent">#00000000</color>
