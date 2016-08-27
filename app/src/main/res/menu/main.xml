@@ -2,18 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
+    <!--<item
         android:id="@+id/action_shuffle"
         android:icon="@drawable/rand"
         android:orderInCategory="1"
         app:showAsAction="always"
-        android:title="Shuffle"/>
+        android:title="Shuffle"/>-->
 
     <item
         android:id="@+id/action_end"
-        android:icon="@drawable/end_"
-        android:orderInCategory="2"
         app:showAsAction="always"
-        android:title="End"/>
+        android:title="关闭"/>
 
 </menu>

@@ -85,6 +85,8 @@ public class Main2Activity extends AppCompatActivity
     private ImageView Main2_Question;
     private ImageView Main2_Statistics;
 
+    private TextView main2_pic_hint;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,8 @@ public class Main2Activity extends AppCompatActivity
         now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
         nav_settings = (BootstrapButton) findViewById(R.id.main2_nav_settings);
         nav_quit = (BootstrapButton) findViewById(R.id.main2_nav_quit);
+        main2_pic_hint = (TextView) findViewById(R.id.main2_pic_hint_bg);
+        main2_pic_hint.getBackground().setAlpha(80);
 
         nav_quit.setOnClickListener(new View.OnClickListener() {
             @Override

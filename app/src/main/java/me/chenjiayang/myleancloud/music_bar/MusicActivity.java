@@ -113,7 +113,7 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -123,12 +123,14 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
         switch (item.getItemId()) {
             /*case R.id.action_shuffle:
                 musicSrv.setShuffle();
-                break;
+                break;*/
             case R.id.action_end:
                 stopService(playIntent);
-                musicSrv=null;
-                System.exit(0);
-                break;*/
+                /*musicSrv=null;
+                System.exit(0);*/
+                startActivity(new Intent(MusicActivity.this, Main2Activity.class));
+                this.finish();
+                break;
             case android.R.id.home:
                 //this.finish();
                 startActivity(new Intent(MusicActivity.this, Main2Activity.class));

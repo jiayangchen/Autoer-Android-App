@@ -81,8 +81,6 @@ public class StartActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/Tondu_Beta.otf");
         Start_name.setTypeface(typeface);
 
-        start_login.getBackground().setAlpha(150);
-
         start_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
