@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash4"
+    android:background="#F5F5F5"
     android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="20dp"
@@ -15,24 +15,16 @@
     tools:context="me.chenjiayang.myleancloud.RegisterActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:text="@string/register_hint_username" />
 
     <me.chenjiayang.myleancloud.util.ClearEditText
         android:id="@+id/re_usernameEditText"
-        android:layout_width="match_parent"
+        android:layout_width="310dp"
         android:layout_height="@dimen/EditTextHeight"
-        android:background="@drawable/ettt" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="15dp"
-        android:text="@string/register_hint_password" />
+        android:background="@drawable/ettt"
+        android:cursorVisible="false"
+        android:drawableLeft="@drawable/manager_24"
+        android:textSize="15sp"
+        android:hint="用户名"/>
 
     <!--<EditText
         android:id="@+id/re_passwordEditText"
@@ -41,7 +33,7 @@
         android:inputType="numberPassword"
         android:background="@drawable/ettt"/>-->
 
-    <com.marlonmafra.android.widget.EditTextPassword
+    <!--<com.marlonmafra.android.widget.EditTextPassword
         android:id="@+id/re_passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
@@ -49,18 +41,19 @@
         android:inputType="textPassword"
         app:hidePasswordIcon="@drawable/ic_hide_password"
         app:iconPosition="right"
-        app:showPasswordIcon="@drawable/ic_show_password" />
+        app:showPasswordIcon="@drawable/ic_show_password" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
+    <EditText
+        android:id="@+id/re_passwordEditText"
+        android:layout_width="310dp"
+        android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/ettt"
+        android:drawableStart="@drawable/key_24"
+        android:inputType="textPassword"
         android:layout_marginTop="15dp"
-        android:text="@string/repeat_password" />
+        android:textSize="15sp"
+        android:hint="密码"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <!--<EditText
             android:id="@+id/re_ensure_passwordEditText"
             android:layout_width="match_parent"
@@ -68,7 +61,7 @@
             android:inputType="numberPassword"
             android:background="@drawable/ettt"/>-->
 
-        <com.marlonmafra.android.widget.EditTextPassword
+        <!--<com.marlonmafra.android.widget.EditTextPassword
             android:id="@+id/re_ensure_passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="@dimen/EditTextHeight"
@@ -76,7 +69,18 @@
             android:inputType="textPassword"
             app:hidePasswordIcon="@drawable/ic_hide_password"
             app:iconPosition="right"
-            app:showPasswordIcon="@drawable/ic_show_password" />
+            app:showPasswordIcon="@drawable/ic_show_password" />-->
+
+        <EditText
+            android:id="@+id/re_ensure_passwordEditText"
+            android:layout_width="310dp"
+            android:layout_height="@dimen/EditTextHeight"
+            android:background="@drawable/ettt"
+            android:drawableStart="@drawable/key_24"
+            android:inputType="textPassword"
+            android:layout_marginTop="15dp"
+            android:textSize="15sp"
+            android:hint="确认密码"/>
 
         <!--<Button
             android:id="@+id/registerAction_button"
@@ -85,27 +89,26 @@
             android:text="@string/register_button_text"
             android:layout_marginTop="15dp"/>-->
 
-        <com.beardedhen.androidbootstrap.BootstrapButton
-            android:id="@+id/registerAction_button"
-            style="@style/wrapping_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="60dp"
-            android:text="Register Now"
-            app:bootstrapBrand="danger"
-            app:showOutline="true" />
-
-    </RelativeLayout>
-
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/registerAction_button"
+        style="@style/wrapping_button"
+        android:layout_width="310dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="40dp"
+        android:text="Register Now"
+        app:bootstrapBrand="danger"
+        app:showOutline="true"
+        android:drawableEnd="@drawable/adduser_24"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/back_login_button"
         style="@style/wrapping_button"
-        android:layout_width="320dp"
+        android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:text="Back to Login"
-        app:bootstrapBrand="primary" />
+        app:bootstrapBrand="primary"
+        android:drawableEnd="@drawable/arrow_24"/>
 
 </LinearLayout>

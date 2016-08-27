@@ -124,7 +124,7 @@
             android:label="CarElem" />
         <activity
             android:name=".EditInfoActivity"
-            android:label="SelfInfo" />
+            android:label="Me"/>
         <activity
             android:name=".FeedBackActivity"
             android:label="FeedBack" />

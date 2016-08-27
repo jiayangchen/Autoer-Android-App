@@ -16,7 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         app:rollviewpager_hint_gravity="right"
-        app:rollviewpager_play_delay="3000" />
+        app:rollviewpager_play_delay="3000" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="欢迎使用智能汽车助手Autoer"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:layout_marginTop="120dp"/>
+
+    </com.jude.rollviewpager.RollPagerView>
 
     <View
         android:layout_width="match_parent"

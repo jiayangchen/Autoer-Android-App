@@ -7,16 +7,6 @@
     android:paddingBottom="5dp"
     android:paddingTop="5dp">
 
-    <!--<include
-        layout="@layout/info_header"/>-->
-    <!--<ImageView
-        android:id="@+id/info_portrait"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@mipmap/head_portrait"/>-->
-
     <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
         android:id="@+id/info_portrait"
         android:layout_width="100dp"
