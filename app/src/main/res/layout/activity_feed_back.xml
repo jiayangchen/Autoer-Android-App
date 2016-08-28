@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="me.chenjiayang.myleancloud.FeedBackActivity"
-    android:orientation="vertical">
+    tools:context="me.chenjiayang.myleancloud.FeedBackActivity">
 
 
     <EditText
-        android:gravity="top"
+        android:id="@+id/feed_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:minLines="8"
-        android:maxLines="10"
+        android:background="@drawable/ettt"
+        android:gravity="top"
         android:hint="Please input your questions or suggestions..."
-        android:textSize="17sp"
+        android:inputType="textMultiLine"
+        android:maxLines="10"
+        android:minLines="8"
         android:scrollbars="vertical"
-        android:background="@drawable/ettt" />
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contact Phone"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:text="Contact Phone" />
 
     <EditText
         android:id="@+id/feedback_phone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/ettt"
+        android:drawableLeft="@drawable/mobilephone_24"
         android:hint="Optional ^_^"
-        android:background="@drawable/ettt"/>
+        android:textSize="15sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:text="Email Address" />
 
     <EditText
         android:id="@+id/feedback_email"
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
+        android:background="@drawable/ettt"
+        android:drawableLeft="@drawable/email_24"
         android:hint="Optional ^_^"
-        android:background="@drawable/ettt"/>
+        android:textSize="15sp" />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
-        android:layout_marginTop="40dp"
         android:id="@+id/feedback_commit"
         style="@style/wrapping_button"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:text="Commit"
         app:bootstrapBrand="primary" />
 

@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -153,15 +154,33 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
                     (android.provider.MediaStore.Audio.Media._ID);
             int artistColumn = musicCursor.getColumnIndex
                     (android.provider.MediaStore.Audio.Media.ARTIST);
+            int lengthColum = musicCursor.getColumnIndex
+                    (MediaStore.Audio.Media.DURATION);
+
             //add songs to list
             do {
                 long thisId = musicCursor.getLong(idColumn);
                 String thisTitle = musicCursor.getString(titleColumn);
                 String thisArtist = musicCursor.getString(artistColumn);
-                songList.add(new Song(thisId, thisTitle, thisArtist));
+                String thislength = musicCursor.getString(lengthColum);
+                String len = cal(thislength);
+                songList.add(new Song(thisId, thisTitle, thisArtist,len));
             }
             while (musicCursor.moveToNext());
         }
+    }
+
+    public static String cal(String second) {
+        int d;
+        int s;
+        double ss = Double.valueOf(second)*0.001;
+        int sss = (int)ss;
+        if(sss>60){
+            d = sss/60;
+            s = sss-60*d;
+            return d +"min"+s+"s";
+        }
+        return sss+"s";
     }
 
     @Override
