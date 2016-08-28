@@ -379,7 +379,6 @@ public class Main2Activity extends AppCompatActivity
         //设置右上角的填充菜单
         toolbar.inflateMenu(R.menu.main2);
 
-
         //显示二维码扫描结果
         //scanQRCodeTextView = (TextView) findViewById(R.id.scanQRCodeTextView);
 
@@ -627,14 +626,6 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_self_info){
-            Intent intent = new Intent(Main2Activity.this, StartActivity.class);
-            startActivity(intent);
-        }
-        else if(id == R.id.nav_manage){
-            /*PackageManager packageManager = getPackageManager();
-            Intent intent= new Intent();
-            intent = packageManager.getLaunchIntentForPackage("me.chenjiayang.myapplication");
-            startActivity(intent);*/
             Intent intent = new Intent(Main2Activity.this, StartActivity.class);
             startActivity(intent);
         }

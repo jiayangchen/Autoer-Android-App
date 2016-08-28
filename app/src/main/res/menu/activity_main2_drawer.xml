@@ -18,10 +18,6 @@
             android:id="@+id/nav_self_info"
             android:icon="@drawable/ic_pageview_black_48dp"
             android:title="@string/myinfo" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_my_library_music_black_48dp"
-            android:title="@string/mytools" />
     </group>
 
     <item android:title="Communicate">
