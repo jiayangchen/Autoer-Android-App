@@ -626,7 +626,7 @@ public class Main2Activity extends AppCompatActivity
             startActivity(intent);
         }
         else if(id == R.id.nav_self_info){
-            Intent intent = new Intent(Main2Activity.this, StartActivity.class);
+            Intent intent = new Intent(Main2Activity.this, QueryActivity.class);
             startActivity(intent);
         }
         else if(id == R.id.nav_share){

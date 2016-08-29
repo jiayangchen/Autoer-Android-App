@@ -82,7 +82,6 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-
         <activity android:name=".PoiAroundSearchActivity" />
         <!-- Service -->
         <service android:name="com.amap.api.location.APSService" />
@@ -99,9 +98,7 @@
             android:label="OrderInfo" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".InfoActivity"
             android:label="Info" />
@@ -111,7 +108,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarInfoActivity"
-            android:label="Garage"/>
+            android:label="Garage" />
         <activity
             android:name=".MyOrderActivity"
             android:label="@string/title_activity_my_order"
@@ -124,7 +121,7 @@
             android:label="CarElem" />
         <activity
             android:name=".EditInfoActivity"
-            android:label="Me"/>
+            android:label="Me" />
         <activity
             android:name=".FeedBackActivity"
             android:label="FeedBack" />
@@ -139,11 +136,12 @@
             android:name=".music_bar.MusicActivity"
             android:label="Music Bar"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <service android:name=".music_bar.MusicService" />
 
-        <activity android:name=".StartActivity"
+        <activity
+            android:name=".StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -151,6 +149,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".QueryActivity"
+            android:label="Illegal Query"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
