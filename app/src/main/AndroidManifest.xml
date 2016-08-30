@@ -98,7 +98,7 @@
             android:label="OrderInfo" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InfoActivity"
             android:label="Info" />
@@ -121,7 +121,7 @@
             android:label="CarElem" />
         <activity
             android:name=".EditInfoActivity"
-            android:label="Me" />
+            android:label="Me"/>
         <activity
             android:name=".FeedBackActivity"
             android:label="FeedBack" />
@@ -149,12 +149,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".QueryActivity"
             android:label="Illegal Query"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Main2Four.CommonActivity"
+            android:label="QA" />
+        <activity
+            android:name=".Main2Four.MaintenActivity"
+            android:label="Maintenance"/>
+        <activity
+            android:name=".Main2Four.MaintenItemActivity"
+            android:label="Maintenance"
             android:theme="@style/AppTheme.NoActionBar"/>
-
     </application>
 
 </manifest>

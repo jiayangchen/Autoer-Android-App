@@ -1,13 +1,14 @@
 package me.chenjiayang.myleancloud;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,21 +17,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
-
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.RequestPasswordResetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.jude.library.imageprovider.ImageProvider;
 import com.jude.swipbackhelper.SwipeBackHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
-public class EditInfoActivity extends AppCompatActivity {
+public class EditInfoActivity extends AppCompatActivity{
 
     private ListView listView;
     private Button change_pwd_btn;
@@ -137,20 +136,23 @@ public class EditInfoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.setting, menu);
+        return true;
+    }
 
-    /**
-     * 返回Main2Activity的监听方法
-     * @param item
-     * @return
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        //menu item selected
         switch (item.getItemId()) {
+            case R.id.editinfo_setting:
+                startActivity(new Intent(EditInfoActivity.this,SettingsActivity.class));
             case android.R.id.home:
                 this.finish();
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -208,6 +210,7 @@ public class EditInfoActivity extends AppCompatActivity {
         }
     }
 
+
     private void refresh(){
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_self_item_edit);
         //设置刷新时动画的颜色，可以设置4个
@@ -233,7 +236,7 @@ public class EditInfoActivity extends AppCompatActivity {
                         // TODO Auto-generated method stub
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, 3000);  //时间3s
+                }, 2000);  //时间2s
             }
         });
     }

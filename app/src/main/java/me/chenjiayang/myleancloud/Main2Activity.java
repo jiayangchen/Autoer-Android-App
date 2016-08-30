@@ -2,6 +2,7 @@ package me.chenjiayang.myleancloud;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ import com.zxing.activity.CaptureActivity;
 
 import java.util.List;
 
+import me.chenjiayang.myleancloud.Main2Four.CommonActivity;
+import me.chenjiayang.myleancloud.Main2Four.MaintenActivity;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.music_bar.MusicActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -206,6 +209,20 @@ public class Main2Activity extends AppCompatActivity
                 finish();
             }
         });
+
+        Main2_Question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, CommonActivity.class));
+            }
+        });
+
+        Main2_Tips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, MaintenActivity.class));
+            }
+        });
     }
 
     private void setNavViewCount(){
@@ -264,15 +281,11 @@ public class Main2Activity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss(); //关闭dialog
                         try {
-                            //ToastUtil.show(Main2Activity.this, car_id[x]);
-
-                            AVObject todo = AVObject.createWithoutData("_User", AVUser.getCurrentUser().getObjectId());
-                            todo.put("NowDriving",car_id[x]);
-                            todo.saveInBackground();
-
-                            setNowDriving();
-                            ToastUtil.show(Main2Activity.this,"Pull Down To Refresh");
-                            x = 0;
+                                AVObject todo = AVObject.createWithoutData("_User", AVUser.getCurrentUser().getObjectId());
+                                todo.put("NowDriving",car_id[x]);
+                                todo.saveInBackground();
+                                setNowDriving();
+                                x = 0;
                         }catch (Exception e){
                             //ToastUtil.show(Main2Activity.this, items[0]);
                         }
@@ -403,6 +416,9 @@ public class Main2Activity extends AppCompatActivity
                     Intent scanStart = new Intent(Main2Activity.this, CaptureActivity.class);
                     startActivityForResult(scanStart,0);
                 }else if(menuItemId == R.id.action_item3){
+                    SharedPreferences sp = getSharedPreferences("userInfo",0);
+                    sp.edit().putBoolean("autologin", false).commit();
+
                     startActivity(new Intent(Main2Activity.this, me.chenjiayang.myleancloud.MainActivity.class));
                     finish();
                 }

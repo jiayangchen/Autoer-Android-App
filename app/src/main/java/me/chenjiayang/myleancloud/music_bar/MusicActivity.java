@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.MediaController;
 
+import com.jude.swipbackhelper.SwipeBackHelper;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -310,7 +312,7 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
         stopService(playIntent);
         musicSrv=null;
         super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
     }
-
 
 }

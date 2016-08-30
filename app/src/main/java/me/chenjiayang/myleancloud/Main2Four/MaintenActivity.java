@@ -1,4 +1,4 @@
-package me.chenjiayang.myleancloud;
+package me.chenjiayang.myleancloud.Main2Four;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -22,23 +22,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.chenjiayang.myleancloud.CarItemActivity;
+import me.chenjiayang.myleancloud.R;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
-public class CarInfoActivity extends AppCompatActivity {
+public class MaintenActivity extends AppCompatActivity {
 
     private ListView mListView;
     private SimpleAdapter simpleAdapter;
-    private List<AVObject> carlist = null;  //所有车辆
+    private List<AVObject> maintenlist = null;  //所有保养信息
     private ArrayList<HashMap<String, Object>> item = new ArrayList<>();
-    private Bundle bundle;
-    private Bundle bundle_id;
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.carinfo);
+        setContentView(R.layout.mainten);
 
         SwipeBackHelper.onCreate(this);
         SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
@@ -57,85 +58,60 @@ public class CarInfoActivity extends AppCompatActivity {
     }
 
 
-
     public void setAdapter(){
-        mListView = (ListView)this.findViewById(R.id.listview);
+        mListView = (ListView)this.findViewById(R.id.mainten_listview);
         //创建简单适配器SimpleAdapter
-        simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_car_info,
-                new String[] {"itemTitle","itemPhoto", "itemSummary"},
-                new int[] {R.id.title, R.id.photograph, R.id.summary});
+        simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_mainten,
+                new String[] {"itemTitle","itemContent","itemHttp"},
+                new int[] {R.id.mainten_title, R.id.mainten_content,R.id.mainten_http});
         //加载SimpleAdapter到ListView中
         mListView.setAdapter(simpleAdapter);
     }
-
 
     public ArrayList<HashMap<String, Object>> getItem() {
         return item;
     }
 
     private void init(){
-
-        final int[] resImags = {
-                R.drawable.aodilogo,
-                R.drawable.mashaladi
-        };
-
         //查询汽车列表
-        AVQuery<AVObject> query = new AVQuery<>("Car");
-        query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId())
-                .findInBackground(new FindCallback<AVObject>() {
+        AVQuery<AVObject> query = new AVQuery<>("Maintenance");
+        query.findInBackground(new FindCallback<AVObject>() {
                     @Override
                     public void done(List<AVObject> list, AVException e) {
-                        carlist = list;
-                        for (int i = 0; i <carlist.size(); i++) {
+                        maintenlist = list;
+                        for (int i = 0; i <maintenlist.size(); i++) {
                             HashMap<String, Object> map = new HashMap<>();
-                            String carname = carlist.get(i).get("CarName").toString();
-                            String carsummary = "车牌号："+carlist.get(i).get("License_plate_number").toString()+"\n" +"发动机号："+ carlist.get(i).get("Engine_no").toString()+"\n" +
-                                    "里程数："+ carlist.get(i).get("mileage").toString() +"\n"+"汽油量："+
-                                    carlist.get(i).get("Amount_of_gasoline").toString() +"%\n"+"变速器情况："+ carlist.get(i).get("transmission").toString();
-
-                            map.put("itemTitle", carname);
-                            map.put("itemPhoto", resImags[i]);
-                            map.put("itemSummary", carsummary);
+                            String title = maintenlist.get(i).get("title").toString();
+                            String content =maintenlist.get(i).get("content").toString();
+                            content = content.substring(0,100)+"...";
+                            String url = maintenlist.get(i).get("url").toString();
+                            url = url.substring(0,20)+"...";
+                            map.put("itemTitle", title);
+                            map.put("itemContent", content);
+                            map.put("itemHttp",url);
                             item.add(map);
                         }
                         setAdapter();
                         final class ListItemClickListener implements AdapterView.OnItemClickListener {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                //用于传递到车辆详情页面的bundle
-
-                                bundle_id = new Bundle();
-                                bundle_id.putString("ObjectId",carlist.get(position).getObjectId());
-
                                 bundle = new Bundle();
-                                bundle.putString("CarName",carlist.get(position).get("CarName").toString());
-                                bundle.putString("License_plate_number",carlist.get(position).get("License_plate_number").toString());
-                                bundle.putString("Engine_no",carlist.get(position).get("Engine_no").toString());
-                                bundle.putString("mileage",carlist.get(position).get("mileage").toString());
-                                bundle.putString("Amount_of_gasoline",carlist.get(position).get("Amount_of_gasoline").toString());
-                                bundle.putString("Engine_situation",carlist.get(position).get("Engine_situation").toString());
-                                bundle.putString("CarLight",carlist.get(position).get("CarLight").toString());
-                                bundle.putString("transmission",carlist.get(position).get("transmission").toString());
-                                Intent intent = new Intent(CarInfoActivity.this,CarItemActivity.class);
-                                intent.putExtra("carlist_elem",bundle);
-                                intent.putExtra("car_ObjectId",bundle_id);
+                                bundle.putString("url",maintenlist.get(position).get("url").toString());
+                                Intent intent = new Intent(MaintenActivity.this,MaintenItemActivity.class);
+                                intent.putExtra("mainten",bundle);
                                 startActivity(intent);
                             }
                         }
-
                         // 点击item的响应事件
                         mListView.setOnItemClickListener(new ListItemClickListener());
                     }
                 });
+
     }
 
 
-
     private void refresh(){
-
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_container);
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.mainten_swipe_container);
         //设置刷新时动画的颜色，可以设置4个
         swipeRefreshLayout.setColorSchemeResources(
                 android.R.color.holo_blue_light,
@@ -149,18 +125,18 @@ public class CarInfoActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
 
                 //refresh页面
-                carlist.clear();
+                maintenlist.clear();
                 item.clear();
                 init();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtil.show(CarInfoActivity.this,"同步成功");
+                        ToastUtil.show(MaintenActivity.this,"Sync...OK");
                         // TODO Auto-generated method stub
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, 2000);  //时间3s
+                }, 2000);  //时间2s
             }
         });
     }
@@ -191,5 +167,4 @@ public class CarInfoActivity extends AppCompatActivity {
         super.onDestroy();
         SwipeBackHelper.onDestroy(this);
     }
-
 }

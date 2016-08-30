@@ -11,6 +11,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SaveCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.jude.swipbackhelper.SwipeBackHelper;
 
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
@@ -26,6 +27,8 @@ public class FeedBackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_back);
 
+        SwipeBackHelper.onCreate(this);
+        SwipeBackHelper.getCurrentPage(this).setSwipeRelateEnable(true);
 
         Feed_content = (EditText) findViewById(R.id.feed_content);
         Feed_phone = (EditText) findViewById(R.id.feedback_phone);
@@ -66,7 +69,6 @@ public class FeedBackActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
-
     /**
      * 返回Main2Activity的监听方法
      * @param item
@@ -80,5 +82,16 @@ public class FeedBackActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
     }
 }

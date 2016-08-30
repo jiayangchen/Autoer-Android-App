@@ -22,9 +22,9 @@
             android:id="@+id/main2_pic_hint_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="欢迎使用智能汽车助手Autoer"
+            android:text="Welcome to use Autoer, a smart helper"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:layout_marginTop="115dp"
             android:background="@color/black"/>
 
