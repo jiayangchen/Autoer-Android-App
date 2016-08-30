@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(choseAutologin){
             autologin.setChecked(true);
+
             //自动登录
             Intent intent = new Intent(MainActivity.this, Main2Activity.class);
             startActivity(intent);

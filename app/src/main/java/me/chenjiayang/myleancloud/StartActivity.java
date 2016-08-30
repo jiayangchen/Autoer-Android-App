@@ -1,10 +1,12 @@
 package me.chenjiayang.myleancloud;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.SurfaceHolder;
@@ -19,6 +21,8 @@ import android.widget.VideoView;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -27,6 +31,8 @@ public class StartActivity extends AppCompatActivity {
     private BootstrapButton start_login;
     private BootstrapButton start_register;
     private TextView Start_name;
+
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +76,17 @@ public class StartActivity extends AppCompatActivity {
 
                     }
                 });
+
+        sp = getSharedPreferences("JudgeStartActivity",MODE_PRIVATE);
+        int tag = sp.getInt("StartTag",0);
+        if(tag == 1){
+            startActivity(new Intent(StartActivity.this,MainActivity.class));
+            finish();
+        }
+        else if(tag == 2){
+            startActivity(new Intent(StartActivity.this,Main2Activity.class));
+            finish();
+        }
     }
 
     private void initView() {
