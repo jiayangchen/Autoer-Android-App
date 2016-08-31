@@ -19,6 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,6 +90,7 @@ public class Main2Activity extends AppCompatActivity
     private ImageView Main2_Tips;
     private ImageView Main2_Question;
     private ImageView Main2_Statistics;
+    private ImageView Main2_Sun;
 
     private TextView main2_pic_hint;
 
@@ -194,6 +198,18 @@ public class Main2Activity extends AppCompatActivity
         ToolBarOperation();
 
         setNavViewCount();
+
+        Sun_Rotate();
+    }
+
+    private void Sun_Rotate(){
+        Main2_Sun = (ImageView) findViewById(R.id.main2_sun);
+        Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.tip);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        if (operatingAnim != null) {
+            Main2_Sun.startAnimation(operatingAnim);
+        }
     }
 
     private void SubMenuFourImg(){

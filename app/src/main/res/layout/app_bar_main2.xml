@@ -17,7 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <ImageView
+                android:id="@+id/notice_img"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="245dp"
+                android:layout_marginBottom="30dp"/>
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main2" />
