@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@mipmap/ic_local_gas_station_white_24dp"
+        android:icon="@mipmap/compass_48"
         android:title="@string/menu_search"
         app:showAsAction="ifRoom" />
 

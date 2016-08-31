@@ -93,7 +93,9 @@ public class StartActivity extends AppCompatActivity {
 
         myVideoView = (VideoView) findViewById(R.id.videoView);
         start_login = (BootstrapButton) findViewById(R.id.start_login);
+        start_login.getBackground().setAlpha(200);
         start_register = (BootstrapButton) findViewById(R.id.start_register);
+        start_register.getBackground().setAlpha(200);
         Start_name = (TextView) findViewById(R.id.start_name);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/Tondu_Beta.otf");
         Start_name.setTypeface(typeface);

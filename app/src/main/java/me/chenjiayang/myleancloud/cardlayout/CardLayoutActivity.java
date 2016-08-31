@@ -42,17 +42,7 @@ public class CardLayoutActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*if (item.getItemId() == R.id.action_about) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.dialog_message).setTitle(R.string.app_name);
-            builder.setPositiveButton(R.string.dialog_ok, null);
-            builder.setIcon(R.drawable.ic_launcher);
-            
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            return true;
-        }
-        else */if(item.getItemId() == android.R.id.home){
+        if(item.getItemId() == android.R.id.home){
             this.finish();
         }
         return super.onOptionsItemSelected(item);

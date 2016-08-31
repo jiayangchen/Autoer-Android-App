@@ -11,77 +11,17 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/common_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. Cannot Login or Logout"
         android:textSize="18dp"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
 
     <TextView
+        android:id="@+id/common_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please make sure that you have already opened the wife switch, mobile phone has normal connection to the network;then make sure your username and password are both correct."
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2. Cannot scan the qrcode"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please make sure that you have access to your phone's camera and there is nothing wrong with it. If so, please check the qrcode if it is broken."
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3. Cannot see the map and current location"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please make sure that you have already opened the location switch and its type is high accuracy; then open one map app in your phone to check if it is correctly working, if so report this problem by FeedBack and we will fix it soon."
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4. Cannot bind the specific car you own"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please make sure that the qrcode is correctly generated and its content begins with 'iscar'; or you can use the demo qrcode we offered to check the correctness of this function."
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5. Cannot generate the correct order"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please make sure that you have chosen gas station's name, location, order time, gas type and quantity. Lack of anyone of these five things will make order uncorrect."
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"/>
 

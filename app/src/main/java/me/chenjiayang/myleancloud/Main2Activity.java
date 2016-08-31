@@ -93,6 +93,7 @@ public class Main2Activity extends AppCompatActivity
     private ImageView Main2_Sun;
 
     private TextView main2_pic_hint;
+    private ImageView Notice_Img;
 
 
     @Override
@@ -109,6 +110,9 @@ public class Main2Activity extends AppCompatActivity
         nav_quit = (BootstrapButton) findViewById(R.id.main2_nav_quit);
         main2_pic_hint = (TextView) findViewById(R.id.main2_pic_hint_bg);
         main2_pic_hint.getBackground().setAlpha(80);
+
+        Notice_Img = (ImageView) findViewById(R.id.notice_img);
+        Notice_Img.setImageDrawable(getResources().getDrawable(R.drawable.circled_100));
 
         nav_quit.setOnClickListener(new View.OnClickListener() {
             @Override

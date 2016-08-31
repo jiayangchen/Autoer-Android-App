@@ -17,8 +17,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.MediaController;
 
-import com.jude.swipbackhelper.SwipeBackHelper;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -124,9 +122,6 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
     public boolean onOptionsItemSelected(MenuItem item) {
         //menu item selected
         switch (item.getItemId()) {
-            /*case R.id.action_shuffle:
-                musicSrv.setShuffle();
-                break;*/
             case R.id.action_end:
                 stopService(playIntent);
                 /*musicSrv=null;
@@ -137,6 +132,7 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
             case android.R.id.home:
                 //this.finish();
                 startActivity(new Intent(MusicActivity.this, Main2Activity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -312,7 +308,5 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
         stopService(playIntent);
         musicSrv=null;
         super.onDestroy();
-        SwipeBackHelper.onDestroy(this);
     }
-
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tool_refresh"
+        android:icon="@drawable/refresh_48"
+        android:title=""
+        app:showAsAction="ifRoom" />
+
+</menu>
