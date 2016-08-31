@@ -33,12 +33,13 @@
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_nav_settings"
                 style="@style/wrapping_button"
-                android:layout_width="wrap_content"
+                android:layout_width="55dp"
                 android:layout_height="40dp"
                 app:bootstrapBrand="primary"
                 app:showOutline="true"
                 android:layout_weight="1"
                 android:text="Settings"
+                app:roundedCorners="true"
                 android:textSize="15sp"
                 android:textStyle="normal"
                 android:background="@drawable/ettt"/>
@@ -53,6 +54,7 @@
                 app:showOutline="true"
                 android:text="Quit"
                 android:layout_weight="1"
+                app:roundedCorners="true"
                 android:textSize="15sp"
                 android:textStyle="normal"
                 android:background="@drawable/ettt"/>

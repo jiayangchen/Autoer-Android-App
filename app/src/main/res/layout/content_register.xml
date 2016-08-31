@@ -22,9 +22,9 @@
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
         android:cursorVisible="false"
-        android:drawableLeft="@drawable/manager_24"
+        android:drawableLeft="@drawable/genderneutraser_24"
         android:textSize="15sp"
-        android:hint="用户名"/>
+        android:hint="username"/>
 
     <!--<EditText
         android:id="@+id/re_passwordEditText"
@@ -48,11 +48,11 @@
         android:layout_width="310dp"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:drawableStart="@drawable/key_24"
+        android:drawableStart="@drawable/lock_24"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:textSize="15sp"
-        android:hint="密码"/>
+        android:hint="password"/>
 
         <!--<EditText
             android:id="@+id/re_ensure_passwordEditText"
@@ -76,11 +76,11 @@
             android:layout_width="310dp"
             android:layout_height="@dimen/EditTextHeight"
             android:background="@drawable/ettt"
-            android:drawableStart="@drawable/key_24"
+            android:drawableStart="@drawable/lock_24"
             android:inputType="textPassword"
             android:layout_marginTop="15dp"
             android:textSize="15sp"
-            android:hint="确认密码"/>
+            android:hint="Ensure pwd"/>
 
         <!--<Button
             android:id="@+id/registerAction_button"
@@ -97,18 +97,19 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="40dp"
         android:text="Register Now"
+        app:roundedCorners="true"
         app:bootstrapBrand="danger"
-        app:showOutline="true"
-        android:drawableEnd="@drawable/adduser_24"/>
+        android:drawableEnd="@drawable/registered_trademark_32"/>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/back_login_button"
         style="@style/wrapping_button"
         android:layout_width="310dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        app:roundedCorners="true"
         android:text="Back to Login"
         app:bootstrapBrand="primary"
-        android:drawableEnd="@drawable/arrow_24"/>
+        android:drawableEnd="@drawable/return_32"/>
 
 </LinearLayout>

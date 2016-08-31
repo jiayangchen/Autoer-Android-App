@@ -35,6 +35,11 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.FindCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -71,7 +76,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private TextView mPoiName, mPoiAddress;
     private String keyWord = "";
     private EditText mSearchText;
-    private Button mButton;
+    private BootstrapButton mButton;
     private Bundle bundle;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -80,15 +85,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private GoogleApiClient client;
 
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-
-    //单选框
-    String[] items = new String[] {
-            df.format(new Date())+"   "+"13:00",
-            df.format(new Date())+"   "+"13:30",
-            df.format(new Date())+"   "+"14:00",
-            df.format(new Date())+"   "+"14:30",
-            df.format(new Date())+"   "+"15:30"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,44 +101,6 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-
-
-    private void dialog1(){
-
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
-        builder.setTitle("Available Time"); //设置标题
-        //builder.setMessage("是否确认退出?"); //设置内容
-
-        builder.setSingleChoiceItems(items,0, new OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //ToastUtil.show(PoiAroundSearchActivity.this,items[which]);
-                bundle.putString("pTime",items[which]);
-            }
-        });
-
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { //设置确定按钮
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss(); //关闭dialog
-                Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
-                intent.putExtra("bundle",bundle);
-                startActivity(intent);
-                //finish();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() { //设置取消按钮
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                Toast.makeText(PoiAroundSearchActivity.this, "Cancel" + which, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        //参数都设置完成了，创建并显示出来
-        builder.create().show();
-    }
 
     /**
      * 初始化AMap对象
@@ -181,7 +139,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         mPoiName = (TextView) findViewById(R.id.poi_name);
         mPoiAddress = (TextView) findViewById(R.id.poi_address);
         mSearchText = (EditText) findViewById(R.id.input_edittext);
-        mButton = (Button) findViewById(R.id.poi_button);
+        mButton = (BootstrapButton) findViewById(R.id.poi_button);
     }
 
     /**
@@ -353,6 +311,18 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     }
 
 
+    private Boolean compare(String s1,String s2){
+        char c1,c2;
+        for (int i=0; i<s1.length(); i++){
+            c1 = s1.charAt(i);
+            c2 = s2.charAt(i);
+            if(c1 != c2){
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void setPoiItemDisplayContent(final PoiItem mCurrentPoi) {
         final String title = mCurrentPoi.getTitle();
         final String address = mCurrentPoi.getSnippet();
@@ -366,7 +336,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //dialog1();
+                ToastUtil.show(PoiAroundSearchActivity.this,"请选择预约时间");
                 Calendar c = Calendar.getInstance();
                 new DatePickerDialog(PoiAroundSearchActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
@@ -376,19 +346,95 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
                                 final int yy = year;
                                 final int mm = monthOfYear;
                                 final int dd = dayOfMonth;
-                                Calendar c = Calendar.getInstance();
+                                final Calendar c = Calendar.getInstance();
                                 new TimePickerDialog(PoiAroundSearchActivity.this,
                                         new TimePickerDialog.OnTimeSetListener() {
                                             @Override
-                                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                                /*ToastUtil.show(PoiAroundSearchActivity.this,"choose"+yy+"年"+(mm+1)+ "月"+dd+"日"
-                                                        +hourOfDay+"时"+minute+"分");*/
-                                                String ordertime = yy+"年"+(mm+1)+ "月"+dd+"日"
-                                                        +hourOfDay+"时"+minute+"分";
-                                                bundle.putString("pTime",ordertime);
-                                                Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
-                                                intent.putExtra("bundle",bundle);
-                                                startActivity(intent);
+                                            public void onTimeSet(TimePicker view, final int hourOfDay, final int minute) {
+
+                                                if(hourOfDay>17 || hourOfDay <12){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"12:00之前与17:00之后不开放预订");
+                                                }else if(yy>c.get(Calendar.YEAR)){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"仅本年预订，请重选");
+                                                }else if(mm+1>c.get(Calendar.MONTH)+2){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"仅能预订至下一月，请重选");
+                                                }else if(mm+1<c.get(Calendar.MONTH)+1){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"月份出错，请重选");
+                                                }else if(dd<c.get(Calendar.DAY_OF_MONTH)){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"日期出错，请重选");
+                                                }else if(hourOfDay<c.get(Calendar.HOUR_OF_DAY)){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"时钟出错，请重选");
+                                                }else if(minute< c.get(Calendar.MINUTE)){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"分钟出错，请重选");
+                                                }
+                                                else {
+                                                    final String ordertime = yy + "年" + (mm + 1) + "月" + dd + "日" + hourOfDay + "时" + minute + "分";
+                                                    final String cmpTool = yy + "年" + (mm + 1) + "月" + dd + "日";
+
+                                                    final List<String>ans = new ArrayList<>();
+
+                                                    AVQuery<AVObject> query = new AVQuery<>("Order");
+                                                    query.findInBackground(new FindCallback<AVObject>() {
+                                                        @Override
+                                                        public void done(List<AVObject> list, AVException e) {
+                                                            Boolean Tag = true;
+
+                                                            for(int i=0; i<list.size();i++) {
+                                                                Boolean tag = compare(cmpTool, list.get(i).get("pTime").toString());
+                                                                if(tag){
+                                                                    ans.add(list.get(i).get("pTime").toString());
+                                                                }
+                                                            }
+
+                                                                if(minute<10) {
+                                                                    for (int i = 0; i < ans.size(); i++) {
+                                                                        String hh = ans.get(i).substring(ans.get(i).indexOf("日") + 1, ans.get(i).indexOf("时") - 1);
+                                                                        String mm = ans.get(i).substring(ans.get(i).indexOf("时") + 1, ans.get(i).indexOf("分") - 1);
+
+                                                                        if (Integer.parseInt(hh) == hourOfDay - 1) {
+                                                                            if (Integer.parseInt(mm) > minute + 50 && Integer.parseInt(mm) <= 59) {
+                                                                                //ToastUtil.show(PoiAroundSearchActivity.this, "此时间段已被预约");
+                                                                                Tag = false;
+                                                                                break;
+                                                                            }
+                                                                        }else if(Integer.parseInt(hh) == hourOfDay){
+                                                                            if(Integer.parseInt(mm)>=0 && Integer.parseInt(mm)<=minute) {
+                                                                                //ToastUtil.show(PoiAroundSearchActivity.this, "此时间段已被预约");
+                                                                                Tag = false;
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+
+                                                                else if (minute>=10){
+                                                                    for (int i = 0; i < ans.size(); i++) {
+                                                                    String hh = ans.get(i).substring(ans.get(i).indexOf("日")+1,ans.get(i).indexOf("时")-1);
+                                                                    String mm = ans.get(i).substring(ans.get(i).indexOf("时")+1,ans.get(i).indexOf("分")-1);
+
+                                                                    if(Integer.parseInt(hh) == hourOfDay){
+                                                                        if(Integer.parseInt(mm)>minute-10 && Integer.parseInt(mm)<=minute) {
+                                                                            //ToastUtil.show(PoiAroundSearchActivity.this, "此时间段已被预约");
+                                                                            Tag = false;
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            if (Tag){
+                                                                    bundle.putString("pTime", ordertime);
+                                                                    Intent intent = new Intent(PoiAroundSearchActivity.this, WriteOrderActivity.class);
+                                                                    intent.putExtra("bundle", bundle);
+                                                                    startActivity(intent);
+                                                                }
+                                                            else{
+                                                                ToastUtil.show(PoiAroundSearchActivity.this, "此时间段已被预约");
+                                                            }
+                                                        }
+                                                    });
+
+
+                                                }
                                             }
                                         }
                                         , c.get(Calendar.HOUR_OF_DAY)

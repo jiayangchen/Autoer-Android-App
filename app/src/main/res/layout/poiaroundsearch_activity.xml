@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal">
 
     <RelativeLayout
@@ -76,46 +77,92 @@
     <RelativeLayout
         android:id="@+id/poi_detail"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/border_bg"
         android:visibility="gone">
 
         <TextView
+            android:id="@+id/poititle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#5566b8"
+            android:textSize="18sp"
+            android:text="名称："
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp"/>
+
+        <TextView
             android:id="@+id/poi_name"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/poititle"
+            android:layout_marginStart="5dp"
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:singleLine="true"
             android:textColor="#5566b8"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/poiaddr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址："
+            android:layout_below="@id/poi_name"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="12dp"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/poi_address"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_height="wrap_content"
             android:layout_below="@id/poi_name"
-            android:layout_marginLeft="12dp"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/poiaddr"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:textColor="#333333"
             android:textSize="15sp" />
 
-        <Button
+        <!--<Button
             android:id="@+id/poi_button"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="预约加油" />
+            android:text="预约加油" />-->
+
+        <!--<com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/poi_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="预约加油"/>-->
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/poi_button"
+            style="@style/wrapping_button"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="预约加油"
+            app:roundedCorners="true"
+            app:bootstrapBrand="secondary"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="110dp"
+            app:showOutline="true"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            style="@style/wrapping_button"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="查看详情"
+            app:roundedCorners="true"
+            app:bootstrapBrand="secondary"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            app:showOutline="true"/>
 
     </RelativeLayout>
 

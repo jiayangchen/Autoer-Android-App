@@ -58,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="收藏夹"
+                app:roundedCorners="true"
                 app:bootstrapBrand="secondary"
                 app:showOutline="true" />
 

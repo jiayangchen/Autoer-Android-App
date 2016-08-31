@@ -23,7 +23,7 @@
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
         android:cursorVisible="false"
-        android:drawableLeft="@drawable/manager_24"
+        android:drawableLeft="@drawable/genderneutraser_24"
         android:textSize="15sp" />
 
     <!--<TextView
@@ -56,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:drawableStart="@drawable/key_24"
+        android:drawableStart="@drawable/lock_24"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"/>
 
@@ -118,7 +118,8 @@
             android:layout_height="50dp"
             android:text="Login Now"
             app:bootstrapBrand="primary"
-            android:drawableEnd="@drawable/account_login_24"/>
+            app:roundedCorners="true"
+            android:drawableEnd="@drawable/login_rounded_right_32"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/register_button"
@@ -128,8 +129,8 @@
             android:layout_marginTop="5dp"
             android:text="Register Now"
             app:bootstrapBrand="danger"
-            app:showOutline="true"
-            android:drawableEnd="@drawable/adduser_24"/>
+            app:roundedCorners="true"
+            android:drawableEnd="@drawable/registered_trademark_32"/>
 
         <TextView
             android:id="@+id/forgetPwd"

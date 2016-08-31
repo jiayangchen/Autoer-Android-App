@@ -69,7 +69,6 @@
         android:text="Register"
         app:bootstrapBrand="danger"
         app:roundedCorners="true"
-        app:showOutline="true"
         android:layout_marginTop="500dp"
         android:layout_marginStart="190dp"/>
 
