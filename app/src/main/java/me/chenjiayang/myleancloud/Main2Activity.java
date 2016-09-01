@@ -3,7 +3,6 @@ package me.chenjiayang.myleancloud;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -24,7 +23,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVInstallation;
@@ -46,6 +44,7 @@ import com.zxing.activity.CaptureActivity;
 
 import java.util.List;
 
+import me.chenjiayang.myleancloud.Main2Four.CollectActivity;
 import me.chenjiayang.myleancloud.Main2Four.CommonActivity;
 import me.chenjiayang.myleancloud.Main2Four.CompassActivity;
 import me.chenjiayang.myleancloud.Main2Four.MaintenActivity;
@@ -97,6 +96,10 @@ public class Main2Activity extends AppCompatActivity
 
     private TextView main2_pic_hint;
     private ImageView Notice_Img;
+
+    private Bundle bundle;
+    private Bundle bundle_id;
+    private Bundle news;
 
 
     @Override
@@ -189,7 +192,21 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onItemClick(int position) {
                 //ToastUtil.show(Main2Activity.this,"click on"+position);
-                startActivity(new Intent(Main2Activity.this,NewsScrollingActivity.class));
+                AVQuery<AVObject> query = new AVQuery<>("News");
+                query.whereEqualTo("index", position+1);
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+                        if(list.size() == 1){
+                            news = new Bundle();
+                            news.putString("newsid",list.get(0).getObjectId());
+                            news.putString("newsurl",list.get(0).get("url").toString());
+                            Intent intent = new Intent(Main2Activity.this,NewsScrollingActivity.class);
+                            intent.putExtra("news",news);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 
@@ -290,7 +307,31 @@ public class Main2Activity extends AppCompatActivity
         edit_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main2Activity.this,CarInfoActivity.class));
+                //startActivity(new Intent(Main2Activity.this,CarInfoActivity.class));
+                AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+                avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+                    @Override
+                    public void done(AVObject avObject, AVException e) {
+
+                        bundle_id = new Bundle();
+                        bundle_id.putString("ObjectId",avObject.getObjectId());
+
+                        bundle = new Bundle();
+                        bundle.putString("CarName",avObject.get("CarName").toString());
+                        bundle.putString("License_plate_number",avObject.get("License_plate_number").toString());
+                        bundle.putString("Engine_no",avObject.get("Engine_no").toString());
+                        bundle.putString("mileage",avObject.get("mileage").toString());
+                        bundle.putString("Amount_of_gasoline",avObject.get("Amount_of_gasoline").toString());
+                        bundle.putString("Engine_situation",avObject.get("Engine_situation").toString());
+                        bundle.putString("CarLight",avObject.get("CarLight").toString());
+                        bundle.putString("transmission",avObject.get("transmission").toString());
+
+                        Intent intent = new Intent(Main2Activity.this,CarItemActivity.class);
+                        intent.putExtra("carlist_elem",bundle);
+                        intent.putExtra("car_ObjectId",bundle_id);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }

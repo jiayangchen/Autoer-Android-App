@@ -20,6 +20,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/ettt" />
+        android:background="@drawable/ettt"
+        android:drawableLeft="@drawable/edit_file_24"/>
 
 </LinearLayout>

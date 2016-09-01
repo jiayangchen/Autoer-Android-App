@@ -8,10 +8,19 @@
     tools:context="me.chenjiayang.myleancloud.NewsScrollingActivity"
     tools:showIn="@layout/activity_news_scrolling">
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:text="@string/large_text" />-->
+
+    <WebView
+        android:id="@+id/news_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"/>
 
 </android.support.v4.widget.NestedScrollView>

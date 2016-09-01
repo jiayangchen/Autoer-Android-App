@@ -52,8 +52,7 @@
             <TextView
                 android:id="@+id/mainten_http"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="www.qiche.com"/>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/mainten_isread"

@@ -2,6 +2,7 @@ package me.chenjiayang.myleancloud;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -22,6 +23,9 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.RequestPasswordResetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.avos.avoscloud.UpdatePasswordCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.jude.library.imageprovider.ImageProvider;
 import com.jude.swipbackhelper.SwipeBackHelper;
 import java.util.ArrayList;
@@ -32,11 +36,11 @@ import me.chenjiayang.myleancloud.util.ToastUtil;
 public class EditInfoActivity extends AppCompatActivity{
 
     private ListView listView;
-    private Button change_pwd_btn;
-    private Button save_info_btn;
+    private BootstrapButton change_pwd_btn;
+    private BootstrapButton save_info_btn;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
-    private ImageView head_protrait;
+    private BootstrapCircleThumbnail head_protrait;
 
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -66,9 +70,10 @@ public class EditInfoActivity extends AppCompatActivity{
 
     private void init(){
         listView = (ListView) findViewById(R.id.self_info_elem);
-        change_pwd_btn = (Button) findViewById(R.id.self_info_pwd_btn); //生成二维码的按钮
-        save_info_btn = (Button) findViewById(R.id.save_self_info_btn);
-        head_protrait = (ImageView) findViewById(R.id.info_portrait);
+        change_pwd_btn = (BootstrapButton) findViewById(R.id.self_info_pwd_btn); //生成二维码的按钮
+        save_info_btn = (BootstrapButton) findViewById(R.id.save_self_info_btn);
+        head_protrait = (BootstrapCircleThumbnail) findViewById(R.id.edit_info_head);
+        head_protrait.setImageDrawable(getResources().getDrawable(R.mipmap.head_portrait));
 
         list=new ArrayList<>();
 
@@ -99,7 +104,7 @@ public class EditInfoActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 //重置密码
-                if(AVUser.getCurrentUser().getString("email") == null){
+                /*if(AVUser.getCurrentUser().getString("email") == null){
                     ToastUtil.show(EditInfoActivity.this,"尚未填写邮箱");
                 }
                 else{
@@ -123,7 +128,55 @@ public class EditInfoActivity extends AppCompatActivity{
                         }
                     }).create();
                     alert.show();
-                }
+                }*/
+
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.self_item_password_edit, null);
+                final EditText etold = (EditText) layout.findViewById(R.id.self_item_password_edittext);
+                final EditText etnew = (EditText) layout.findViewById(R.id.self_item_new_password_edittext);
+                final EditText etensure = (EditText) layout.findViewById(R.id.self_item_ensure_password_edittext);
+                builder = new AlertDialog.Builder(EditInfoActivity.this);
+                alert = builder.setView(layout).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (etold.getText().toString().isEmpty() ||
+                                etnew.getText().toString().isEmpty() ||
+                                etensure.getText().toString().isEmpty()) {
+                            ToastUtil.show(EditInfoActivity.this, "输入不可为空");
+                        } else {
+                            if (etnew.getText().toString().equals(etensure.getText().toString())) {
+
+                                AVUser.getCurrentUser().updatePasswordInBackground(etold.getText().toString(), etnew.getText().toString(), new UpdatePasswordCallback() {
+                                    @Override
+                                    public void done(AVException e) {
+                                        if (e == null) {
+                                            ToastUtil.show(EditInfoActivity.this, "密码更改成功");
+                                        }else{
+                                            ToastUtil.show(EditInfoActivity.this,"原密码错误");
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+                alert.show();
+            }
+        });
+
+        save_info_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = getSharedPreferences("userInfo",0);
+                sp.edit().putBoolean("autologin", false).commit();
+
+                startActivity(new Intent(EditInfoActivity.this,MainActivity.class));
+                finish();
             }
         });
 
@@ -133,7 +186,6 @@ public class EditInfoActivity extends AppCompatActivity{
                 ToastUtil.show(EditInfoActivity.this,"head portrait");
             }
         });
-
     }
 
     @Override

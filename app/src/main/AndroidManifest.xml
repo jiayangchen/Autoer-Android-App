@@ -127,10 +127,10 @@
             android:label="FeedBack" />
         <activity
             android:name=".NewsScrollingActivity"
-            android:label="@string/title_activity_news_scrolling"
+            android:label="News"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CollectActivity"
+            android:name=".Main2Four.CollectActivity"
             android:label="Collector" />
         <activity
             android:name=".music_bar.MusicActivity"
@@ -169,7 +169,8 @@
             android:label="Notification" />
         <activity
             android:name=".Main2Four.StatisticsActivity"
-            android:label="Statistics"/>
+            android:label="Statistics" />
+        <activity android:name=".util.ToolActivity"></activity>
     </application>
 
 </manifest>
