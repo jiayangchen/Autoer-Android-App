@@ -18,6 +18,14 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="Autoer"
+                android:textSize="20sp"/>
+            
             <ImageView
                 android:id="@+id/notice_img"
                 android:layout_width="20dp"

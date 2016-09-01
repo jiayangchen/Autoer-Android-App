@@ -149,8 +149,10 @@ public class EditInfoActivity extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.editinfo_setting:
                 startActivity(new Intent(EditInfoActivity.this,SettingsActivity.class));
+                break;
             case android.R.id.home:
                 this.finish();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

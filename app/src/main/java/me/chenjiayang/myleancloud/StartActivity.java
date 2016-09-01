@@ -32,7 +32,7 @@ public class StartActivity extends AppCompatActivity {
     private BootstrapButton start_register;
     private TextView Start_name;
 
-    private SharedPreferences sp;
+    //private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class StartActivity extends AppCompatActivity {
                     }
                 });
 
-        sp = getSharedPreferences("JudgeStartActivity",MODE_PRIVATE);
+        /*sp = getSharedPreferences("JudgeStartActivity",MODE_PRIVATE);
         int tag = sp.getInt("StartTag",0);
         if(tag == 1){
             startActivity(new Intent(StartActivity.this,MainActivity.class));
@@ -86,16 +86,16 @@ public class StartActivity extends AppCompatActivity {
         else if(tag == 2){
             startActivity(new Intent(StartActivity.this,Main2Activity.class));
             finish();
-        }
+        }*/
     }
 
     private void initView() {
 
         myVideoView = (VideoView) findViewById(R.id.videoView);
         start_login = (BootstrapButton) findViewById(R.id.start_login);
-        start_login.getBackground().setAlpha(200);
+        start_login.getBackground().setAlpha(180);
         start_register = (BootstrapButton) findViewById(R.id.start_register);
-        start_register.getBackground().setAlpha(200);
+        start_register.getBackground().setAlpha(180);
         Start_name = (TextView) findViewById(R.id.start_name);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/Tondu_Beta.otf");
         Start_name.setTypeface(typeface);

@@ -172,9 +172,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

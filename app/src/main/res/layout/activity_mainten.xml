@@ -55,6 +55,21 @@
                 android:layout_height="wrap_content"
                 android:text="www.qiche.com"/>
 
+            <TextView
+                android:id="@+id/mainten_isread"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/blue"
+                android:layout_marginStart="60dp"/>
+            <TextView
+                android:id="@+id/mainten_iscollect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/iscollect"
+                android:layout_marginStart="5dp"/>
+
             </LinearLayout>
 
         </LinearLayout>

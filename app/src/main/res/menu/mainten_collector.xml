@@ -4,9 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/tool_refresh"
+        android:id="@+id/maintenitem_refresh"
         android:icon="@mipmap/refresh_48"
         android:title=""
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/maintenitem_collector"
+        android:icon="@mipmap/star_48"
+        android:title="collect"
+        app:showAsAction="ifRoom"/>
 
 </menu>

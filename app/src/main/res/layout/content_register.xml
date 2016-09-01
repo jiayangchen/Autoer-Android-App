@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
@@ -16,6 +15,28 @@
     tools:showIn="@layout/activity_main">
 
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/ic_launcher1"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Autoer"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textSize="25dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chenjiayang.me"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:textSize="12sp"/>
+
     <me.chenjiayang.myleancloud.util.ClearEditText
         android:id="@+id/re_usernameEditText"
         android:layout_width="310dp"
@@ -24,7 +45,8 @@
         android:cursorVisible="false"
         android:drawableLeft="@drawable/genderneutraser_24"
         android:textSize="15sp"
-        android:hint="username"/>
+        android:hint="username"
+        android:layout_marginTop="40dp"/>
 
     <!--<EditText
         android:id="@+id/re_passwordEditText"
@@ -95,7 +117,7 @@
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="Register Now"
         app:roundedCorners="true"
         app:bootstrapBrand="danger"

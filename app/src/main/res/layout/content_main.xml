@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
-    android:gravity="center"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
@@ -16,6 +15,27 @@
     tools:context="me.chenjiayang.myleancloud.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/ic_launcher1"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Autoer"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textSize="25dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chenjiayang.me"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center"
+        android:textSize="12sp"/>
 
     <me.chenjiayang.myleancloud.util.ClearEditText
         android:id="@+id/usernameEditText"
@@ -24,7 +44,8 @@
         android:background="@drawable/ettt"
         android:cursorVisible="false"
         android:drawableLeft="@drawable/genderneutraser_24"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_marginTop="40dp"/>
 
     <!--<TextView
         android:layout_width="wrap_content"

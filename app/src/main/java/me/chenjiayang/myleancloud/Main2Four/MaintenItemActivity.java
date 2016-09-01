@@ -3,12 +3,19 @@ package me.chenjiayang.myleancloud.Main2Four;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.GetCallback;
+
 import me.chenjiayang.myleancloud.R;
+import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class MaintenItemActivity extends AppCompatActivity {
 
@@ -35,6 +42,9 @@ public class MaintenItemActivity extends AppCompatActivity {
         bundle = intent.getBundleExtra("mainten");
 
         init();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
     private void init(){
@@ -48,6 +58,33 @@ public class MaintenItemActivity extends AppCompatActivity {
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.loadUrl(bundle.get("url").toString());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mainten_collector, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //menu item selected
+        switch (item.getItemId()) {
+            case R.id.maintenitem_refresh:
+                webView.loadUrl(bundle.get("url").toString());
+                break;
+            case R.id.maintenitem_collector:
+                ToastUtil.show(MaintenItemActivity.this,"收藏成功");
+                AVObject todo = AVObject.createWithoutData("Maintenance", bundle.get("maintenanceID").toString());
+                todo.put("isCollect",true);
+                todo.saveInBackground();
+                break;
+            case android.R.id.home:
+                this.finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -121,7 +121,7 @@
             android:label="CarElem" />
         <activity
             android:name=".EditInfoActivity"
-            android:label="Me"/>
+            android:label="Me" />
         <activity
             android:name=".FeedBackActivity"
             android:label="FeedBack" />
@@ -151,18 +151,25 @@
         </activity>
         <activity
             android:name=".QueryActivity"
-            android:label="Illegal Query"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Illegal Query" />
         <activity
             android:name=".Main2Four.CommonActivity"
             android:label="QA" />
         <activity
             android:name=".Main2Four.MaintenActivity"
-            android:label="Maintenance"/>
+            android:label="Maintenance" />
         <activity
             android:name=".Main2Four.MaintenItemActivity"
-            android:label="Maintenance"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="Maintenance" />
+        <activity
+            android:name=".Main2Four.CompassActivity"
+            android:label="MapCompass" />
+        <activity
+            android:name=".Main2Four.NotificationActivity"
+            android:label="Notification" />
+        <activity
+            android:name=".Main2Four.StatisticsActivity"
+            android:label="Statistics"/>
     </application>
 
 </manifest>

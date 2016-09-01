@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/common_refresh"
-        android:icon="@drawable/refresh_48"
+        android:icon="@mipmap/refresh_48"
         android:title=""
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/common_feedback"
-        android:icon="@drawable/feedback_48"
+        android:icon="@mipmap/feedback_48"
         android:title=""
         app:showAsAction="ifRoom" />
 

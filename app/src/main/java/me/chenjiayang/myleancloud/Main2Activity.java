@@ -47,7 +47,10 @@ import com.zxing.activity.CaptureActivity;
 import java.util.List;
 
 import me.chenjiayang.myleancloud.Main2Four.CommonActivity;
+import me.chenjiayang.myleancloud.Main2Four.CompassActivity;
 import me.chenjiayang.myleancloud.Main2Four.MaintenActivity;
+import me.chenjiayang.myleancloud.Main2Four.NotificationActivity;
+import me.chenjiayang.myleancloud.Main2Four.StatisticsActivity;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.music_bar.MusicActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -243,6 +246,13 @@ public class Main2Activity extends AppCompatActivity
                 startActivity(new Intent(Main2Activity.this, MaintenActivity.class));
             }
         });
+
+        Main2_Statistics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Main2Activity.this, StatisticsActivity.class));
+            }
+        });
     }
 
     private void setNavViewCount(){
@@ -421,14 +431,14 @@ public class Main2Activity extends AppCompatActivity
                 int menuItemId = item.getItemId();
                 if (menuItemId == R.id.action_search) {
                     //Toast.makeText(Main2Activity.this, R.string.menu_search, Toast.LENGTH_SHORT).show();
-                    PackageManager packageManager = getPackageManager();
+                    /*PackageManager packageManager = getPackageManager();
                     Intent intent= new Intent();
                     intent = packageManager.getLaunchIntentForPackage("com.juhe.petrolstation");
-                    startActivity(intent);
-
+                    startActivity(intent);*/
+                    startActivity(new Intent(Main2Activity.this, CompassActivity.class));
                 } else if (menuItemId == R.id.action_notification) {
-                    Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Main2Activity.this, NotificationActivity.class));
                 } else if (menuItemId == R.id.action_item2) {
                     /**
                      * 跳转 Mylibrary 实现二维码扫描功能

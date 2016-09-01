@@ -12,7 +12,7 @@
     <item
         android:id="@+id/action_end"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/multiply_32"
+        android:icon="@mipmap/multiply_32"
         android:title="关闭"/>
 
 </menu>

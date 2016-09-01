@@ -17,6 +17,7 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.jude.swipbackhelper.SwipeBackHelper;
 
 import java.util.ArrayList;
@@ -63,8 +64,8 @@ public class MaintenActivity extends AppCompatActivity {
         mListView = (ListView)this.findViewById(R.id.mainten_listview);
         //创建简单适配器SimpleAdapter
         simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_mainten,
-                new String[] {"itemTitle","itemContent","itemHttp"},
-                new int[] {R.id.mainten_title, R.id.mainten_content,R.id.mainten_http});
+                new String[] {"itemTitle","itemContent","itemHttp","itemIsCollect","itemIsRead"},
+                new int[] {R.id.mainten_title, R.id.mainten_content,R.id.mainten_http,R.id.mainten_iscollect,R.id.mainten_isread});
         //加载SimpleAdapter到ListView中
         mListView.setAdapter(simpleAdapter);
     }
@@ -87,17 +88,37 @@ public class MaintenActivity extends AppCompatActivity {
                             content = content.substring(0,100)+"...";
                             String url = maintenlist.get(i).get("url").toString();
                             url = url.substring(0,20)+"...";
+
+                            Boolean iscollect = (Boolean) maintenlist.get(i).get("isCollect");
+                            Boolean isread = (Boolean) maintenlist.get(i).get("isRead");
+
                             map.put("itemTitle", title);
                             map.put("itemContent", content);
                             map.put("itemHttp",url);
+                            if(iscollect){
+                                map.put("itemIsCollect","已收藏");
+                            }else{
+                                map.put("itemIsCollect","");
+                            }
+                            if(isread){
+                                map.put("itemIsRead","已阅读");
+                            }else{
+                                map.put("itemIsRead","");
+                            }
                             item.add(map);
                         }
                         setAdapter();
                         final class ListItemClickListener implements AdapterView.OnItemClickListener {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                AVObject todo = AVObject.createWithoutData("Maintenance", maintenlist.get(position).getObjectId());
+                                todo.put("isRead",true);
+                                todo.saveInBackground();
+
                                 bundle = new Bundle();
                                 bundle.putString("url",maintenlist.get(position).get("url").toString());
+                                bundle.putString("maintenanceID",maintenlist.get(position).getObjectId());
                                 Intent intent = new Intent(MaintenActivity.this,MaintenItemActivity.class);
                                 intent.putExtra("mainten",bundle);
                                 startActivity(intent);
