@@ -142,31 +142,33 @@
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/poi_button"
             style="@style/wrapping_button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="预约加油"
             app:roundedCorners="true"
             app:bootstrapBrand="secondary"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"
-            android:layout_marginStart="110dp"
+            android:layout_alignParentStart="true"
             app:showOutline="true"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/poi_gas_item"
             style="@style/wrapping_button"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="查看详情"
             app:roundedCorners="true"
             app:bootstrapBrand="secondary"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
             app:showOutline="true"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/poi_around_gas"
             style="@style/wrapping_button"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="40dp"
             android:text="周边加油站"
             app:roundedCorners="true"

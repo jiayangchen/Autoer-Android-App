@@ -77,6 +77,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private String keyWord = "";
     private EditText mSearchText;
     private BootstrapButton mButton;
+    private BootstrapButton Poi_gas_item;
+    private BootstrapButton Poi_around_gas;
     private Bundle bundle;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -97,8 +99,26 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         mapview.onCreate(savedInstanceState);
 
         init();
+        BottomMenu();
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void BottomMenu(){
+        Poi_gas_item = (BootstrapButton) findViewById(R.id.poi_gas_item);
+        Poi_around_gas = (BootstrapButton) findViewById(R.id.poi_around_gas);
+        Poi_gas_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        Poi_around_gas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
