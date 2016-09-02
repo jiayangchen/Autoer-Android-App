@@ -23,6 +23,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVInstallation;
@@ -40,7 +41,14 @@ import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.thinkland.sdk.android.DataCallBack;
+import com.thinkland.sdk.android.JuheData;
+import com.thinkland.sdk.android.JuheSDKInitializer;
+import com.thinkland.sdk.android.Parameters;
 import com.zxing.activity.CaptureActivity;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -92,7 +100,7 @@ public class Main2Activity extends AppCompatActivity
     private ImageView Main2_Tips;
     private ImageView Main2_Question;
     private ImageView Main2_Statistics;
-    private ImageView Main2_Sun;
+    //private ImageView Main2_Sun;
 
     private TextView main2_pic_hint;
     private ImageView Notice_Img;
@@ -101,6 +109,11 @@ public class Main2Activity extends AppCompatActivity
     private Bundle bundle_id;
     private Bundle news;
 
+    //weather
+    private TextView w_city;
+    private TextView w_tem;
+    private TextView w_wind;
+    private TextView w_situ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,10 +236,54 @@ public class Main2Activity extends AppCompatActivity
 
         setNavViewCount();
 
-        Sun_Rotate();
+        //天气预报
+        weather();
+
+        //Sun_Rotate();
+    }
+    private void weather(){
+        w_city = (TextView) findViewById(R.id.weather_city);
+        w_tem = (TextView) findViewById(R.id.weather_tem);
+        w_wind = (TextView) findViewById(R.id.weather_wind);
+        w_situ = (TextView) findViewById(R.id.weather_situ);
+
+        JuheSDKInitializer.initialize(getApplicationContext());
+        Parameters params = new Parameters();
+        params.add("cityname","苏州");
+        params.add("dtype","json");
+        params.add("format",1);
+        JuheData.executeWithAPI(getApplicationContext(), 39, "http://v.juhe.cn/weather/index",
+                JuheData.GET, params, new DataCallBack() {
+            @Override
+            public void onSuccess(int i, String s) {
+                try {
+                    JSONObject object = new JSONObject(s);
+                    JSONObject result = object.getJSONObject("result");
+                    JSONObject sk = result.getJSONObject("today");
+
+                    w_city.setText(sk.getString("city"));
+                    w_tem.setText(sk.getString("temperature"));
+                    w_situ.setText(sk.getString("weather"));
+                    w_wind.setText(sk.getString("wind"));
+
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                ToastUtil.show(Main2Activity.this,"同步成功");
+            }
+
+            @Override
+            public void onFailure(int i, String s, Throwable throwable) {
+                ToastUtil.show(Main2Activity.this,throwable.getMessage());
+            }
+        });
     }
 
-    private void Sun_Rotate(){
+    /*private void Sun_Rotate(){
         Main2_Sun = (ImageView) findViewById(R.id.main2_sun);
         Animation operatingAnim = AnimationUtils.loadAnimation(this, R.anim.tip);
         LinearInterpolator lin = new LinearInterpolator();
@@ -234,7 +291,7 @@ public class Main2Activity extends AppCompatActivity
         if (operatingAnim != null) {
             Main2_Sun.startAnimation(operatingAnim);
         }
-    }
+    }*/
 
     private void SubMenuFourImg(){
         Main2_Tips = (ImageView) findViewById(R.id.main2_tips);

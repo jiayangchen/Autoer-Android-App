@@ -37,4 +37,5 @@
     <color name="phone_bg">#f6f6f6</color>
 
     <color name="iscollect">#f4a912</color>
+    <color name="weather_situ">#f77614</color>
 </resources>

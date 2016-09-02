@@ -26,6 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -63,7 +64,6 @@ dependencies {
     compile 'com.roughike:swipe-selector:1.0.6'
     //bootstrap UI
     compile 'com.beardedhen:androidbootstrap:2.3.0'
-
     compile files('libs/AMap_3DMap_V3.3.2_20160525.jar')
     compile files('libs/AMap_Location_V2.4.1_20160414.jar')
     compile files('libs/AMap_Search_V3.3.0_20160616.jar')
@@ -71,10 +71,10 @@ dependencies {
     compile files('libs/Volley.jar')
     //PasswordEditText
     compile 'com.marlonmafra.android.widget:edittext-password:1.0.0'
-
     compile 'com.jude:imageprovider:2.1.1'
     compile 'com.github.lovetuzitong:MultiImageSelector:1.2'
     compile('com.afollestad.material-dialogs:core:0.8.4.2@aar') {
         transitive = true
     }
+    compile files('libs/juhe_sdk_v_2_7.jar')
 }

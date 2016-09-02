@@ -273,22 +273,34 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/weather_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="30℃"
-                    android:textSize="30sp" />
-
-                <ImageView
+                    android:textSize="25sp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/weather_situ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/weather_situ"/>
+                <!--<ImageView
                     android:id="@+id/main2_sun"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/sun_200" />
-
+                    android:src="@drawable/sun_200" />-->
                 <TextView
+                    android:id="@+id/weather_tem"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Shanghai" />
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/weather_wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

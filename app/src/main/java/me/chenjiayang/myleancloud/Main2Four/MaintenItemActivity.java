@@ -75,10 +75,23 @@ public class MaintenItemActivity extends AppCompatActivity {
                 webView.loadUrl(bundle.get("url").toString());
                 break;
             case R.id.maintenitem_collector:
-                ToastUtil.show(MaintenItemActivity.this,"收藏成功");
-                AVObject todo = AVObject.createWithoutData("Maintenance", bundle.get("maintenanceID").toString());
-                todo.put("isCollect",true);
-                todo.saveInBackground();
+                AVQuery<AVObject> avQuery = new AVQuery<>("Maintenance");
+                avQuery.getInBackground(bundle.get("maintenanceID").toString(), new GetCallback<AVObject>() {
+                    @Override
+                    public void done(AVObject avObject, AVException e) {
+                        // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+                        if(avObject.getBoolean("isCollect")){
+                            avObject.put("isCollect", false);
+                            avObject.saveInBackground();
+                            ToastUtil.show(MaintenItemActivity.this,"取消收藏");
+                        }
+                        else {
+                            avObject.put("isCollect", true);
+                            avObject.saveInBackground();
+                            ToastUtil.show(MaintenItemActivity.this,"收藏成功");
+                        }
+                    }
+                });
                 break;
             case android.R.id.home:
                 this.finish();
