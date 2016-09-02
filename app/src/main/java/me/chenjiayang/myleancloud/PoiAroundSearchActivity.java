@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
@@ -20,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.amap.api.location.AMapLocation;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -48,6 +51,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import me.chenjiayang.myleancloud.Gas.AroundGasActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 
@@ -57,13 +62,12 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
     private MapView mapview;
     private AMap mAMap;
-
     //定位
     private PoiResult poiResult; // poi返回的结果
     private int currentPage = 0;// 当前页面，从0开始计数
     private PoiSearch.Query query;// Poi查询条件类
-    //private LatLonPoint lp = new LatLonPoint(lat, lon);
-    private LatLonPoint lp = new LatLonPoint(31.022371, 121.442491);
+    private LatLonPoint lp = null;
+    //private LatLonPoint lp = new LatLonPoint(31.022371, 121.442491);
     private Marker locationMarker; // 选择的点
     private Marker detailMarker;
     private Marker mlastMarker;
@@ -80,6 +84,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private BootstrapButton Poi_gas_item;
     private BootstrapButton Poi_around_gas;
     private Bundle bundle;
+    private Intent intent;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -97,6 +102,12 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
 
         mapview = (MapView) findViewById(R.id.mapView);
         mapview.onCreate(savedInstanceState);
+
+        intent = getIntent();
+        bundle = intent.getBundleExtra("location");
+
+        //lp = new LatLonPoint(bundle.getDouble("lat"),bundle.getDouble("lon"));
+        lp = new LatLonPoint(31.022371, 121.442491);
 
         init();
         BottomMenu();
@@ -116,7 +127,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         Poi_around_gas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(PoiAroundSearchActivity.this, OrderActivity.class));
             }
         });
     }

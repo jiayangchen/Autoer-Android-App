@@ -39,7 +39,7 @@
         <!-- Key -->
         <meta-data
             android:name="com.thinkland.juheapi.openid"
-            android:value="JHc28f0cc249ebba001c1a1d162ce2cfb6"/>
+            android:value="JHc28f0cc249ebba001c1a1d162ce2cfb6" />
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="7cbb133e367200f34aa83acce215a140" />
@@ -173,7 +173,8 @@
         <activity
             android:name=".Main2Four.StatisticsActivity"
             android:label="Statistics" />
-        <activity android:name=".util.ToolActivity"></activity>
+        <activity android:name=".util.ToolActivity" />
+        <activity android:name=".Gas.AroundGasActivity"></activity>
     </application>
 
 </manifest>

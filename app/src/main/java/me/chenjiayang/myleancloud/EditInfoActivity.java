@@ -174,9 +174,10 @@ public class EditInfoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 SharedPreferences sp = getSharedPreferences("userInfo",0);
                 sp.edit().putBoolean("autologin", false).commit();
-
+                sp.edit().putBoolean("isFirst",true).commit();
                 startActivity(new Intent(EditInfoActivity.this,MainActivity.class));
                 finish();
+                Main2Activity.tag_main2.finish();
             }
         });
 

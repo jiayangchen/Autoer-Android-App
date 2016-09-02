@@ -133,7 +133,10 @@ public class MainActivity extends AppCompatActivity {
                                         editor.putBoolean("autologin", false);
                                     }
 
+                                    editor.putBoolean("isFirst",false);
+
                                     editor.commit();
+
 
                                     Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                                     startActivity(intent);

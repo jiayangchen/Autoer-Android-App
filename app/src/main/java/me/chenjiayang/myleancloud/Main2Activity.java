@@ -65,6 +65,7 @@ import me.chenjiayang.myleancloud.util.ToastUtil;
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static Main2Activity tag_main2 = null;
     String[] userName={"CarName","License_plate_number","Engine_no","mileage","Amount_of_gasoline",
             "Engine_situation","CarLight","transmission"};
     //private TextView scanQRCodeTextView;
@@ -119,6 +120,8 @@ public class Main2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        tag_main2 = this;
 
         now_drive_car = (TextView) findViewById(R.id.now_drive_car);
         now_gas_num = (TextView) findViewById(R.id.now_gas_num);
@@ -237,11 +240,11 @@ public class Main2Activity extends AppCompatActivity
         setNavViewCount();
 
         //天气预报
-        weather();
+        //weather();
 
         //Sun_Rotate();
     }
-    private void weather(){
+    /*private void weather(){
         w_city = (TextView) findViewById(R.id.weather_city);
         w_tem = (TextView) findViewById(R.id.weather_tem);
         w_wind = (TextView) findViewById(R.id.weather_wind);
@@ -281,7 +284,7 @@ public class Main2Activity extends AppCompatActivity
                 ToastUtil.show(Main2Activity.this,throwable.getMessage());
             }
         });
-    }
+    }*/
 
     /*private void Sun_Rotate(){
         Main2_Sun = (ImageView) findViewById(R.id.main2_sun);
@@ -546,7 +549,7 @@ public class Main2Activity extends AppCompatActivity
                 }else if(menuItemId == R.id.action_item3){
                     SharedPreferences sp = getSharedPreferences("userInfo",0);
                     sp.edit().putBoolean("autologin", false).commit();
-
+                    sp.edit().putBoolean("isFirst",true).commit();
                     startActivity(new Intent(Main2Activity.this, me.chenjiayang.myleancloud.MainActivity.class));
                     finish();
                 }
@@ -560,10 +563,7 @@ public class Main2Activity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                 * 点击进入添加预约界面
-                 */
-                Intent intent = new Intent(Main2Activity.this, PoiAroundSearchActivity.class);
+                Intent intent = new Intent(Main2Activity.this, OrderActivity.class);
                 startActivity(intent);
             }
         });

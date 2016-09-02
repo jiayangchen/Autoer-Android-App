@@ -32,6 +32,8 @@ public class StartActivity extends AppCompatActivity {
     private BootstrapButton start_login;
     private BootstrapButton start_register;
     private TextView Start_name;
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
 
     //private SharedPreferences sp;
 
@@ -78,6 +80,16 @@ public class StartActivity extends AppCompatActivity {
                     }
                 });
 
+        sp = getSharedPreferences("userInfo",0);
+        boolean isFirst = sp.getBoolean("isFirst",true);
+        boolean choseAutologin = sp.getBoolean("autologin",false);
+        if(!isFirst && choseAutologin){
+            startActivity(new Intent(StartActivity.this,Main2Activity.class));
+            finish();
+        }else if(!isFirst && !choseAutologin){
+            startActivity(new Intent(StartActivity.this,MainActivity.class));
+            finish();
+        }
         /*sp = getSharedPreferences("JudgeStartActivity",MODE_PRIVATE);
         int tag = sp.getInt("StartTag",0);
         if(tag == 1){

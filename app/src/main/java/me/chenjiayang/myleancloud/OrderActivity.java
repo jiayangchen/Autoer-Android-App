@@ -1,6 +1,7 @@
 package me.chenjiayang.myleancloud;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,6 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
 
     private MapView mapView;
     private AMap aMap;
-    private Bundle bundle;
 
     //定位需要的声明
     private AMapLocationClient mLocationClient = null;//定位发起端
@@ -36,7 +36,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
 
     //标识，用于判断是否只显示一次定位信息和用户重新定位
     private boolean isFirstLoc = true;
-
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +68,6 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
 
         //开始定位
         initLoc();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        /**
-         * 显示返回箭头
-         * 隐藏Logo图标，id默认为R.id.home
-         */
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
     }
 
@@ -105,6 +95,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
         mLocationClient.setLocationOption(mLocationOption);
         //启动定位
         mLocationClient.startLocation();
+
     }
 
     //定位回调函数
@@ -119,9 +110,9 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                 amapLocation.getLatitude();//获取纬度
                 amapLocation.getLongitude();//获取经度
 
-                /*bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putDouble("lat",amapLocation.getLatitude());
-                bundle.putDouble("lon",amapLocation.getLongitude());*/
+                bundle.putDouble("lon",amapLocation.getLongitude());
 
                 amapLocation.getAccuracy();//获取精度信息
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -150,6 +141,12 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                     buffer.append(amapLocation.getCountry() + "" + amapLocation.getProvince() + "" + amapLocation.getCity() + "" + amapLocation.getProvince() + "" + amapLocation.getDistrict() + "" + amapLocation.getStreet() + "" + amapLocation.getStreetNum());
                     Toast.makeText(getApplicationContext(), buffer.toString(), Toast.LENGTH_LONG).show();
                     isFirstLoc = false;
+
+
+                    Intent intent = new Intent(OrderActivity.this,PoiAroundSearchActivity.class);
+                    intent.putExtra("location",bundle);
+                    startActivity(intent);
+                    finish();
                 }
 
             } else {
@@ -171,7 +168,6 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
     @Override
     public void activate(OnLocationChangedListener listener) {
         mListener = listener;
-
     }
     //停止定位
     @Override
@@ -211,19 +207,4 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
         super.onDestroy();
         mapView.onDestroy();
     }
-
-        /**
-         * 返回Main2Activity的监听方法
-         * @param item
-         * @return
-         */
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    this.finish();
-                default:
-                    return super.onOptionsItemSelected(item);
-            }
-        }
 }
