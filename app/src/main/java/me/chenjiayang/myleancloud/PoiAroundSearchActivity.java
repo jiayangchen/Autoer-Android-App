@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -85,6 +86,10 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private BootstrapButton Poi_around_gas;
     private Bundle bundle;
     private Intent intent;
+
+    private android.support.v7.app.AlertDialog alert = null;
+    private android.support.v7.app.AlertDialog.Builder builder = null;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -122,13 +127,22 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         Poi_gas_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.poi_item, null);
+                builder = new android.support.v7.app.AlertDialog.Builder(PoiAroundSearchActivity.this);
+                alert = builder.setView(layout).setPositiveButton("Cancel", new OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create();
+                alert.show();
             }
         });
         Poi_around_gas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PoiAroundSearchActivity.this, OrderActivity.class));
+                startActivity(new Intent(PoiAroundSearchActivity.this, AroundGasActivity.class));
             }
         });
     }

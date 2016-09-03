@@ -174,7 +174,10 @@
             android:name=".Main2Four.StatisticsActivity"
             android:label="Statistics" />
         <activity android:name=".util.ToolActivity" />
-        <activity android:name=".Gas.AroundGasActivity"></activity>
+        <activity
+            android:name=".Gas.AroundGasActivity"
+            android:label="Gas Station" />
+        <activity android:name=".Gas.GasItemActivity"></activity>
     </application>
 
 </manifest>
