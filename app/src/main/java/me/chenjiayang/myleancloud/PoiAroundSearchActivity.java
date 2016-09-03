@@ -110,6 +110,7 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         lp = new LatLonPoint(31.022371, 121.442491);
 
         init();
+
         BottomMenu();
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
