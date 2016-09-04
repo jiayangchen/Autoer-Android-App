@@ -14,11 +14,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVPush;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.PushService;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import java.util.List;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import me.chenjiayang.myleancloud.Main2Four.NotificationActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,13 +50,118 @@ public class MainActivity extends AppCompatActivity {
 
         init();//初始化控件
 
+        pushMsg();
+
         login();//登录逻辑
 
     }
 
+    private void savePushMsg(String msg){
+        AVObject todoFolder = new AVObject("Push");// 构建对象
+        todoFolder.put("push_msg", msg);// 设置名称
+        todoFolder.put("currUserID", AVUser.getCurrentUser().getObjectId());// 设置名称
+        todoFolder.saveInBackground();// 保存到服务端
+    }
+
+    private void pushMsg(){
+        AVQuery<AVObject> query = new AVQuery<>("Car");
+        query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query.whereLessThan("Amount_of_gasoline",10);
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                List<AVObject> need_gas_cars = list;
+                if(need_gas_cars.size()>0){
+                    String need_gas_msg = "";
+                    for(int i=0; i<need_gas_cars.size();i++){
+                        need_gas_msg+=need_gas_cars.get(i).get("CarName")+"剩余油量："
+                                +need_gas_cars.get(i).get("Amount_of_gasoline")+"%\n";
+                    }
+                    // 设置默认打开的 Activity
+                    PushService.setDefaultPushCallback(MainActivity.this, NotificationActivity.class);
+                    // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                    PushService.subscribe(MainActivity.this, "public", NotificationActivity.class);
+                    AVQuery pushQuery = AVInstallation.getQuery();
+                    // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                    // 可以在应用启动的时候获取并保存到用户表
+                    pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
+                    AVPush.sendMessageInBackground(need_gas_msg, pushQuery);
+                    savePushMsg(need_gas_msg);
+                }
+            }
+        });
+
+        AVQuery<AVObject> query_mileage = new AVQuery<>("Car");
+        query_mileage.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query_mileage.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                for(int i=0; i<list.size(); i++){
+                    int mileage = (int) list.get(i).getNumber("mileage");
+                    if(mileage >= 15000 && (mileage %15000 == 0)){
+                        PushService.setDefaultPushCallback(MainActivity.this, NotificationActivity.class);
+                        // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                        PushService.subscribe(MainActivity.this, "public", NotificationActivity.class);
+                        AVQuery pushQuery = AVInstallation.getQuery();
+                        // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                        // 可以在应用启动的时候获取并保存到用户表
+                        pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
+                        String msg = list.get(i).getString("CarName")+
+                                "的行驶路程已达15000km，需要保养";
+                        AVPush.sendMessageInBackground(msg, pushQuery);
+                        savePushMsg(msg);
+                    }
+
+                    boolean trans = list.get(i).getBoolean("transmission");
+                    boolean engine = list.get(i).getBoolean("Engine_situation");
+                    boolean light = list.get(i).getBoolean("CarLight");
+
+                    if(!trans){
+                        PushService.setDefaultPushCallback(MainActivity.this, NotificationActivity.class);
+                        // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                        PushService.subscribe(MainActivity.this, "public", NotificationActivity.class);
+                        AVQuery pushQuery = AVInstallation.getQuery();
+                        // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                        // 可以在应用启动的时候获取并保存到用户表
+                        pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
+                        String msg = list.get(i).getString("CarName")+
+                                "的变速器需要维修";
+                        AVPush.sendMessageInBackground(msg, pushQuery);
+                        savePushMsg(msg);
+                    }
+                    else if(!engine){
+                        PushService.setDefaultPushCallback(MainActivity.this, NotificationActivity.class);
+                        // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                        PushService.subscribe(MainActivity.this, "public", NotificationActivity.class);
+                        AVQuery pushQuery = AVInstallation.getQuery();
+                        // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                        // 可以在应用启动的时候获取并保存到用户表
+                        pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
+                        String msg = list.get(i).getString("CarName")+
+                                "的发动机需要维修";
+                        AVPush.sendMessageInBackground(msg, pushQuery);
+                        savePushMsg(msg);
+                    }
+                    else if(!light){
+                        PushService.setDefaultPushCallback(MainActivity.this, NotificationActivity.class);
+                        // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+                        PushService.subscribe(MainActivity.this, "public", NotificationActivity.class);
+                        AVQuery pushQuery = AVInstallation.getQuery();
+                        // 假设 THE_INSTALLATION_ID 是保存在用户表里的 installationId，
+                        // 可以在应用启动的时候获取并保存到用户表
+                        pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
+                        String msg = list.get(i).getString("CarName")+
+                                "的车灯需要维修";
+                        AVPush.sendMessageInBackground(msg, pushQuery);
+                        savePushMsg(msg);
+                    }
+                }
+            }
+        });
+
+    }
+
     private void init(){
-        /*login_button = (Button) findViewById(R.id.login_button);
-        register_button = (Button) findViewById(R.id.register_button);*/
         login_button = (BootstrapButton) findViewById(R.id.login_button);
         register_button = (BootstrapButton) findViewById(R.id.register_button);
         remember = (CheckBox) findViewById(R.id.rememberCheckBox);
@@ -136,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
                                     editor.putBoolean("isFirst",false);
 
                                     editor.commit();
-
 
                                     Intent intent = new Intent(MainActivity.this,Main2Activity.class);
                                     startActivity(intent);

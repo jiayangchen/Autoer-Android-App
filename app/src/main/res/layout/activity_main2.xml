@@ -44,7 +44,6 @@
                 android:textStyle="normal"
                 android:background="@drawable/ettt"/>
 
-
             <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/main2_nav_quit"
                 style="@style/wrapping_button"

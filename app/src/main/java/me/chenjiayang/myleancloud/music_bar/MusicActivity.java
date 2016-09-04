@@ -26,6 +26,7 @@ import me.chenjiayang.myleancloud.R;
 
 public class MusicActivity extends AppCompatActivity implements MediaController.MediaPlayerControl {
 
+    public static MusicActivity music_tag = null;
     private ArrayList<Song> songList;
     private ListView songView;
     //service
@@ -42,6 +43,8 @@ public class MusicActivity extends AppCompatActivity implements MediaController.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
+
+        music_tag = this;
 
         songView = (ListView)findViewById(R.id.song_list);
         songList = new ArrayList<Song>();

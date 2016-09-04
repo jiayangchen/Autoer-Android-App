@@ -116,6 +116,8 @@ public class Main2Activity extends AppCompatActivity
     private TextView w_wind;
     private TextView w_situ;
 
+    private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,13 +135,11 @@ public class Main2Activity extends AppCompatActivity
         main2_pic_hint = (TextView) findViewById(R.id.main2_pic_hint_bg);
         main2_pic_hint.getBackground().setAlpha(80);
 
-        Notice_Img = (ImageView) findViewById(R.id.notice_img);
-        Notice_Img.setImageDrawable(getResources().getDrawable(R.drawable.circled_100));
-
         nav_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+                MusicActivity.music_tag.finish();
                 System.exit(0);
             }
         });
@@ -232,7 +232,9 @@ public class Main2Activity extends AppCompatActivity
         saveInsID();
 
         //判断是否推送加油信息
-        pushMsg();
+        //pushMsg();
+
+        setNoticeImg();
 
         //Toolbar的操作
         ToolBarOperation();
@@ -295,6 +297,34 @@ public class Main2Activity extends AppCompatActivity
             Main2_Sun.startAnimation(operatingAnim);
         }
     }*/
+
+    private void setNoticeImg(){
+        Notice_Img = (ImageView) findViewById(R.id.notice_img);
+
+        int noticeNum = 2;
+
+        if(noticeNum==1) {
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_100));
+        }else if(noticeNum==2){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_200));
+        }else if(noticeNum==3){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_300));
+        }else if(noticeNum==4){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_400));
+        }else if(noticeNum==5){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_500));
+        }else if(noticeNum==6){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_600));
+        }else if(noticeNum==7){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_700));
+        }else if(noticeNum==8){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_800));
+        }else if(noticeNum==9){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_900));
+        }else if(noticeNum>9){
+            Notice_Img.setImageDrawable(getResources().getDrawable(R.mipmap.circled_more));
+        }
+    }
 
     private void SubMenuFourImg(){
         Main2_Tips = (ImageView) findViewById(R.id.main2_tips);
@@ -475,17 +505,17 @@ public class Main2Activity extends AppCompatActivity
         });
     }
 
-    private void savePushMsg(String msg){
+    /*private void savePushMsg(String msg){
         AVObject todoFolder = new AVObject("Push");// 构建对象
         todoFolder.put("push_msg", msg);// 设置名称
         todoFolder.put("currUserID", AVUser.getCurrentUser().getObjectId());// 设置名称
         todoFolder.saveInBackground();// 保存到服务端
-    }
+    }*/
 
     /**
      * 推送信息，每次启动时先判断是否需要推送信息
      */
-    private void pushMsg(){
+    /*private void pushMsg(){
         AVQuery<AVObject> query = new AVQuery<>("Car");
         query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
         query.whereLessThan("Amount_of_gasoline",10);
@@ -509,6 +539,8 @@ public class Main2Activity extends AppCompatActivity
                     pushQuery.whereEqualTo("installationId", AVUser.getCurrentUser().get("installationId"));
                     AVPush.sendMessageInBackground(need_gas_msg, pushQuery);
                     savePushMsg(need_gas_msg);
+
+                    noticeNum++;
                 }
             }
         });
@@ -532,6 +564,8 @@ public class Main2Activity extends AppCompatActivity
                                 "的行驶路程已达15000km，需要保养";
                         AVPush.sendMessageInBackground(msg, pushQuery);
                         savePushMsg(msg);
+
+                        noticeNum++;
                     }
 
                     boolean trans = list.get(i).getBoolean("transmission");
@@ -550,6 +584,8 @@ public class Main2Activity extends AppCompatActivity
                                 "的变速器需要维修";
                         AVPush.sendMessageInBackground(msg, pushQuery);
                         savePushMsg(msg);
+
+                        noticeNum++;
                     }
                     else if(!engine){
                         PushService.setDefaultPushCallback(Main2Activity.this, NotificationActivity.class);
@@ -563,6 +599,8 @@ public class Main2Activity extends AppCompatActivity
                                 "的发动机需要维修";
                         AVPush.sendMessageInBackground(msg, pushQuery);
                         savePushMsg(msg);
+
+                        noticeNum++;
                     }
                     else if(!light){
                         PushService.setDefaultPushCallback(Main2Activity.this, NotificationActivity.class);
@@ -576,12 +614,14 @@ public class Main2Activity extends AppCompatActivity
                                 "的车灯需要维修";
                         AVPush.sendMessageInBackground(msg, pushQuery);
                         savePushMsg(msg);
+
+                        noticeNum++;
                     }
                 }
             }
         });
 
-    }
+    }*/
 
 
     /**

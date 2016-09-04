@@ -18,12 +18,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVPush;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.PushService;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import me.chenjiayang.myleancloud.Main2Four.NotificationActivity;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -34,8 +44,6 @@ public class StartActivity extends AppCompatActivity {
     private TextView Start_name;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
-
-    //private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,17 +98,9 @@ public class StartActivity extends AppCompatActivity {
             startActivity(new Intent(StartActivity.this,MainActivity.class));
             finish();
         }
-        /*sp = getSharedPreferences("JudgeStartActivity",MODE_PRIVATE);
-        int tag = sp.getInt("StartTag",0);
-        if(tag == 1){
-            startActivity(new Intent(StartActivity.this,MainActivity.class));
-            finish();
-        }
-        else if(tag == 2){
-            startActivity(new Intent(StartActivity.this,Main2Activity.class));
-            finish();
-        }*/
     }
+
+
 
     private void initView() {
 

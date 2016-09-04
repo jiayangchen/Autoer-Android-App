@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -85,6 +87,28 @@ public class NotificationActivity extends AppCompatActivity {
                     item.add(map);
                 }
                 setAdapter();
+                mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                        builder=new AlertDialog.Builder(NotificationActivity.this);
+                        alert = builder.setMessage("Do you want to delete the notifications?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        AVObject todo = AVObject.createWithoutData("Push", noticelist.get(position).getObjectId());
+                                        todo.deleteInBackground();
+                                        ToastUtil.show(NotificationActivity.this,"删除成功");
+                                    }
+                                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).create();
+                        alert.show();
+                        return true;
+                    }
+                });
             }
         });
     }
