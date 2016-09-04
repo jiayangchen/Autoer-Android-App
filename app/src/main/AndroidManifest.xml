@@ -177,7 +177,8 @@
         <activity
             android:name=".Gas.AroundGasActivity"
             android:label="Gas Station" />
-        <activity android:name=".Gas.GasItemActivity"></activity>
+        <activity android:name=".Gas.GasItemActivity"
+            android:label="GasItemList"/>
     </application>
 
 </manifest>

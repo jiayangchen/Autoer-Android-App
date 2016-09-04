@@ -46,6 +46,8 @@ public class WriteOrderActivity extends AppCompatActivity
     private RadioGroup radioGroup;
     private Button confirmBtn;
     private ImageView qrImgImageView;
+    private Intent intent;
+    private Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +63,9 @@ public class WriteOrderActivity extends AppCompatActivity
         confirmBtn = (Button) findViewById(R.id.confirm_order);
         qrImgImageView = (ImageView) this.findViewById(com.ericssonlabs.R.id.iv_qr_image);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getBundleExtra("bundle");
+        intent = getIntent();
+        bundle = intent.getBundleExtra("bundle");
+
          pName = bundle.getString("pName");
          pAddr = bundle.getString("pAddr");
          pTime = bundle.getString("pTime");
@@ -133,11 +136,12 @@ public class WriteOrderActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
+                break;
             case R.id.actiob_order_list:
                 startActivity(new Intent(WriteOrderActivity.this, CardLayoutActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void dialog1(){
@@ -147,7 +151,7 @@ public class WriteOrderActivity extends AppCompatActivity
         }
 
         final String items[]={"加油站名称："+pName,"加油站地址："+pAddr,"预约日期："+ pTime
-                ,"汽油类型为："+gasType,"数量："+quantity+"升","价格："+5.58*quantity+"元"};
+                ,"汽油类型为："+gasType,"数量："+quantity+"升","价格："+bundle.getDouble(gasType)*quantity+"元"};
 
         /*final String orderinfo = "加油站名称："+pName+"加油站地址："+pAddr+"预约日期："+ pTime
                 +"汽油类型为："+gasType+"数量："+quantity+"升"+"价格："+5.58*quantity+"元";*/
@@ -172,7 +176,7 @@ public class WriteOrderActivity extends AppCompatActivity
                 order.put("pTime",pTime);
                 order.put("pGasType",gasType);
                 order.put("pQuantity",quantity);
-                order.put("pPrice",5.58*quantity);
+                order.put("pPrice",bundle.getDouble(gasType)*quantity);
                 order.put("currUserID", AVUser.getCurrentUser().getObjectId());
                 order.saveInBackground(new SaveCallback() {
                     @Override

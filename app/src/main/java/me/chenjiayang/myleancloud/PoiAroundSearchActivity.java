@@ -47,6 +47,15 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.thinkland.sdk.android.DataCallBack;
+import com.thinkland.sdk.android.JuheData;
+import com.thinkland.sdk.android.JuheSDKInitializer;
+import com.thinkland.sdk.android.Parameters;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -84,11 +93,14 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private BootstrapButton mButton;
     private BootstrapButton Poi_gas_item;
     private BootstrapButton Poi_around_gas;
-    private Bundle bundle;
+    private Bundle bundle = new Bundle();
     private Intent intent;
 
     private android.support.v7.app.AlertDialog alert = null;
     private android.support.v7.app.AlertDialog.Builder builder = null;
+
+    private String title = null;
+    private String address = null;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -128,15 +140,56 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.poi_item, null);
-                builder = new android.support.v7.app.AlertDialog.Builder(PoiAroundSearchActivity.this);
-                alert = builder.setView(layout).setPositiveButton("Cancel", new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
-                alert.show();
+                final View layout = inflater.inflate(R.layout.poi_item, null);
+
+                final TextView item_name = (TextView) layout.findViewById(R.id.poi_item_name);
+                final TextView item_addr = (TextView) layout.findViewById(R.id.poi_item_address);
+                final TextView item_price = (TextView) layout.findViewById(R.id.poi_item_price);
+                final TextView item_province = (TextView) layout.findViewById(R.id.poi_item_province);
+
+                JuheSDKInitializer.initialize(getApplicationContext());
+                Parameters params = new Parameters();
+                params.add("dtype","json");
+                JuheData.executeWithAPI(getApplicationContext(), 48, "http://apis.juhe.cn/cnoil/oil_city",
+                        JuheData.GET, params, new DataCallBack() {
+                            @Override
+                            public void onSuccess(int i, String s) {
+                                try {
+                                    JSONObject object = new JSONObject(s);
+                                    JSONArray jsonArray = object.getJSONArray("result");
+                                    JSONObject temp = (JSONObject) jsonArray.get(2);
+                                    String province = "90#："+temp.getString("b90")+"元"+"   "+"93#："+temp.getString("b93")+"\n"
+                                            +"97#："+temp.getString("b97")+"元"+"   "+"0#："+temp.getString("b0")+"元";
+
+                                    item_name.setText(title);
+                                    item_addr.setText(address);
+                                    item_price.setText("90#：5.16元"+"   "+"93#：5.53元"+"\n"+"97#：5.88元"+"   "+"0#：5.11元");
+                                    item_province.setText(province);
+
+                                    builder = new android.support.v7.app.AlertDialog.Builder(PoiAroundSearchActivity.this);
+                                    alert = builder.setView(layout).setPositiveButton("Cancel", new OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    }).create();
+                                    alert.show();
+
+                                }catch(JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                Toast.makeText(getApplicationContext(),"获取成功",Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(int i, String s, Throwable throwable) {
+                                ToastUtil.show(PoiAroundSearchActivity.this,throwable.getMessage());
+                            }
+                        });
             }
         });
         Poi_around_gas.setOnClickListener(new View.OnClickListener() {
@@ -370,14 +423,17 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     }
 
     private void setPoiItemDisplayContent(final PoiItem mCurrentPoi) {
-        final String title = mCurrentPoi.getTitle();
-        final String address = mCurrentPoi.getSnippet();
+        title = mCurrentPoi.getTitle();
+        address = mCurrentPoi.getSnippet();
         mPoiName.setText(title);
         mPoiAddress.setText(address);
 
-        bundle = new Bundle();
         bundle.putString("pName",title);
         bundle.putString("pAddr",address);
+        bundle.putDouble("90#",5.16);
+        bundle.putDouble("93#",5.53);
+        bundle.putDouble("97#",5.88);
+        bundle.putDouble("0#",5.11);
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

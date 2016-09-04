@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,15 +13,32 @@
         android:background="@drawable/ettt">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <com.beardedhen.androidbootstrap.BootstrapCircleThumbnail
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@mipmap/gas"
+            android:layout_gravity="center"
+            app:hasBorder="false"/>
+
         <TextView
             android:id="@+id/poi_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="沙洲加油站"
+            android:layout_gravity="center_vertical"
             android:textSize="18dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/poi_item_address"
@@ -37,6 +54,12 @@
             android:layout_height="0.5dp"
             android:background="#FF909090" />
 
+        <TextView
+            android:text="加油站油价："
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/poi_item_price"
@@ -53,7 +76,7 @@
             android:background="#FF909090" />
 
         <TextView
-            android:text="省控基准油价："
+            android:text="上海今日油价："
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
