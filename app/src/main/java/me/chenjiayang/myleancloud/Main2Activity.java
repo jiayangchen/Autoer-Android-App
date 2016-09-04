@@ -139,8 +139,12 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                MusicActivity.music_tag.finish();
-                System.exit(0);
+                if(MusicActivity.music_tag == null){
+                    System.exit(0);
+                }else {
+                    MusicActivity.music_tag.finish();
+                    System.exit(0);
+                }
             }
         });
 
