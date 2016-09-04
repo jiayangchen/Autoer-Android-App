@@ -45,7 +45,7 @@ public class CompassActivity extends AppCompatActivity {
         webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
-        webView.loadUrl("http://map.baidu.com/");
+        webView.loadUrl("http://m.amap.com/");
     }
 
     @Override

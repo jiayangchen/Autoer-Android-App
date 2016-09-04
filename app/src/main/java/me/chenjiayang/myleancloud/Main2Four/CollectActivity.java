@@ -124,7 +124,12 @@ public class CollectActivity extends AppCompatActivity {
                         final class ListItemClickListener implements AdapterView.OnItemClickListener {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                ToastUtil.show(CollectActivity.this,"Click"+position);
+                                //ToastUtil.show(CollectActivity.this,"Click"+position);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("url",all.get(position).getString("url"));
+                                Intent intent = new Intent(CollectActivity.this,MaintenItemActivity.class);
+                                intent.putExtra("mainten",bundle);
+                                startActivity(intent);
                             }
                         }
                         // 点击item的响应事件

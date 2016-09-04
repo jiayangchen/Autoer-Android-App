@@ -82,5 +82,17 @@
             android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#FF909090" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="点击获取详情>>"
+            android:textStyle="bold"
+            android:layout_marginStart="240dp"/>
+
     </LinearLayout>
 </LinearLayout>

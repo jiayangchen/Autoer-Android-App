@@ -38,4 +38,6 @@
 
     <color name="iscollect">#f4a912</color>
     <color name="weather_situ">#f77614</color>
+
+    <color name="gasitemprice">#f1492b</color>
 </resources>

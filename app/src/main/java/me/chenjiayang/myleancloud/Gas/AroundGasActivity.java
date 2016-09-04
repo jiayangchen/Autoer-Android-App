@@ -1,11 +1,14 @@
 package me.chenjiayang.myleancloud.Gas;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.chenjiayang.myleancloud.CarItemActivity;
 import me.chenjiayang.myleancloud.R;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
@@ -37,6 +41,7 @@ public class AroundGasActivity extends AppCompatActivity {
     private ArrayList<HashMap<String, Object>> item = new ArrayList<>();
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +89,7 @@ public class AroundGasActivity extends AppCompatActivity {
                             JSONObject object = new JSONObject(s);
                             JSONObject result = object.getJSONObject("result");
                             String sk = result.getString("data");
-                            JSONArray jsonArray = new JSONArray(sk);
+                            final JSONArray jsonArray = new JSONArray(sk);
                             for(int j=0; j<jsonArray.length(); j++){
 
                                 JSONObject object1 = jsonArray.getJSONObject(j);
@@ -102,6 +107,38 @@ public class AroundGasActivity extends AppCompatActivity {
                                 item.add(map);
                             }
                             setAdapter();
+
+                            final class ListItemClickListener implements AdapterView.OnItemClickListener {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    try {
+                                        JSONObject o = jsonArray.getJSONObject(position);
+                                        //用于传递到车辆详情页面的bundle
+                                        bundle = new Bundle();
+                                        bundle.putString("GasName", o.getString("name"));
+                                        bundle.putString("GasAddress", o.getString("address"));
+                                        bundle.putString("GasPrice", "90#：5.16元"+"   "+"93#：5.53元"+"\n"+"97#：5.88元"+"   "+"0#：5.11元");
+                                        bundle.putString("GasProvince", "");
+                                        Intent intent = new Intent(AroundGasActivity.this, GasItemActivity.class);
+                                        intent.putExtra("gasitem", bundle);
+                                        startActivity(intent);
+                                    }catch (JSONException e){
+                                        e.printStackTrace();
+                                    }
+
+                                    /*bundle = new Bundle();
+                                    bundle.putString("GasName","沙洲加油站");
+                                    bundle.putString("GasAddress", "江苏省张家港市");
+                                    bundle.putString("GasPrice", "90#：5.16元"+"   "+"93#：5.53元"+"\n"+"97#：5.88元"+"   "+"0#：5.11元");
+                                    bundle.putString("GasProvince", "");
+                                    Intent intent = new Intent(AroundGasActivity.this, GasItemActivity.class);
+                                    intent.putExtra("gasitem", bundle);
+                                    startActivity(intent);
+                                    ToastUtil.show(AroundGasActivity.this,"click"+position);*/
+                                }
+                            }
+                            // 点击item的响应事件
+                            mListView.setOnItemClickListener(new ListItemClickListener());
 
                         }catch(JSONException e){
                             e.printStackTrace();

@@ -6,32 +6,38 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/ettt">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:src="@mipmap/gas"
-                android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/gas"
+            android:layout_gravity="center"/>
 
-            <TextView
-                android:id="@+id/gas_item_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="沙洲加油站"
-                android:layout_gravity="center_vertical"
-                android:textSize="20dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            app:cardBackgroundColor="#ffffff">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+        <TextView
+            android:id="@+id/gas_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textSize="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/gas_item_address"
@@ -40,7 +46,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="5dp"
-            android:text="江苏省苏州市张家港市西港镇永利村乐丰路202交叉口东"/>
+            android:textSize="16sp"/>
 
         <View
             android:layout_width="match_parent"
@@ -52,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/gas_item_price"
@@ -60,8 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
-            android:text="92# 5.84元/升"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="16sp"
+            android:textColor="@color/gasitemprice"
+            android:layout_marginBottom="5dp" />
 
         <View
             android:layout_width="match_parent"
@@ -73,25 +80,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/gas_item_province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:textSize="16sp"
+            android:textColor="@color/gasitemprice"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/gas_item_commit"
             style="@style/wrapping_button"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:text="Order Now"
             app:roundedCorners="true"
-            app:bootstrapBrand="primary" />
+            app:bootstrapBrand="primary"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
 
-    </LinearLayout>
+                </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
 </LinearLayout>
