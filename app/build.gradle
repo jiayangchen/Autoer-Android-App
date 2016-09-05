@@ -76,4 +76,6 @@ dependencies {
         transitive = true
     }
     compile files('libs/juhe_sdk_v_2_7.jar')
+
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 }

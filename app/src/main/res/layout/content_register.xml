@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@drawable/login_bg"
     android:orientation="vertical"
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Autoer"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:textSize="25dp"/>
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="chenjiayang.me"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:textSize="12sp"/>
 
@@ -43,10 +43,12 @@
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
         android:cursorVisible="false"
-        android:drawableLeft="@drawable/genderneutraser_24"
+        android:drawableLeft="@mipmap/genderneutraluser_64"
         android:textSize="15sp"
         android:hint="username"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:textColor="@color/darkgrey"
+        android:textColorHint="@color/darkgrey"/>
 
     <!--<EditText
         android:id="@+id/re_passwordEditText"
@@ -70,11 +72,13 @@
         android:layout_width="310dp"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:drawableStart="@drawable/lock_24"
+        android:drawableStart="@mipmap/lock_64"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:textSize="15sp"
-        android:hint="password"/>
+        android:hint="password"
+        android:textColor="@color/darkgrey"
+        android:textColorHint="@color/darkgrey"/>
 
         <!--<EditText
             android:id="@+id/re_ensure_passwordEditText"
@@ -98,11 +102,13 @@
             android:layout_width="310dp"
             android:layout_height="@dimen/EditTextHeight"
             android:background="@drawable/ettt"
-            android:drawableStart="@drawable/lock_24"
+            android:drawableStart="@mipmap/lock_64"
             android:inputType="textPassword"
             android:layout_marginTop="15dp"
             android:textSize="15sp"
-            android:hint="Ensure pwd"/>
+            android:hint="Ensure pwd"
+            android:textColor="@color/darkgrey"
+            android:textColorHint="@color/darkgrey"/>
 
         <!--<Button
             android:id="@+id/registerAction_button"
