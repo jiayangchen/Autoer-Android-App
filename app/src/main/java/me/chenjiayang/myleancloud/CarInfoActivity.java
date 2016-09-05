@@ -63,8 +63,8 @@ public class CarInfoActivity extends AppCompatActivity {
         mListView = (ListView)this.findViewById(R.id.listview);
         //创建简单适配器SimpleAdapter
         simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_car_info,
-                new String[] {"itemTitle","itemPhoto", "itemSummary"},
-                new int[] {R.id.title, R.id.photograph, R.id.summary});
+                new String[] {"itemTitle","itemTag","itemPhoto", "itemSummary"},
+                new int[] {R.id.title, R.id.ifNowDrivingTag, R.id.photograph, R.id.summary});
         //加载SimpleAdapter到ListView中
         mListView.setAdapter(simpleAdapter);
     }
@@ -96,6 +96,12 @@ public class CarInfoActivity extends AppCompatActivity {
                                     carlist.get(i).get("Amount_of_gasoline").toString() +"%\n"+"变速器情况："+ carlist.get(i).get("transmission").toString();
 
                             map.put("itemTitle", carname);
+
+                            if(carlist.get(i).getObjectId().equals(AVUser.getCurrentUser().get("NowDriving"))){
+                                map.put("itemTag","正在驾驶");
+                            } else{
+                                map.put("itemTag","");
+                            }
                             map.put("itemPhoto", resImags[i]);
                             map.put("itemSummary", carsummary);
                             item.add(map);

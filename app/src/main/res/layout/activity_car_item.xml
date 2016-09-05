@@ -48,31 +48,41 @@
             android:layout_marginTop="330dp"
             android:orientation="horizontal">
 
-            <Button
+            <com.beardedhen.androidbootstrap.BootstrapButton
                 android:id="@+id/car_qr_btn"
+                style="@style/wrapping_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dip"
-                android:layout_weight="1"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:shadowColor="@color/gary"
+                android:layout_height="40dp"
                 android:text="二维码"
-                android:textSize="15sp"
-                android:textStyle="normal" />
-
-            <Button
-                android:id="@+id/car_delete_bound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dip"
                 android:layout_weight="1"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:shadowColor="@color/gary"
+                app:roundedCorners="true"
+                app:bootstrapBrand="secondary"
+                app:showOutline="true"
+                android:layout_marginStart="2.5dp"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/car_delete_bound"
+                style="@style/wrapping_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:text="解除绑定"
-                android:textSize="15sp"
-                android:textStyle="normal" />
+                android:layout_weight="1"
+                app:roundedCorners="true"
+                app:bootstrapBrand="secondary"
+                app:showOutline="true"
+                android:layout_marginStart="2.5dp"/>
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/setNowDriving"
+                style="@style/wrapping_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="立即驾驶"
+                android:layout_weight="1"
+                app:roundedCorners="true"
+                app:bootstrapBrand="secondary"
+                app:showOutline="true"
+                android:layout_marginStart="2.5dp"/>
 
         </LinearLayout>
 

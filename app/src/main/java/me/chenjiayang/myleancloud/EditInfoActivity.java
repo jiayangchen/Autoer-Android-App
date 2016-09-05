@@ -80,7 +80,7 @@ public class EditInfoActivity extends AppCompatActivity{
         for(int i=0; i<userName.length; i++){
             map=new HashMap<>();
             map.put("name", userName[i]);
-            map.put("id", AVUser.getCurrentUser().get(userName[i]).toString());
+            map.put("id", AVUser.getCurrentUser().get(userName[i]) == null ? "" : AVUser.getCurrentUser().get(userName[i]).toString());
             list.add(map);
         }
         setAdapter();

@@ -42,7 +42,7 @@
         android:layout_width="310dp"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:cursorVisible="false"
+        android:textCursorDrawable="@null"
         android:drawableLeft="@mipmap/genderneutraluser_64"
         android:textSize="15sp"
         android:hint="username"
@@ -77,6 +77,7 @@
         android:layout_marginTop="15dp"
         android:textSize="15sp"
         android:hint="password"
+        android:textCursorDrawable="@null"
         android:textColor="@color/darkgrey"
         android:textColorHint="@color/darkgrey"/>
 
@@ -107,6 +108,7 @@
             android:layout_marginTop="15dp"
             android:textSize="15sp"
             android:hint="Ensure pwd"
+            android:textCursorDrawable="@null"
             android:textColor="@color/darkgrey"
             android:textColorHint="@color/darkgrey"/>
 

@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/EditTextHeight"
         android:background="@drawable/ettt"
-        android:cursorVisible="false"
+        android:textCursorDrawable="@null"
         android:drawableLeft="@mipmap/genderneutraluser_64"
         android:textSize="15sp"
         android:layout_marginTop="40dp"
@@ -81,6 +81,7 @@
         android:drawableStart="@mipmap/lock_64"
         android:inputType="textPassword"
         android:textColor="@color/darkgrey"
+        android:textCursorDrawable="@null"
         android:layout_marginTop="15dp"/>
 
     <LinearLayout

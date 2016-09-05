@@ -32,6 +32,7 @@ import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.SaveCallback;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
 import com.google.zxing.WriterException;
 import com.jude.swipbackhelper.SwipeBackHelper;
@@ -51,8 +52,9 @@ import me.chenjiayang.myleancloud.util.ToastUtil;
 public class CarItemActivity extends AppCompatActivity {
 
     private ListView listView;
-    private Button car_qr_btn;
-    private Button car_delete_bound_btn;
+    private BootstrapButton car_qr_btn;
+    private BootstrapButton car_delete_bound_btn;
+    private BootstrapButton change_now_car;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
     private String carinfo = "iscar&";  //标记一个tag，用于二维码扫描时判断这是一辆汽车的信息
@@ -93,8 +95,10 @@ public class CarItemActivity extends AppCompatActivity {
     private void init(){
 
         listView = (ListView) findViewById(R.id.car_info_elem);
-        car_qr_btn = (Button) findViewById(R.id.car_qr_btn); //生成二维码的按钮
-        car_delete_bound_btn = (Button) findViewById(R.id.car_delete_bound);
+        car_qr_btn = (BootstrapButton) findViewById(R.id.car_qr_btn); //生成二维码的按钮
+        car_delete_bound_btn = (BootstrapButton) findViewById(R.id.car_delete_bound);
+        change_now_car = (BootstrapButton) findViewById(R.id.setNowDriving);
+
 
         /*LayoutInflater inflater = LayoutInflater.from(this);
         View layout = inflater.inflate(R.layout.caritem_header, null);*/
@@ -123,6 +127,16 @@ public class CarItemActivity extends AppCompatActivity {
                     list.add(map);
                 }
                 setAdapter();
+            }
+        });
+
+        change_now_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AVUser currUser = AVUser.getCurrentUser();
+                currUser.put("NowDriving",bundle_id.getString("ObjectId"));
+                currUser.saveInBackground();
+                ToastUtil.show(CarItemActivity.this,"一路顺风");
             }
         });
     }

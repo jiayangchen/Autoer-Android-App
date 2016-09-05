@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -466,18 +467,31 @@ public class Main2Activity extends AppCompatActivity
     }
 
     private void setNowDriving(){
-        AVQuery<AVObject> avQuery = new AVQuery<>("Car");
-        avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+        AVQuery<AVObject> query = new AVQuery<>("Car");
+        query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
+        query.findInBackground(new FindCallback<AVObject>() {
             @Override
-            public void done(AVObject avObject, AVException e) {
-                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
-                now_drive_car.setText(avObject.get("CarName").toString());
-                now_gas_num.setText(avObject.get("Amount_of_gasoline").toString()+"%");
-                now_mile_num.setText(avObject.get("mileage").toString()+"km");
-                now_engine_situation.setText((avObject.get("Engine_situation").toString()) == "true" ? "OK" : "Bad");
-                now_trans_situation.setText((avObject.get("transmission").toString()) == "true" ? "OK" : "Bad");
+            public void done(List<AVObject> list, AVException e) {
+                if(list.size() == 0 || AVUser.getCurrentUser().getString("NowDriving")==null){
+                    now_drive_car.setText("无汽车");
+                }else {
+                    AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+                    avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+                        @Override
+                        public void done(AVObject avObject, AVException e) {
+                            // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+                            now_drive_car.setText(avObject.get("CarName").toString());
+                            now_gas_num.setText(avObject.get("Amount_of_gasoline").toString() + "%");
+                            now_mile_num.setText(avObject.get("mileage").toString() + "km");
+                            now_engine_situation.setText((avObject.get("Engine_situation").toString()) == "true" ? "OK" : "Bad");
+                            now_trans_situation.setText((avObject.get("transmission").toString()) == "true" ? "OK" : "Bad");
+                        }
+                    });
+                }
             }
         });
+
+
     }
 
     /*private void swipselector(){
@@ -634,7 +648,7 @@ public class Main2Activity extends AppCompatActivity
     private void ToolBarOperation(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //设置导航栏图标
-        toolbar.setNavigationIcon(R.mipmap.ic_drawer_home);
+
         //设置主标题
         toolbar.setTitle("Autoer");
         //设置主标题颜色
@@ -689,13 +703,26 @@ public class Main2Activity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
         toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(R.mipmap.head_portrait_64);
+        toolbar.setNavigationIcon(R.mipmap.head_portrait_80);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.openDrawer(Gravity.LEFT);
+            }
+        });
+        //toggle.setHomeAsUpIndicator(R.mipmap.head_portrait_64);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+
+
+
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
