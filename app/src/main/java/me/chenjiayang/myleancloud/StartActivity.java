@@ -64,7 +64,7 @@ public class StartActivity extends AppCompatActivity {
         initView();
 
         final String videoPath = Uri.parse("android.resource://" + getPackageName() + "/"
-                + R.raw.aston_martin).toString();
+                + R.raw.r8).toString();
         myVideoView.setVideoPath(videoPath);
         myVideoView.start();
         myVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

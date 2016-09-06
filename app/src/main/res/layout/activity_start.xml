@@ -28,7 +28,7 @@
         android:layout_marginTop="120dp"
         android:text="Autoer"
         android:textSize="70sp"
-        android:textColor="@color/start_name" />
+        android:textColor="@color/white" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
         android:textSize="18dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:textColor="@color/start_name"/>
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -78,7 +78,41 @@ public class CarInfoActivity extends AppCompatActivity {
 
         final int[] resImags = {
                 R.drawable.aodilogo,
-                R.drawable.mashaladi
+                R.drawable.mashaladi,
+                R.drawable.dazhong,
+                R.drawable.baoma,
+                R.drawable.benchi,
+                R.drawable.fute,
+                R.drawable.fengtian,
+                R.drawable.yingfeinidi,
+                R.drawable.bentian,
+                R.drawable.biyadi,
+                R.drawable.nisang,
+                R.drawable.bieke,
+                R.drawable.mazida,
+                R.drawable.leikesasi,
+                R.drawable.woerwo,
+                R.drawable.xuetielong,
+                R.drawable.qirui,
+                R.drawable.sanling,
+                R.drawable.biaozhi,
+                R.drawable.dongfeng,
+                R.drawable.xiandai,
+                R.drawable.qiya,
+                R.drawable.baoshijie,
+                R.drawable.lanbojini,
+                R.drawable.falali,
+                R.drawable.kaidilake,
+                R.drawable.hanma,
+                R.drawable.luhu,
+                R.drawable.yiqi,
+                R.drawable.mading,
+                R.drawable.changcheng,
+                R.drawable.changan,
+                R.drawable.jili,
+                R.drawable.jeep,
+                R.drawable.kelaisile,
+                R.drawable.nocar
         };
 
         //查询汽车列表
@@ -98,11 +132,123 @@ public class CarInfoActivity extends AppCompatActivity {
                             map.put("itemTitle", carname);
 
                             if(carlist.get(i).getObjectId().equals(AVUser.getCurrentUser().get("NowDriving"))){
-                                map.put("itemTag","正在驾驶");
+                                map.put("itemTag","正在驾驶>>");
                             } else{
                                 map.put("itemTag","");
                             }
-                            map.put("itemPhoto", resImags[i]);
+
+                            switch (carname){
+                                case "奥迪" :
+                                    map.put("itemPhoto", resImags[0]);
+                                    break;
+                                case "玛莎拉蒂" :
+                                    map.put("itemPhoto", resImags[1]);
+                                    break;
+                                case "大众" :
+                                    map.put("itemPhoto", resImags[2]);
+                                    break;
+                                case "宝马" :
+                                    map.put("itemPhoto", resImags[3]);
+                                    break;
+                                case "奔驰" :
+                                    map.put("itemPhoto", resImags[4]);
+                                    break;
+                                case "福特" :
+                                    map.put("itemPhoto", resImags[5]);
+                                    break;
+                                case "丰田" :
+                                    map.put("itemPhoto", resImags[6]);
+                                    break;
+                                case "英菲尼迪" :
+                                    map.put("itemPhoto", resImags[7]);
+                                    break;
+                                case "本田" :
+                                    map.put("itemPhoto", resImags[8]);
+                                    break;
+                                case "比亚迪" :
+                                    map.put("itemPhoto", resImags[9]);
+                                    break;
+                                case "尼桑" :
+                                    map.put("itemPhoto", resImags[10]);
+                                    break;
+                                case "别克" :
+                                    map.put("itemPhoto", resImags[11]);
+                                    break;
+                                case "马自达" :
+                                    map.put("itemPhoto", resImags[12]);
+                                    break;
+                                case "雷克萨斯" :
+                                    map.put("itemPhoto", resImags[13]);
+                                    break;
+                                case "沃尔沃" :
+                                    map.put("itemPhoto", resImags[14]);
+                                    break;
+                                case "雪铁龙" :
+                                    map.put("itemPhoto", resImags[15]);
+                                    break;
+                                case "奇瑞" :
+                                    map.put("itemPhoto", resImags[16]);
+                                    break;
+                                case "三菱" :
+                                    map.put("itemPhoto", resImags[17]);
+                                    break;
+                                case "标志" :
+                                    map.put("itemPhoto", resImags[18]);
+                                    break;
+                                case "东风" :
+                                    map.put("itemPhoto", resImags[19]);
+                                    break;
+                                case "现代" :
+                                    map.put("itemPhoto", resImags[20]);
+                                    break;
+                                case "起亚" :
+                                    map.put("itemPhoto", resImags[21]);
+                                    break;
+                                case "保时捷" :
+                                    map.put("itemPhoto", resImags[22]);
+                                    break;
+                                case "兰博基尼" :
+                                    map.put("itemPhoto", resImags[23]);
+                                    break;
+                                case "法拉利" :
+                                    map.put("itemPhoto", resImags[24]);
+                                    break;
+                                case "凯迪拉克" :
+                                    map.put("itemPhoto", resImags[25]);
+                                    break;
+                                case "悍马" :
+                                    map.put("itemPhoto", resImags[26]);
+                                    break;
+                                case "路虎" :
+                                    map.put("itemPhoto", resImags[27]);
+                                    break;
+                                case "中国一汽" :
+                                    map.put("itemPhoto", resImags[28]);
+                                    break;
+                                case "阿斯顿马丁" :
+                                    map.put("itemPhoto", resImags[29]);
+                                    break;
+                                case "长城" :
+                                    map.put("itemPhoto", resImags[30]);
+                                    break;
+                                case "长安" :
+                                    map.put("itemPhoto", resImags[31]);
+                                    break;
+                                case "吉利" :
+                                    map.put("itemPhoto", resImags[32]);
+                                    break;
+                                case "Jeep" :
+                                    map.put("itemPhoto", resImags[33]);
+                                    break;
+                                case "克莱斯勒" :
+                                    map.put("itemPhoto", resImags[34]);
+                                    break;
+                                default:
+                                    map.put("itemPhoto", resImags[35]);
+                                    break;
+                            }
+
+
                             map.put("itemSummary", carsummary);
                             item.add(map);
                         }
