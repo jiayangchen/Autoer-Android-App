@@ -8,15 +8,95 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="me.chenjiayang.myleancloud.Main2Four.MaintenItemActivity">
 
-    <WebView
-        android:id="@+id/mainten_item_webView"
+    <TextView
+        android:id="@+id/main_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:text="秋季汽车保养不得不知的小知识"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="作者："/>
+        <TextView
+            android:id="@+id/main_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="综合报道"
+            android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/main_p1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t一阵秋雨一阵冷，秋天到了，人们开始预防感冒了，而汽车在秋天也有一些必须知道的保养知识。"
         android:layout_marginTop="10dp"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:clipToPadding="true"
-        android:fitsSystemWindows="true"/>
+        android:textSize="16sp"
+        android:textColor="@color/dongqiudi"/>
+
+    <ImageView
+        android:id="@+id/main_i1"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:src="@drawable/mainten1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/main_p2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t夏季温度高，防止爆胎，胎压较低，到了秋天就要补充气压，以使其保持在规定的气压范围。同时，还应检查轮胎是否有刮痕，因为橡胶在秋冬季节容易变硬，轮胎易漏气或扎胎。"
+        android:textSize="16sp"
+        android:textColor="@color/dongqiudi"/>
+
+    <TextView
+        android:id="@+id/main_p3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t另外，秋季小雨天气很多，注意打滑跑偏。有的车主很少注意轮胎的胎纹，当胎纹过浅时，雨天路很滑，汽车轮胎就缺少了与地面的摩擦，此时车辆就会跑偏，这样一来，刹车距离就会延长，从而发生交通事故。此时对轮胎的要求也相应提高，就需要检查一下胎纹的磨损程度，如果胎纹深度不足1.6mm时，要更换新轮胎。"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/dongqiudi"/>
+
+    <TextView
+        android:id="@+id/main_p4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t另外，秋季小雨天气很多，注意打滑跑偏。有的车主很少离就会延长，从而发生交通事故。此时对轮胎的要求也相应提高，就需要检查一下胎纹的磨损程度，如果胎纹深度不足1.6mm时，要更换新轮胎。"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/dongqiudi"/>
+
+    <ImageView
+        android:id="@+id/main_i2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:src="@drawable/mainten1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/main_p5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\t\t\t\t另外，秋季小雨天气很多，注意打滑跑偏。有的车主很少注意轮胎的胎纹，当胎纹过浅时，雨1.6mm时，要更换新轮胎。"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/dongqiudi"/>
 
 </LinearLayout>

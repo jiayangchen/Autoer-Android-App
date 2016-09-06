@@ -162,8 +162,7 @@
             android:name=".Main2Four.MaintenActivity"
             android:label="Maintenance" />
         <activity
-            android:name=".Main2Four.MaintenItemActivity"
-            android:label="Maintenance" />
+            android:name=".Main2Four.MaintenItemActivity" />
         <activity
             android:name=".Main2Four.CompassActivity"
             android:label="MapCompass" />

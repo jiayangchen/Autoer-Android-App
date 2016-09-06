@@ -57,6 +57,7 @@ import me.chenjiayang.myleancloud.Main2Four.CollectActivity;
 import me.chenjiayang.myleancloud.Main2Four.CommonActivity;
 import me.chenjiayang.myleancloud.Main2Four.CompassActivity;
 import me.chenjiayang.myleancloud.Main2Four.MaintenActivity;
+import me.chenjiayang.myleancloud.Main2Four.MaintenItemActivity;
 import me.chenjiayang.myleancloud.Main2Four.NotificationActivity;
 import me.chenjiayang.myleancloud.Main2Four.StatisticsActivity;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
@@ -220,10 +221,18 @@ public class Main2Activity extends AppCompatActivity
                     public void done(List<AVObject> list, AVException e) {
                         if(list.size() == 1){
                             news = new Bundle();
-                            news.putString("newsid",list.get(0).getObjectId());
-                            news.putString("newsurl",list.get(0).get("url").toString());
-                            Intent intent = new Intent(Main2Activity.this,NewsScrollingActivity.class);
-                            intent.putExtra("news",news);
+                            news.putString("maintenanceID",list.get(0).getObjectId());
+                            news.putString("main_title",list.get(0).getString("title"));
+                            news.putString("main_author",list.get(0).getString("Author"));
+                            news.putString("main_p1",list.get(0).getString("P1"));
+                            news.putString("main_p2",list.get(0).getString("P2"));
+                            news.putString("main_p3",list.get(0).getString("P3"));
+                            news.putString("main_p4",list.get(0).getString("P4"));
+                            news.putString("main_p5",list.get(0).getString("P5"));
+                            news.putString("main_url",list.get(0).getString("url"));
+
+                            Intent intent = new Intent(Main2Activity.this,MaintenItemActivity.class);
+                            intent.putExtra("mainten",news);
                             startActivity(intent);
                         }
                     }

@@ -19,6 +19,7 @@ import android.widget.SimpleAdapter;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.jude.swipbackhelper.SwipeBackHelper;
@@ -43,8 +44,6 @@ public class CollectActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private AlertDialog alert = null;
     private AlertDialog.Builder builder = null;
-
-    private List<AVObject>all = new ArrayList<>();
     private int x;
 
     @Override
@@ -83,8 +82,8 @@ public class CollectActivity extends AppCompatActivity {
 
     private void init(){
         //查询汽车列表
-        AVQuery<AVObject> query = new AVQuery<>("News");
-        query.whereEqualTo("isCollect",true)
+        /*AVQuery<AVObject> query = new AVQuery<>("isCollect");
+        query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId())
                 .findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -102,16 +101,16 @@ public class CollectActivity extends AppCompatActivity {
                 }
                 setAdapter();
             }
-        });
+        });*/
 
-        AVQuery<AVObject> query1 = new AVQuery<>("Maintenance");
-        query1.whereEqualTo("isCollect",true)
+        AVQuery<AVObject> query1 = new AVQuery<>("isCollect");
+        query1.whereEqualTo("currUserID",AVUser.getCurrentUser().getObjectId())
                 .findInBackground(new FindCallback<AVObject>() {
                     @Override
                     public void done(List<AVObject> list, AVException e) {
-                        all.addAll(list);
                         collectlist = list;
                         for (int i = 0; i < collectlist.size(); i++) {
+
                             HashMap<String, Object> map = new HashMap<>();
                             String title = collectlist.get(i).get("title").toString();
                             String url = collectlist.get(i).get("url").toString();
@@ -126,7 +125,15 @@ public class CollectActivity extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 //ToastUtil.show(CollectActivity.this,"Click"+position);
                                 Bundle bundle = new Bundle();
-                                bundle.putString("url",all.get(position).getString("url"));
+                                bundle.putString("url",collectlist.get(position).getString("url"));
+                                bundle.putString("maintenanceID",collectlist.get(position).getObjectId());
+                                bundle.putString("main_title",collectlist.get(position).getString("title"));
+                                bundle.putString("main_author",collectlist.get(position).getString("Author"));
+                                bundle.putString("main_p1",collectlist.get(position).getString("P1"));
+                                bundle.putString("main_p2",collectlist.get(position).getString("P2"));
+                                bundle.putString("main_p3",collectlist.get(position).getString("P3"));
+                                bundle.putString("main_p4",collectlist.get(position).getString("P4"));
+                                bundle.putString("main_p5",collectlist.get(position).getString("P5"));
                                 Intent intent = new Intent(CollectActivity.this,MaintenItemActivity.class);
                                 intent.putExtra("mainten",bundle);
                                 startActivity(intent);
@@ -134,6 +141,7 @@ public class CollectActivity extends AppCompatActivity {
                         }
                         // 点击item的响应事件
                         mListView.setOnItemClickListener(new ListItemClickListener());
+
                         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                             @Override
                             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -142,19 +150,8 @@ public class CollectActivity extends AppCompatActivity {
                                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                if(position>x-1) {
-                                                    AVObject todo = AVObject.createWithoutData("Maintenance", all.get(position).getObjectId());
-                                                    // 修改 content
-                                                    todo.put("isCollect",false);
-                                                    // 保存到云端
-                                                    todo.saveInBackground();
-                                                }else{
-                                                    AVObject todo = AVObject.createWithoutData("News", all.get(position).getObjectId());
-                                                    // 修改 content
-                                                    todo.put("isCollect",false);
-                                                    // 保存到云端
-                                                    todo.saveInBackground();
-                                                }
+                                                AVObject todo = AVObject.createWithoutData("isCollect", collectlist.get(position).getObjectId());
+                                                todo.deleteInBackground();
                                                 dialog.dismiss();
                                             }
                                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -64,8 +64,8 @@ public class MaintenActivity extends AppCompatActivity {
         mListView = (ListView)this.findViewById(R.id.mainten_listview);
         //创建简单适配器SimpleAdapter
         simpleAdapter = new SimpleAdapter(this,item, R.layout.activity_mainten,
-                new String[] {"itemTitle","itemContent","itemHttp","itemIsCollect","itemIsRead"},
-                new int[] {R.id.mainten_title, R.id.mainten_content,R.id.mainten_http,R.id.mainten_iscollect,R.id.mainten_isread});
+                new String[] {"itemTitle","itemContent","itemHttp","itemIsCollect"},
+                new int[] {R.id.mainten_title, R.id.mainten_content,R.id.mainten_http,R.id.mainten_iscollect});
         //加载SimpleAdapter到ListView中
         mListView.setAdapter(simpleAdapter);
     }
@@ -82,29 +82,17 @@ public class MaintenActivity extends AppCompatActivity {
                     public void done(List<AVObject> list, AVException e) {
                         maintenlist = list;
                         for (int i = 0; i <maintenlist.size(); i++) {
-                            HashMap<String, Object> map = new HashMap<>();
+                            final HashMap<String, Object> map = new HashMap<>();
                             String title = maintenlist.get(i).get("title").toString();
-                            String content =maintenlist.get(i).get("content").toString();
-                            content = content.substring(0,100)+"...";
+                            String content =maintenlist.get(i).getString("P1");
+                            //content = content.substring(0,100)+"...";
                             String url = maintenlist.get(i).get("url").toString();
                             url = url.substring(0,20)+"...";
-
-                            Boolean iscollect = (Boolean) maintenlist.get(i).get("isCollect");
-                            Boolean isread = (Boolean) maintenlist.get(i).get("isRead");
 
                             map.put("itemTitle", title);
                             map.put("itemContent", content);
                             map.put("itemHttp",url);
-                            if(iscollect){
-                                map.put("itemIsCollect","已收藏");
-                            }else{
-                                map.put("itemIsCollect","");
-                            }
-                            if(isread){
-                                map.put("itemIsRead","已阅读");
-                            }else{
-                                map.put("itemIsRead","");
-                            }
+                            map.put("itemIsCollect","");
                             item.add(map);
                         }
                         setAdapter();
@@ -112,13 +100,16 @@ public class MaintenActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                                AVObject todo = AVObject.createWithoutData("Maintenance", maintenlist.get(position).getObjectId());
-                                todo.put("isRead",true);
-                                todo.saveInBackground();
-
                                 bundle = new Bundle();
-                                bundle.putString("url",maintenlist.get(position).get("url").toString());
                                 bundle.putString("maintenanceID",maintenlist.get(position).getObjectId());
+                                bundle.putString("main_title",maintenlist.get(position).getString("title"));
+                                bundle.putString("main_author",maintenlist.get(position).getString("Author"));
+                                bundle.putString("main_p1",maintenlist.get(position).getString("P1"));
+                                bundle.putString("main_p2",maintenlist.get(position).getString("P2"));
+                                bundle.putString("main_p3",maintenlist.get(position).getString("P3"));
+                                bundle.putString("main_p4",maintenlist.get(position).getString("P4"));
+                                bundle.putString("main_p5",maintenlist.get(position).getString("P5"));
+                                bundle.putString("main_url",maintenlist.get(position).getString("url"));
                                 Intent intent = new Intent(MaintenActivity.this,MaintenItemActivity.class);
                                 intent.putExtra("mainten",bundle);
                                 startActivity(intent);
