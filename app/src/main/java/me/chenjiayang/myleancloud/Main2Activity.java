@@ -839,7 +839,8 @@ public class Main2Activity extends AppCompatActivity
                 avQuery.getInBackground(array[1], new GetCallback<AVObject>() {
                     @Override
                     public void done(AVObject avObject, AVException e) {
-                        String ordermsg = "订单号："+avObject.getObjectId().toString()+"\n油号："
+                        String ordermsg = "订单号："+avObject.getObjectId()+"\n加油站："+avObject.get("pName")
+                                +"\n地址："+avObject.get("pAddr")+"\n油号："
                                 +avObject.get("pGasType")+"\n数量："+avObject.get("pQuantity")+"升\n金额："
                                 +avObject.get("pPrice")+"元\n";
 
