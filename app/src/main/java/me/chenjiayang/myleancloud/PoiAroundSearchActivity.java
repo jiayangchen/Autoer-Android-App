@@ -63,6 +63,7 @@ import java.util.Date;
 import java.util.List;
 
 import me.chenjiayang.myleancloud.Gas.AroundGasActivity;
+import me.chenjiayang.myleancloud.route.RouteActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 
@@ -93,7 +94,9 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private BootstrapButton mButton;
     private BootstrapButton Poi_gas_item;
     private BootstrapButton Poi_around_gas;
+    private BootstrapButton Poi_route;
     private Bundle bundle = new Bundle();
+    private Bundle bundle_route = new Bundle();
     private Intent intent;
 
     private android.support.v7.app.AlertDialog alert = null;
@@ -136,6 +139,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
     private void BottomMenu(){
         Poi_gas_item = (BootstrapButton) findViewById(R.id.poi_gas_item);
         Poi_around_gas = (BootstrapButton) findViewById(R.id.poi_around_gas);
+        Poi_route = (BootstrapButton) findViewById(R.id.poi_route);
+
         Poi_gas_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -434,6 +439,21 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         bundle.putDouble("93#",5.53);
         bundle.putDouble("97#",5.88);
         bundle.putDouble("0#",5.11);
+
+        bundle_route.putDouble("self_lat",bundle.getDouble("lat"));
+        bundle_route.putDouble("self_lon",bundle.getDouble("lon"));
+        bundle_route.putDouble("des_lat",mCurrentPoi.getLatLonPoint().getLatitude());
+        bundle_route.putDouble("des_lon",mCurrentPoi.getLatLonPoint().getLongitude());
+
+        Poi_route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_route = new Intent(PoiAroundSearchActivity.this, RouteActivity.class);
+                intent_route.putExtra("route",bundle_route);
+                startActivity(intent_route);
+            }
+        });
+
 
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

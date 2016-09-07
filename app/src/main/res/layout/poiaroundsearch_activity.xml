@@ -77,7 +77,7 @@
     <RelativeLayout
         android:id="@+id/poi_detail"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/border_bg"
         android:visibility="gone">
@@ -142,40 +142,58 @@
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/poi_button"
             style="@style/wrapping_button"
-            android:layout_width="100dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="预约加油"
             app:roundedCorners="true"
             app:bootstrapBrand="secondary"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="50dp"
             android:layout_alignParentStart="true"
-            app:showOutline="true"/>
+            android:layout_marginStart="5dp"
+            app:showOutline="true" />
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/poi_gas_item"
             style="@style/wrapping_button"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="40dp"
             android:text="查看详情"
             app:roundedCorners="true"
             app:bootstrapBrand="secondary"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/poi_button"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
             app:showOutline="true"/>
 
         <com.beardedhen.androidbootstrap.BootstrapButton
             android:id="@+id/poi_around_gas"
             style="@style/wrapping_button"
-            android:layout_width="100dp"
+            android:layout_width="170dp"
             android:layout_height="40dp"
             android:text="周边加油站"
             app:roundedCorners="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
             app:bootstrapBrand="secondary"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/poi_button"
+            app:showOutline="true"/>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/poi_route"
+            style="@style/wrapping_button"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:text="最优路线"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="5dp"
+            app:roundedCorners="true"
+            app:bootstrapBrand="secondary"
+            android:layout_toEndOf="@+id/poi_around_gas"
+            android:layout_below="@+id/poi_gas_item"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             app:showOutline="true"/>
 
     </RelativeLayout>

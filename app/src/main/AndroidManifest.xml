@@ -178,6 +178,10 @@
             android:label="Gas Station" />
         <activity android:name=".Gas.GasItemActivity"
             android:label="GasItemList"/>
+        <activity android:name=".route.RouteActivity"/>
+        <activity android:name=".route.DriveRouteDetailActivity"/>
+        <activity android:name=".route.WalkRouteDetailActivity"/>
+        <activity android:name=".route.BusRouteDetailActivity"/>
     </application>
 
 </manifest>

@@ -136,7 +136,7 @@ public class CarItemActivity extends AppCompatActivity {
                 AVUser currUser = AVUser.getCurrentUser();
                 currUser.put("NowDriving",bundle_id.getString("ObjectId"));
                 currUser.saveInBackground();
-                ToastUtil.show(CarItemActivity.this,"一路顺风");
+                ToastUtil.show(CarItemActivity.this,"重启应用生效，祝一路顺风");
             }
         });
     }

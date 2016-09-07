@@ -63,6 +63,7 @@ import me.chenjiayang.myleancloud.Main2Four.NotificationActivity;
 import me.chenjiayang.myleancloud.Main2Four.StatisticsActivity;
 import me.chenjiayang.myleancloud.cardlayout.CardLayoutActivity;
 import me.chenjiayang.myleancloud.music_bar.MusicActivity;
+import me.chenjiayang.myleancloud.route.RouteActivity;
 import me.chenjiayang.myleancloud.util.ToastUtil;
 
 public class Main2Activity extends AppCompatActivity
@@ -405,7 +406,8 @@ public class Main2Activity extends AppCompatActivity
         bind_car.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main2Activity.this,CaptureActivity.class));
+                Intent scanStart = new Intent(Main2Activity.this, CaptureActivity.class);
+                startActivityForResult(scanStart,0);
             }
         });
 
@@ -462,6 +464,7 @@ public class Main2Activity extends AppCompatActivity
                                 todo.saveInBackground();
                                 setNowDriving();
                                 x = 0;
+                            ToastUtil.show(Main2Activity.this,"重启应用生效");
                         }catch (Exception e){
                             //ToastUtil.show(Main2Activity.this, items[0]);
                         }
@@ -730,9 +733,6 @@ public class Main2Activity extends AppCompatActivity
         toggle.syncState();
 
 
-
-
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -936,12 +936,15 @@ public class Main2Activity extends AppCompatActivity
         else if(id == R.id.nav_share){
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my Share text.");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "This is the app -- Autoer, you can download it from XiaoMi App Store.");
             shareIntent.setType("text/plain");
             startActivity(Intent.createChooser(shareIntent, "分享到"));
         }
         else if(id == R.id.nav_feedback){
             startActivity(new Intent(Main2Activity.this,FeedBackActivity.class));
+        }
+        else if(id == R.id.nav_route){
+            //startActivity(new Intent(Main2Activity.this,RouteActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
