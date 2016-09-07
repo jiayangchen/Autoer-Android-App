@@ -97,6 +97,9 @@ public class NotificationActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         AVObject todo = AVObject.createWithoutData("Push", noticelist.get(position).getObjectId());
                                         todo.deleteInBackground();
+                                        noticelist.clear();
+                                        item.clear();
+                                        init();
                                         ToastUtil.show(NotificationActivity.this,"删除成功");
                                     }
                                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

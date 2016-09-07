@@ -53,6 +53,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import me.chenjiayang.myleancloud.Gas.AroundGasActivity;
 import me.chenjiayang.myleancloud.Main2Four.CollectActivity;
 import me.chenjiayang.myleancloud.Main2Four.CommonActivity;
 import me.chenjiayang.myleancloud.Main2Four.CompassActivity;
@@ -680,7 +681,7 @@ public class Main2Activity extends AppCompatActivity
                     Intent intent= new Intent();
                     intent = packageManager.getLaunchIntentForPackage("com.juhe.petrolstation");
                     startActivity(intent);*/
-                    startActivity(new Intent(Main2Activity.this, CompassActivity.class));
+                    startActivity(new Intent(Main2Activity.this, AroundGasActivity.class));
                 } else if (menuItemId == R.id.action_notification) {
                     //Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Main2Activity.this, NotificationActivity.class));

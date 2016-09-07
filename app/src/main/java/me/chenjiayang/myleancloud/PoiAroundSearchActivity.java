@@ -123,8 +123,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         intent = getIntent();
         bundle = intent.getBundleExtra("location");
 
-        //lp = new LatLonPoint(bundle.getDouble("lat"),bundle.getDouble("lon"));
-        lp = new LatLonPoint(31.022371, 121.442491);
+        lp = new LatLonPoint(bundle.getDouble("lat"),bundle.getDouble("lon"));
+        //lp = new LatLonPoint(31.022371, 121.442491);
 
         init();
 
