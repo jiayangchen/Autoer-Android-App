@@ -362,13 +362,20 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="还没想好做什么" />
+                android:text="还没想好做什么" />-->
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/main2_barChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"/>
 
         </LinearLayout>
 

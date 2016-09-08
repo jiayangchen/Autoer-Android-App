@@ -62,11 +62,11 @@ public class StatisticsActivity extends AppCompatActivity {
         chart = (BarChart) findViewById(R.id.barChart);
         chart.getAxisRight().setEnabled(false); // 隐藏右边 的坐标轴
         chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-
+        //饼图
         mChart = (PieChart) findViewById(R.id.pieChart);
         PieData mPieData = getPieData(4, 100);
         showChart(mChart, mPieData);
-
+        //折线图
         mLineChart = (LineChart) findViewById(R.id.lineChart);
         LineData mLineData = getLineData(30, 30);
         showLineChart(mLineChart, mLineData, Color.rgb(114, 188, 223));

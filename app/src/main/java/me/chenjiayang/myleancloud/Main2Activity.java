@@ -38,6 +38,12 @@ import com.avos.avoscloud.PushService;
 import com.avos.avoscloud.SaveCallback;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapCircleThumbnail;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.adapter.LoopPagerAdapter;
@@ -51,7 +57,9 @@ import com.zxing.activity.CaptureActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import me.chenjiayang.myleancloud.Gas.AroundGasActivity;
 import me.chenjiayang.myleancloud.Main2Four.CollectActivity;
@@ -121,6 +129,10 @@ public class Main2Activity extends AppCompatActivity
     private TextView w_situ;
 
     private SharedPreferences sp;
+    private BarChart chart;
+    private Random random;
+    private BarData data;
+    private BarDataSet dataSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +140,32 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
 
         tag_main2 = this;
+
+
+        chart = (BarChart) findViewById(R.id.main2_barChart);
+        chart.getAxisRight().setEnabled(false); // 隐藏右边 的坐标轴
+        chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+
+        /**图表具体设置*/
+        ArrayList<BarEntry> entries = new ArrayList<>();//显示条目
+        ArrayList<String> xVals = new ArrayList<>();//横坐标标签
+        random=new Random();//随机数
+        for(int i=0;i<12;i++){
+            float profit= random.nextFloat()*100;
+            //entries.add(BarEntry(float val,int positon);
+            entries.add(new BarEntry(profit,i));
+            xVals.add((i+1)+"月");
+        }
+        dataSet = new BarDataSet(entries, "汽车行驶里程数");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        data = new BarData(xVals, dataSet);
+        chart.setData(data);
+        //设置Y方向上动画animateY(int time);
+        chart.animateY(3000);
+        //图表描述
+        chart.setDescription("");
+
 
         now_drive_car = (TextView) findViewById(R.id.now_drive_car);
         now_gas_num = (TextView) findViewById(R.id.now_gas_num);
