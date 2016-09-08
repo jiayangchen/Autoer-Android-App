@@ -18,10 +18,10 @@
             android:id="@+id/nav_self_info"
             android:icon="@drawable/ic_pageview_black_48dp"
             android:title="@string/myinfo" />
-        <item
+        <!--<item
             android:id="@+id/nav_route"
             android:icon="@drawable/gps_100"
-            android:title="Route" />
+            android:title="" />-->
     </group>
 
     <item android:title="Communicate">

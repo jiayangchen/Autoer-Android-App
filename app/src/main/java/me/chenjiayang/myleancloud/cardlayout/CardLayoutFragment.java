@@ -106,14 +106,14 @@ public class CardLayoutFragment extends Fragment {
                     //创建sweet dialog
                     new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
                             .setTitleText("Are you sure?")
-                            .setContentText("Won't be able to recover this file!")
-                            .setConfirmText("Yes,delete it!")
+                            .setContentText("删除后订单将不能恢复!")
+                            .setConfirmText("确定删除!")
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sDialog) {
                                     sDialog
-                                            .setTitleText("Deleted!")
-                                            .setContentText("Your imaginary file has been deleted!")
+                                            .setTitleText("删除!")
+                                            .setContentText("你的订单已经删除!")
                                             .setConfirmText("OK")
                                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                                 @Override

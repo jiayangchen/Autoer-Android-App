@@ -16,19 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         app:rollviewpager_hint_gravity="right"
-        app:rollviewpager_play_delay="3000" >
+        app:rollviewpager_play_delay="3000" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/main2_pic_hint_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to use Autoer, a smart helper"
+            android:text="欢迎使用汽车助手"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginTop="115dp"
-            android:background="@color/black"/>
+            android:background="@color/black"/>-->
 
-    </com.jude.rollviewpager.RollPagerView>
 
     <View
         android:layout_width="match_parent"
@@ -157,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Now Owed:"
+                        android:text="正在驾驶:"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -180,7 +179,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Gas:"
+                        android:text="剩余油量:"
                         android:textSize="15sp" />
 
                     <TextView
@@ -201,7 +200,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Mileage:"
+                        android:text="里程数:"
                         android:textSize="15sp" />
 
                     <TextView
@@ -222,7 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Engine SA:"
+                        android:text="发动机情况:"
                         android:textSize="15sp" />
 
                     <TextView
@@ -243,7 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:text="Trans SA:"
+                        android:text="变速器情况:"
                         android:textSize="15sp" />
 
                     <TextView
@@ -294,12 +293,14 @@
                     android:src="@drawable/sun_200" />-->
                 <TextView
                     android:id="@+id/weather_tem"
+                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/weather_wind"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -367,7 +368,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="safhuaihidsuahnvoidsncjsdc" />
+                android:text="还没想好做什么" />
 
         </LinearLayout>
 

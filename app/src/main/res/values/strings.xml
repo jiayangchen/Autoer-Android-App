@@ -7,8 +7,8 @@
     <string name="login_button_text">Login in</string>
     <string name="register_button_text">Register</string>
     <string name="login_title">Autoer</string>
-    <string name="login_checkbox_remember">remember</string>
-    <string name="login_checkbox_autologin">log in automatically</string>
+    <string name="login_checkbox_remember">记住密码</string>
+    <string name="login_checkbox_autologin">自动登录</string>
 
     <string name="title_activity_register">Register Now</string>
     <string name="title_activity_main2">MainPages</string>
@@ -19,10 +19,10 @@
     <string name="repeat_password">Ensure Password</string>
 
     <!-- Toolbar -->
-    <string name="menu_search">Search</string>
-    <string name="menu_notifications">Notification</string>
+    <string name="menu_search">查找</string>
+    <string name="menu_notifications">通知</string>
     <string name="item_01">Settings</string>
-    <string name="item_02">Scan QRCode</string>
+    <string name="item_02">扫一扫</string>
     <string name="item_03">About</string>
     <string name="item_quit">Quit</string>
 
@@ -30,17 +30,17 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_order">Location</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">设置</string>
 
 
     <!-- 左滑 nav_drawer 菜单-->
-    <string name="myinfo">Illegal Query</string>
-    <string name="mycar">Garage</string>
-    <string name="myorder">Order List</string>
+    <string name="myinfo">违章查询</string>
+    <string name="mycar">我的车库</string>
+    <string name="myorder">订单历史</string>
     <string name="mytools">Music Bar</string>
-    <string name="myshare">Share App</string>
-    <string name="myfeedback">FeedBack</string>
-    <string name="myquit">Quit Login</string>
+    <string name="myshare">立即分享</string>
+    <string name="myfeedback">用户反馈</string>
+    <string name="myquit">退出</string>
 
 
     <!-- 加油站显示 -->

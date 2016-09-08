@@ -97,7 +97,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:text="Order Now"
+            android:text="立即预约"
             app:roundedCorners="true"
             app:bootstrapBrand="primary"
             android:layout_gravity="center_horizontal"

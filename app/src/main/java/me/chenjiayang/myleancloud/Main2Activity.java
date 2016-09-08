@@ -136,8 +136,8 @@ public class Main2Activity extends AppCompatActivity
         now_trans_situation = (TextView) findViewById(R.id.now_trans_situation);
         nav_settings = (BootstrapButton) findViewById(R.id.main2_nav_settings);
         nav_quit = (BootstrapButton) findViewById(R.id.main2_nav_quit);
-        main2_pic_hint = (TextView) findViewById(R.id.main2_pic_hint_bg);
-        main2_pic_hint.getBackground().setAlpha(80);
+        //main2_pic_hint = (TextView) findViewById(R.id.main2_pic_hint_bg);
+        //main2_pic_hint.getBackground().setAlpha(80);
 
         nav_quit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,7 +262,8 @@ public class Main2Activity extends AppCompatActivity
 
         //Sun_Rotate();
     }
-    /*private void weather(){
+
+    private void weather(){
         w_city = (TextView) findViewById(R.id.weather_city);
         w_tem = (TextView) findViewById(R.id.weather_tem);
         w_wind = (TextView) findViewById(R.id.weather_wind);
@@ -270,7 +271,7 @@ public class Main2Activity extends AppCompatActivity
 
         JuheSDKInitializer.initialize(getApplicationContext());
         Parameters params = new Parameters();
-        params.add("cityname","苏州");
+        params.add("cityname","上海");
         params.add("dtype","json");
         params.add("format",1);
         JuheData.executeWithAPI(getApplicationContext(), 39, "http://v.juhe.cn/weather/index",
@@ -302,7 +303,7 @@ public class Main2Activity extends AppCompatActivity
                 ToastUtil.show(Main2Activity.this,throwable.getMessage());
             }
         });
-    }*/
+    }
 
     /*private void Sun_Rotate(){
         Main2_Sun = (ImageView) findViewById(R.id.main2_sun);
@@ -373,7 +374,21 @@ public class Main2Activity extends AppCompatActivity
         Main2_Statistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main2Activity.this, StatisticsActivity.class));
+                AVQuery<AVObject> avQuery = new AVQuery<>("Car");
+                avQuery.getInBackground(AVUser.getCurrentUser().get("NowDriving").toString(), new GetCallback<AVObject>() {
+                    @Override
+                    public void done(AVObject avObject, AVException e) {
+
+                        Bundle sta_bundle = new Bundle();
+                        sta_bundle.putString("sta_name",avObject.get("CarName").toString());
+                        sta_bundle.putString("sta_mileage",avObject.get("mileage").toString());
+                        sta_bundle.putString("sta_gas",avObject.get("Amount_of_gasoline").toString());
+
+                        Intent sta = new Intent(Main2Activity.this,StatisticsActivity.class);
+                        sta.putExtra("sta",sta_bundle);
+                        startActivity(sta);
+                    }
+                });
             }
         });
     }
@@ -679,12 +694,13 @@ public class Main2Activity extends AppCompatActivity
             public boolean onMenuItemClick(MenuItem item) {
                 int menuItemId = item.getItemId();
                 if (menuItemId == R.id.action_search) {
-                    //Toast.makeText(Main2Activity.this, R.string.menu_search, Toast.LENGTH_SHORT).show();
-                    /*PackageManager packageManager = getPackageManager();
-                    Intent intent= new Intent();
-                    intent = packageManager.getLaunchIntentForPackage("com.juhe.petrolstation");
-                    startActivity(intent);*/
-                    startActivity(new Intent(Main2Activity.this, AroundGasActivity.class));
+
+                    Bundle around_gas = new Bundle();
+                    around_gas.putDouble("around_gas_lat",31.022371);
+                    around_gas.putDouble("around_gas_lon",121.442491);
+                    Intent intent = new Intent(Main2Activity.this,AroundGasActivity.class);
+                    intent.putExtra("around_gas",around_gas);
+                    startActivity(intent);
                 } else if (menuItemId == R.id.action_notification) {
                     //Toast.makeText(Main2Activity.this, R.string.menu_notifications, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Main2Activity.this, NotificationActivity.class));
@@ -943,9 +959,6 @@ public class Main2Activity extends AppCompatActivity
         }
         else if(id == R.id.nav_feedback){
             startActivity(new Intent(Main2Activity.this,FeedBackActivity.class));
-        }
-        else if(id == R.id.nav_route){
-            //startActivity(new Intent(Main2Activity.this,RouteActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

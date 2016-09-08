@@ -17,15 +17,13 @@
     <group>
         <item
             android:id="@+id/action_item2"
-            android:icon="@drawable/ic_edit_black_18dp"
             android:title="@string/item_02"
-            app:showAsAction="withText"/>
+            app:showAsAction="never"/>
 
         <item
             android:id="@+id/action_item3"
-            android:icon="@drawable/ic_edit_black_18dp"
-            android:title="Logout"
-            app:showAsAction="collapseActionView"/>
+            android:title="退出登录"
+            app:showAsAction="never"/>
     </group>
 
 </menu>

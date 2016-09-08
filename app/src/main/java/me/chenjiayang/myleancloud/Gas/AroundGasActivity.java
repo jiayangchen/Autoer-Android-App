@@ -42,6 +42,8 @@ public class AroundGasActivity extends AppCompatActivity {
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
     private Bundle bundle;
+    private Bundle get_around_gas;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +76,12 @@ public class AroundGasActivity extends AppCompatActivity {
     }
 
     private void init(){
+        intent = getIntent();
+        get_around_gas = intent.getBundleExtra("around_gas");
         JuheSDKInitializer.initialize(getApplicationContext());
         final Parameters params = new Parameters();
-        params.add("lon","116.403119");
-        params.add("lat","39.916042");
+        params.add("lon",get_around_gas.getDouble("around_gas_lon"));
+        params.add("lat",get_around_gas.getDouble("around_gas_lat"));
         params.add("r",3000);
         params.add("page",1);
         params.add("format",1);

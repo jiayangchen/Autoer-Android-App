@@ -45,7 +45,7 @@
         android:textCursorDrawable="@null"
         android:drawableLeft="@mipmap/genderneutraluser_64"
         android:textSize="15sp"
-        android:hint="username"
+        android:hint="用户名"
         android:layout_marginTop="40dp"
         android:textColor="@color/darkgrey"
         android:textColorHint="@color/darkgrey"/>
@@ -76,7 +76,7 @@
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:textSize="15sp"
-        android:hint="password"
+        android:hint="输入密码"
         android:textCursorDrawable="@null"
         android:textColor="@color/darkgrey"
         android:textColorHint="@color/darkgrey"/>
@@ -107,7 +107,7 @@
             android:inputType="textPassword"
             android:layout_marginTop="15dp"
             android:textSize="15sp"
-            android:hint="Ensure pwd"
+            android:hint="确认密码"
             android:textCursorDrawable="@null"
             android:textColor="@color/darkgrey"
             android:textColorHint="@color/darkgrey"/>
@@ -138,7 +138,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         app:roundedCorners="true"
-        android:text="Back to Login"
+        android:text="Back To Login"
         app:bootstrapBrand="primary"
         android:drawableEnd="@drawable/return_32"/>
 

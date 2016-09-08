@@ -22,6 +22,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/ettt"
         android:textSize="20sp"
+        android:layout_gravity="center_vertical"
         android:drawableLeft="@drawable/edit_file_24"/>
 
     <TextView

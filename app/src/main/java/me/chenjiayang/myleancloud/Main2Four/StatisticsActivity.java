@@ -1,10 +1,12 @@
 package me.chenjiayang.myleancloud.Main2Four;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -37,10 +39,24 @@ public class StatisticsActivity extends AppCompatActivity {
     private BarData data;
     private BarDataSet dataSet;
 
+    private TextView carname;
+    private TextView carmileage;
+    private TextView cargas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        carname = (TextView) findViewById(R.id.sta_now_drive);
+        carmileage = (TextView) findViewById(R.id.sta_mileage);
+        cargas = (TextView) findViewById(R.id.sta_gas);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra("sta");
+        carname.setText(bundle.getString("sta_name"));
+        carmileage.setText(bundle.getString("sta_mileage")+"km");
+        cargas.setText(bundle.getString("sta_gas")+"%");
 
         //设置显示图表
         chart = (BarChart) findViewById(R.id.barChart);
@@ -52,7 +68,7 @@ public class StatisticsActivity extends AppCompatActivity {
         showChart(mChart, mPieData);
 
         mLineChart = (LineChart) findViewById(R.id.lineChart);
-        LineData mLineData = getLineData(36, 100);
+        LineData mLineData = getLineData(30, 30);
         showLineChart(mLineChart, mLineData, Color.rgb(114, 188, 223));
 
 
@@ -66,14 +82,14 @@ public class StatisticsActivity extends AppCompatActivity {
             entries.add(new BarEntry(profit,i));
             xVals.add((i+1)+"月");
         }
-        dataSet = new BarDataSet(entries, "公司年利润报表");
+        dataSet = new BarDataSet(entries, "汽车行驶里程数");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         data = new BarData(xVals, dataSet);
         chart.setData(data);
         //设置Y方向上动画animateY(int time);
         chart.animateY(3000);
         //图表描述
-        chart.setDescription("公司前半年财务报表(单位：万元)");
+        chart.setDescription("");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -86,7 +102,7 @@ public class StatisticsActivity extends AppCompatActivity {
         pieChart.setTransparentCircleRadius(64f); // 半透明圈
         //pieChart.setHoleRadius(0)  //实心圆
 
-        pieChart.setDescription("测试饼状图");
+        pieChart.setDescription("磨损率/保养时间");
 
         // mChart.setDrawYValues(true);
         pieChart.setDrawCenterText(true);  //饼状图中间可以添加文字
@@ -112,7 +128,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
 //      mChart.setOnAnimationListener(this);
 
-        pieChart.setCenterText("Quarterly Revenue");  //饼状图中间的文字
+        pieChart.setCenterText("零器件情况");  //饼状图中间的文字
 
         //设置数据
         pieChart.setData(pieData);
@@ -139,9 +155,9 @@ public class StatisticsActivity extends AppCompatActivity {
     private PieData getPieData(int count, float range) {
 
         ArrayList<String> xValues = new ArrayList<String>();  //xVals用来表示每个饼块上的内容
-
+        String[] items = new String[]{"轮胎","变速器","车灯","发动机"};
         for (int i = 0; i < count; i++) {
-            xValues.add("Quarterly" + (i + 1));  //饼块上显示成Quarterly1, Quarterly2, Quarterly3, Quarterly4
+            xValues.add(items[i]);  //饼块上显示成Quarterly1, Quarterly2, Quarterly3, Quarterly4
         }
 
         ArrayList<Entry> yValues = new ArrayList<Entry>();  //yVals用来表示封装每个饼块的实际数据
@@ -162,7 +178,7 @@ public class StatisticsActivity extends AppCompatActivity {
         yValues.add(new Entry(quarterly4, 3));
 
         //y轴的集合
-        PieDataSet pieDataSet = new PieDataSet(yValues, "Quarterly Revenue 2014"/*显示在比例图上*/);
+        PieDataSet pieDataSet = new PieDataSet(yValues, ""/*显示在比例图上*/);
         pieDataSet.setSliceSpace(0f); //设置个饼状图之间的距离
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
@@ -251,7 +267,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         // create a dataset and give it a type
         // y轴的数据集合
-        LineDataSet lineDataSet = new LineDataSet(yValues, "测试折线图" /*显示在比例图上*/);
+        LineDataSet lineDataSet = new LineDataSet(yValues, "日耗油量（升）" /*显示在比例图上*/);
         // mLineDataSet.setFillAlpha(110);
         // mLineDataSet.setFillColor(Color.RED);
 

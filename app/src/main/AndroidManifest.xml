@@ -98,7 +98,7 @@
 
         <activity
             android:name=".WriteOrderActivity"
-            android:label="OrderInfo" />
+            android:label="填写订单" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -111,33 +111,33 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CarInfoActivity"
-            android:label="Garage" />
+            android:label="我的车库" />
         <activity
             android:name=".MyOrderActivity"
             android:label="@string/title_activity_my_order"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".cardlayout.CardLayoutActivity"
-            android:label="Orders&apos; History" />
+            android:label="订单历史" />
         <activity
             android:name=".CarItemActivity"
-            android:label="CarElem" />
+            android:label="汽车详情" />
         <activity
             android:name=".EditInfoActivity"
             android:label="Me" />
         <activity
             android:name=".FeedBackActivity"
-            android:label="FeedBack" />
+            android:label="用户反馈" />
         <activity
             android:name=".NewsScrollingActivity"
             android:label="News"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Main2Four.CollectActivity"
-            android:label="Collector" />
+            android:label="收藏夹" />
         <activity
             android:name=".music_bar.MusicActivity"
-            android:label="Music Bar"
+            android:label="乐库"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
@@ -154,13 +154,13 @@
         </activity>
         <activity
             android:name=".QueryActivity"
-            android:label="Illegal Query" />
+            android:label="违章查询" />
         <activity
             android:name=".Main2Four.CommonActivity"
             android:label="QA" />
         <activity
             android:name=".Main2Four.MaintenActivity"
-            android:label="Maintenance" />
+            android:label="保养信息" />
         <activity
             android:name=".Main2Four.MaintenItemActivity" />
         <activity
@@ -168,16 +168,16 @@
             android:label="MapCompass" />
         <activity
             android:name=".Main2Four.NotificationActivity"
-            android:label="Notification" />
+            android:label="通知列表" />
         <activity
             android:name=".Main2Four.StatisticsActivity"
-            android:label="Statistics" />
+            android:label="数据统计" />
         <activity android:name=".util.ToolActivity" />
         <activity
             android:name=".Gas.AroundGasActivity"
-            android:label="Gas Station" />
+            android:label="周边加油站" />
         <activity android:name=".Gas.GasItemActivity"
-            android:label="GasItemList"/>
+            android:label="加油站详情"/>
         <activity android:name=".route.RouteActivity"/>
         <activity android:name=".route.DriveRouteDetailActivity"/>
         <activity android:name=".route.WalkRouteDetailActivity"/>

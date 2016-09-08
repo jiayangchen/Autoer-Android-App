@@ -200,7 +200,13 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         Poi_around_gas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PoiAroundSearchActivity.this, AroundGasActivity.class));
+                //startActivity(new Intent(PoiAroundSearchActivity.this, AroundGasActivity.class));
+                Bundle around_gas = new Bundle();
+                around_gas.putDouble("around_gas_lat",bundle.getDouble("lat"));
+                around_gas.putDouble("around_gas_lon",bundle.getDouble("lon"));
+                Intent intent = new Intent(PoiAroundSearchActivity.this,AroundGasActivity.class);
+                intent.putExtra("around_gas",around_gas);
+                startActivity(intent);
             }
         });
     }
