@@ -142,7 +142,7 @@ public class OrderActivity extends AppCompatActivity implements LocationSource, 
                     Toast.makeText(getApplicationContext(), buffer.toString(), Toast.LENGTH_LONG).show();
                     isFirstLoc = false;
 
-
+                    bundle.putString("origin",buffer.toString());
                     Intent intent = new Intent(OrderActivity.this,PoiAroundSearchActivity.class);
                     intent.putExtra("location",bundle);
                     startActivity(intent);

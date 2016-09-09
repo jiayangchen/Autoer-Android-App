@@ -538,7 +538,7 @@ public class Main2Activity extends AppCompatActivity
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                if(list.size() == 0 || AVUser.getCurrentUser().getString("NowDriving")==null){
+                if(list.size() == 0 || AVUser.getCurrentUser().getString("NowDriving") == null){
                     now_drive_car.setText("无汽车");
                 }else {
                     AVQuery<AVObject> avQuery = new AVQuery<>("Car");
@@ -556,8 +556,6 @@ public class Main2Activity extends AppCompatActivity
                 }
             }
         });
-
-
     }
 
     /*private void swipselector(){

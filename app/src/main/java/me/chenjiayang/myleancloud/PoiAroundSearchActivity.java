@@ -126,6 +126,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         intent = getIntent();
         bundle = intent.getBundleExtra("location");
 
+
+
         lp = new LatLonPoint(bundle.getDouble("lat"),bundle.getDouble("lon"));
         //lp = new LatLonPoint(31.022371, 121.442491);
 
@@ -446,6 +448,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
         bundle.putDouble("97#",5.88);
         bundle.putDouble("0#",5.11);
 
+        bundle_route.putString("origin",bundle.getString("origin"));
+        bundle_route.putString("destination",address);
         bundle_route.putDouble("self_lat",bundle.getDouble("lat"));
         bundle_route.putDouble("self_lon",bundle.getDouble("lon"));
         bundle_route.putDouble("des_lat",mCurrentPoi.getLatLonPoint().getLatitude());
@@ -480,8 +484,8 @@ public class PoiAroundSearchActivity extends Activity implements View.OnClickLis
                                             @Override
                                             public void onTimeSet(TimePicker view, final int hourOfDay, final int minute) {
 
-                                                if(hourOfDay>17 || hourOfDay <12){
-                                                    ToastUtil.show(PoiAroundSearchActivity.this,"12:00之前与17:00之后不开放预订");
+                                                if(hourOfDay>22 || hourOfDay <12){
+                                                    ToastUtil.show(PoiAroundSearchActivity.this,"12:00之前与22:00之后不开放预订");
                                                 }else if(yy>c.get(Calendar.YEAR)){
                                                     ToastUtil.show(PoiAroundSearchActivity.this,"仅本年预订，请重选");
                                                 }else if(mm+1>c.get(Calendar.MONTH)+2){

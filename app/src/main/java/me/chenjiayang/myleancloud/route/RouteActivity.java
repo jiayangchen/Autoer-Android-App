@@ -36,7 +36,9 @@ import com.amap.api.services.route.RouteSearch.OnRouteSearchListener;
 import com.amap.api.services.route.RouteSearch.WalkRouteQuery;
 import com.amap.api.services.route.WalkPath;
 import com.amap.api.services.route.WalkRouteResult;
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import me.chenjiayang.myleancloud.OrderActivity;
 import me.chenjiayang.myleancloud.R;
 import me.chenjiayang.myleancloud.util.AMapUtil;
 import me.chenjiayang.myleancloud.util.ToastUtil;
@@ -69,9 +71,13 @@ OnMarkerClickListener, OnInfoWindowClickListener, InfoWindowAdapter, OnRouteSear
 	private ImageView mWalk;
 	private ListView mBusResultList;
 	private ProgressDialog progDialog = null;// 搜索时进度条
-
 	private Intent intent;
-	private Bundle bundle = new Bundle();
+	private BootstrapButton input_des;
+	private BootstrapButton exchange;
+	private TextView Route_origin;
+	private TextView Route_destination;
+	private Bundle temp = new Bundle();
+	private Bundle ex_bundle = new Bundle();
 
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -79,10 +85,46 @@ OnMarkerClickListener, OnInfoWindowClickListener, InfoWindowAdapter, OnRouteSear
 		setContentView(R.layout.route_activity);
 
 		intent = getIntent();
-		bundle = intent.getBundleExtra("route");
+		temp = intent.getBundleExtra("route");
 
-		mStartPoint = new LatLonPoint(bundle.getDouble("self_lat"),bundle.getDouble("self_lon"));
-		mEndPoint = new LatLonPoint(bundle.getDouble("des_lat"),bundle.getDouble("des_lon"));
+		Route_origin = (TextView) findViewById(R.id.route_origin);
+		Route_destination = (TextView) findViewById(R.id.route_destination);
+
+		Route_origin.setText("起点："+temp.getString("origin"));
+		Route_destination.setText("终点："+temp.getString("destination"));
+
+		input_des = (BootstrapButton) findViewById(R.id.route_des);
+		exchange = (BootstrapButton) findViewById(R.id.route_exchange);
+
+
+		input_des.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(RouteActivity.this, OrderActivity.class));
+			}
+		});
+
+		exchange.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ex_bundle.putString("origin",temp.getString("destination"));
+				ex_bundle.putString("destination",temp.getString("origin"));
+				ex_bundle.putDouble("self_lat",temp.getDouble("des_lat"));
+				ex_bundle.putDouble("self_lon",temp.getDouble("des_lon"));
+				ex_bundle.putDouble("des_lat",temp.getDouble("self_lat"));
+				ex_bundle.putDouble("des_lon",temp.getDouble("self_lon"));
+
+				finish();
+				Intent intent = new Intent(RouteActivity.this,RouteActivity.class);
+				intent.putExtra("route",ex_bundle);
+				startActivity(intent);
+			}
+		});
+
+
+
+		mStartPoint = new LatLonPoint(temp.getDouble("self_lat"),temp.getDouble("self_lon"));
+		mEndPoint = new LatLonPoint(temp.getDouble("des_lat"),temp.getDouble("des_lon"));
 
 		mContext = this.getApplicationContext();
 		mapView = (MapView) findViewById(R.id.route_map);

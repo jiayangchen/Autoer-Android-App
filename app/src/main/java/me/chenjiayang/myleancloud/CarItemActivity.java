@@ -208,6 +208,11 @@ public class CarItemActivity extends AppCompatActivity {
                                 avQuery.getInBackground(bundle_id.getString("ObjectId"), new GetCallback<AVObject>() {
                                     @Override
                                     public void done(AVObject avObject, AVException e) {
+                                        if(AVUser.getCurrentUser().getString("NowDriving").equals(bundle_id.getString("ObjectId"))){
+                                            AVUser auser = AVUser.getCurrentUser();
+                                            auser.put("NowDriving","");
+                                            auser.saveInBackground();
+                                        }
                                         avObject.deleteInBackground();
                                         ToastUtil.show(CarItemActivity.this,"解除绑定成功");
                                     }
