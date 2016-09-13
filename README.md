@@ -4,7 +4,7 @@
 
 ## 主页面截图
 ![image](http://o9oomuync.bkt.clouddn.com/autoer%E5%9B%BE%E7%89%871.png)
-
+![image](http://o9oomuync.bkt.clouddn.com/autoer%E5%9B%BE%E7%89%872.png)
 ## 基础功能
 
 #### 注册，登陆，个人信息
