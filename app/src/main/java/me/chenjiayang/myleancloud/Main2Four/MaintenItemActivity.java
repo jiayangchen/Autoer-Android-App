@@ -80,7 +80,7 @@ public class MaintenItemActivity extends AppCompatActivity {
         map.put("itemTitle",bundle.getString("main_title"));
         map.put("itemAuthor",bundle.getString("main_author"));
         map.put("itemP1","\t\t\t\t"+bundle.getString("main_p1"));
-        map.put("itemI1",R.drawable.mainten1);
+        map.put("itemI1",R.drawable.mainten2);
         map.put("itemP2","\t\t\t\t"+bundle.getString("main_p2"));
         map.put("itemP3","\t\t\t\t"+bundle.getString("main_p3"));
         map.put("itemP4","\t\t\t\t"+bundle.getString("main_p4"));

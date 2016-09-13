@@ -18,13 +18,6 @@ import android.util.Log;
 
 import me.chenjiayang.myleancloud.R;
 
-/*
- * This is demo code to accompany the Mobiletuts+ series:
- * Android SDK: Creating a Music Player
- *
- * Sue Smith - February 2014
- */
-
 public class MusicService extends Service implements
         MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,
         MediaPlayer.OnCompletionListener {
@@ -43,6 +36,7 @@ public class MusicService extends Service implements
     private static final int NOTIFY_ID=1;
     //shuffle flag and random
     private boolean shuffle=false;
+
     private Random rand;
 
     public void onCreate(){

@@ -80,6 +80,7 @@ public class CarItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_car_item);
 
         SwipeBackHelper.onCreate(this);

@@ -59,20 +59,20 @@ public class MainActivity extends AppCompatActivity {
 
         init();//初始化控件
 
-        pushMsg();
+        //pushMsg();
 
         login();//登录逻辑
 
     }
 
-    private void savePushMsg(String msg){
+    /*private void savePushMsg(String msg){
         AVObject todoFolder = new AVObject("Push");// 构建对象
         todoFolder.put("push_msg", msg);// 设置名称
         todoFolder.put("currUserID", AVUser.getCurrentUser().getObjectId());// 设置名称
         todoFolder.saveInBackground();// 保存到服务端
-    }
+    }*/
 
-    private void pushMsg(){
+  /*  private void pushMsg(){
         AVQuery<AVObject> query = new AVQuery<>("Car");
         query.whereEqualTo("currUserID", AVUser.getCurrentUser().getObjectId());
         query.whereLessThan("Amount_of_gasoline",10);
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     private void init(){
         login_button = (BootstrapButton) findViewById(R.id.login_button);
