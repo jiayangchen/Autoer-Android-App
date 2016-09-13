@@ -3,7 +3,7 @@
 大二暑期大作业，汽车助手App
 
 ## 主页面截图
-[!image](http://o9oomuync.bkt.clouddn.com/autoer%E5%9B%BE%E7%89%871.png)
+![image](http://o9oomuync.bkt.clouddn.com/autoer%E5%9B%BE%E7%89%871.png)
 
 ## 基础功能
 
